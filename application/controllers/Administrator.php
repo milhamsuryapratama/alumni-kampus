@@ -197,7 +197,7 @@ class Administrator extends CI_Controller
 
 	public function prodi()
 	{
-		$data['prodi'] = $this->App_model->ambil_data('prodi','id');
+		$data['prodi'] = $this->App_model->join_dua_table('fakultas','prodi', 'fakultas.id = prodi.id_fakultas', 'prodi.id');
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');

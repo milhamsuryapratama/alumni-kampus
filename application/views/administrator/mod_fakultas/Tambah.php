@@ -48,3 +48,5 @@
 	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
 reserved.</strong>
 </footer>
+
+<script src="<?=base_url()?>assets/js/jquery.min.js"></script>

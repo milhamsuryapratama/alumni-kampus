@@ -28,16 +28,20 @@
     							<tr>
     								<th>NO</th>
     								<th>Nama Fakutas</th>
+                                    <th>Jumlah Prodi</th>
     								<th>Actions</th>
     							</tr>
     						</thead>
     						<tbody>
     							<?php 
     							$no = 1;
-    							foreach ($fakultas as $f) { ?>
+    							foreach ($fakultas as $f) { 
+                                    $jml = $this->db->query("SELECT id_fakultas FROM prodi WHERE id_fakultas = '".$f['id']."' ")->num_rows();
+                                    ?>
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$f['nama_fakultas']?></td>
+                                        <td><?=$jml?></td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_fakultas/<?=$f['id']?>" class="btn btn-success">Edit</a>

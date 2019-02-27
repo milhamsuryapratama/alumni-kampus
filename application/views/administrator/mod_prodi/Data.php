@@ -28,6 +28,7 @@
     							<tr>
     								<th>NO</th>
     								<th>Nama Prodi</th>
+                                    <th>Fakultas</th>
     								<th>Actions</th>
     							</tr>
     						</thead>
@@ -38,6 +39,7 @@
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$p['nama_prodi']?></td>
+                                        <td><?=$p['nama_fakultas']?></td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_prodi/<?=$p['id']?>" class="btn btn-success">Edit</a>
