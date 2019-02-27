@@ -130,5 +130,139 @@ class Administrator extends CI_Controller
 		$prodi = $this->App_model->ambil_data_by_id_result('prodi', 'id_fakultas', $id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($prodi));
 	}
+
+	public function fakultas()
+	{
+		$data['fakultas'] = $this->App_model->ambil_data('fakultas','id');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_fakultas/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_fakultas()
+	{
+		if (isset($_POST['submit'])) {
+			$data_fakultas = array(
+				'nama_fakultas' => $this->input->post('nama_fakultas')
+			);
+
+			$query = $this->App_model->tambah_data('fakultas', $data_fakultas);
+
+			if ($query) {
+				redirect(base_url().'administrator/fakultas');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_fakultas/Tambah');
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function edit_fakultas($id)
+	{
+		$data['f'] = $this->App_model->ambil_data_by_id('fakultas','id',$id);
+
+		if (isset($_POST['update'])) {
+			$id_u = $this->input->post('id');
+
+			$data_fakultas = array(
+				'nama_fakultas' => $this->input->post('nama_fakultas')
+			);
+			$query = $this->App_model->edit_data('fakultas','id',$id_u,$data_fakultas);
+
+			if ($query) {
+				redirect(base_url().'administrator/fakultas');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_fakultas/Edit', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_fakultas($id)
+	{
+		$query = $this->App_model->hapus_data('fakultas','id',$id);
+		if ($query) {
+			redirect(base_url().'administrator/fakultas');
+		}
+	}
+
+	public function prodi()
+	{
+		$data['prodi'] = $this->App_model->ambil_data('prodi','id');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_prodi/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_prodi()
+	{
+		$data['fakultas'] = $this->App_model->ambil_data('fakultas','id');
+
+		if (isset($_POST['submit'])) {
+			$data_prodi = array(
+				'id_fakultas' => $this->input->post('fakultas'),
+				'nama_prodi' => $this->input->post('nama_prodi')
+			);
+
+			$query = $this->App_model->tambah_data('prodi', $data_prodi);
+
+			if ($query) {
+				redirect(base_url().'administrator/prodi');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_prodi/Tambah', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function edit_prodi($id)
+	{
+		$data['fakultas'] = $this->App_model->ambil_data('fakultas','id');
+		$data['p'] = $this->App_model->ambil_data_by_id('prodi','id', $id);
+
+		if (isset($_POST['update'])) {
+			$id_p = $this->input->post('id');
+
+			$data_prodi = array(
+				'id_fakultas' => $this->input->post('fakultas'),
+				'nama_prodi' => $this->input->post('nama_prodi')
+			);
+
+			$query = $this->App_model->edit_data('prodi','id',$id_p,$data_prodi);
+
+			if ($query) {
+				redirect(base_url().'administrator/prodi');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_prodi/Edit', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_prodi($id)
+	{
+		$query = $this->App_model->hapus_data('prodi','id',$id);
+		if ($query) {
+			redirect(base_url().'administrator/prodi');
+		}
+	}
 }
  ?>

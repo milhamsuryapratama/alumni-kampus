@@ -36,6 +36,8 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="<?=base_url()?>administrator/alumni"><i class="fa fa-circle-o"></i> Alumni</a></li>
+          <li><a href="<?=base_url()?>administrator/fakultas"><i class="fa fa-circle-o"></i> Fakultas</a></li>
+          <li><a href="<?=base_url()?>administrator/prodi"><i class="fa fa-circle-o"></i> Program Studi</a></li>
         </ul>
       </li>
     </ul>
