@@ -51,6 +51,11 @@ class App_model extends CI_Model
     	return $this->db->join($table2,$params1)->join($table3,$params2)->get($table1)->result_array();
     }
 
+    public function join_empat_table_by_id($table1,$table2,$table3,$table4,$params1,$params2,$params3,$paramsWhere,$id_petugas)
+    {
+        return $this->db->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get_where($table1, array($paramsWhere => $id_petugas))->result_array();
+    }
+
     public function hitung_data($table)
     {
         return $this->db->get($table)->num_rows();
@@ -59,6 +64,23 @@ class App_model extends CI_Model
     public function hitung_data_by_id($table,$field,$id)
     {
         return $this->db->get_where($table, array($field => $id))->num_rows();
+    }
+
+    public function ambil_id_foto($id)
+    {
+        $this->db->from('tb_kegiatan');
+        $this->db->where('id_kegiatan', $id);
+        $result = $this->db->get('');
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        }
+    }
+
+    public function auto_complete($title){
+        $this->db->like('nama', $title , 'both');
+        $this->db->order_by('nama', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('tb_alumni')->result();
     }
 }
  ?>

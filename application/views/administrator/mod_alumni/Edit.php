@@ -21,82 +21,91 @@
     				<!-- /.box-header -->
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/edit_alumni" method="post">
+                        <input type="hidden" name="id_alumni" value="<?=$a['id_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
-    							<label for="nim">NIM</label>
-    							<input type="text" name="nim" class="form-control" id="nim" placeholder="Enter NIM" value="<?=$a['nim']?>">
-    						</div>
-    						<div class="form-group">
-    							<label for="nama_lengkap">Nama Lengkap</label>
-    							<input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Enter Nama Lengkap" value="<?=$a['nama']?>">
-    						</div>
-    						<div class="form-group">
-    							<label for="email">Email</label>
-    							<input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="<?=$a['email']?>">
-    						</div>
-    						<div class="form-group">
-    							<label for="jk">Jenik Kelamin</label>
-    							<div class="radio">
-                                    <?php 
-                                        if ($a['jk'] == 'L') { ?>
-                                            <label>
-                                                <input type="radio" name="jk" value="L" checked>
-                                                Laki - Laki
-                                            </label>
-                                            <br>
-                                            <label>
-                                                <input type="radio" name="jk" value="P">
-                                                Perempuan
-                                            </label>
-                                        <?php } else { ?>
-                                            <label>
-                                                <input type="radio" name="jk" value="L">
-                                                Laki - Laki
-                                            </label>
-                                            <br>
-                                            <label>
-                                                <input type="radio" name="jk" value="P" checked>
-                                                Perempuan
-                                            </label>
-                                        <?php } ?>
-    							</div>
-    						</div>
+                                <label for="nim">NO KTP</label>
+                                <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter Nomor KTP" value="<?=$a['no_ktp']?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap">Nama Lengkap</label>
+                                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Enter Nama Lengkap" value="<?=$a['nama']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="<?=$a['email']?>">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="jk">Jenik Kelamin</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="jk" value="L">
+                                        Laki - Laki
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <input type="radio" name="jk" value="P">
+                                        Perempuan
+                                    </label>
+                                </div>
+                            </div> -->
     						<div class="form-group">
     							<label>Alamat Lengkap</label>
     							<textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat"><?=$a['alamat']?></textarea>
     						</div>
     						<div class="form-group">
-    							<label>Fakultas</label>
-    							<select class="form-control" id="fakultas" name="fakultas">
-    								<option>-- Pilih Fakultas --</option>
+    							<label>Kecamatan</label>
+    							<select class="form-control" id="kecamatan" name="kecamatan">
+
+    								<option>-- Pilih Kecamatan --</option>
     								<?php 
-    									foreach ($f as $f) { 
-                                            if ($f['id'] == $a['fakultas']) { ?>
-                                                <option value="<?=$f['id']?>" selected><?=$f['nama_fakultas']?></option>
+    									foreach ($k as $k) { 
+                                            if ($k['id_kecamatan'] == $a['kecamatan']) { ?>
+                                                <option value="<?=$k['id_kecamatan']?>" selected><?=$k['nama_kecamatan']?></option>
                                             <?php } else { ?>
-                                                <option value="<?=$f['id']?>"><?=$f['nama_fakultas']?></option>
+                                                <option value="<?=$k['id_kecamatan']?>"><?=$k['nama_kecamatan']?></option>
                                             <?php } 
                                         } ?>
     							</select>
     						</div>
     						<div class="form-group">
-    							<label>Program Studi</label> <input type="hidden" id="prodi_id" value="<?=$a['prodi']?>">
-    							<select class="form-control" id="prodi" name="prodi">
+    							<label>Desa</label> <input type="hidden" id="desa_id" value="<?=$a['desa']?>">
+    							<select class="form-control" id="desa" name="desa">
                                     
     							</select>
     						</div>
     						<div class="form-group">
-    							<label for="tahun_masuk">Tahun Masuk</label>
-    							<input type="text" name="tahun_masuk" class="form-control" id="tahun_masuk" placeholder="Enter Nomor Tahun Masuk" value="<?=$a['tahun_masuk']?>">
-    						</div>
-    						<div class="form-group">
-    							<label for="tahun_lulus">Tahun Lulus</label>
-    							<input type="text" name="tahun_lulus" class="form-control" id="tahun_lulus" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['tahun_lulus']?>">
-    						</div>
-    						<div class="form-group">
-    							<label for="no_hp">Nomor Handphone</label>
-    							<input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Enter Nomor Handphone" value="<?=$a['no_hp']?>">
-    						</div>
+                                <label for="tahun_masuk">Tahun Masuk</label>
+                                <input type="text" name="tahun_masuk" class="form-control" id="tahun_masuk" placeholder="Enter Nomor Tahun Masuk" value="<?=$a['thn_mondok']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="tahun_lulus">Tahun Lulus</label>
+                                <input type="text" name="tahun_lulus" class="form-control" id="tahun_lulus" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['thn_keluar']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="telepon">Telepon</label>
+                                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['telepon']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="pekerjaan">Pekerjaan</label>
+                                <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Nomor Handphone" value="<?=$a['pekerjaan']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="bidang_usaha">Bidang Usaha</label>
+                                <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha" value="<?=$a['bidang_usaha']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="akun_fb">Akun Facebook</label>
+                                <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Akun Facebook" value="<?=$a['akun_fb']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="<?=$a['username']?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" value="<?=$a['password']?>">
+                            </div>
     					</div>
     					<!-- /.box-body -->
 
@@ -124,42 +133,41 @@ reserved.</strong>
 <script>
 	$(function () {		
 
-        let fakultas_id = $("#fakultas").val();
-        let prodi_id = $("#prodi_id").val();
+        let kecamatan_id = $("#kecamatan").val();
+        let desa_id = $("#desa_id").val();
 
-        $.post('<?=base_url()?>administrator/get_prodi', {id: fakultas_id}, (result) => {
+        $.post('<?=base_url()?>administrator/get_desa', {id: kecamatan_id}, (result) => {
             console.log(result);
-            $("#prodi").find("option").remove();
+            $("#desa").find("option").remove();
             $.map(result, function(val, i) {
-                if (val.id == prodi_id) {
-                  $('#prodi').append(
+                if (val.id_desa == desa_id) {
+                  $('#desa').append(
                     `
-                    <option value='${val.id}' selected>${val.nama_prodi}</option>
+                    <option value='${val.id_desa}' selected>${val.nama_desa}</option>
                     `  
                     )  
                 } else {
-                    $('#prodi').append(
+                    $('#desa').append(
                         `
-                        <option value='${val.id}'>${val.nama_prodi}</option>
+                        <option value='${val.id_desa}'>${val.nama_desa}</option>
                         `  
                         )
                 }
             })
         })
 
-		$("#fakultas").on('change', function() {
-			$.post('<?=base_url()?>administrator/get_prodi', {id: this.value}, (result) => {
-                console.log(result);
-				$("#prodi").find("option").remove();
-				$.map(result, function(val, i) {
-					$('#prodi').append(
-						`
-						<option value='${val.id}'>${val.nama_prodi}</option>
-						`
-						)
-				})
-			})
-		})
+		$("#kecamatan").on('change', function() {
+            $.post('<?=base_url()?>administrator/get_desa', {id: this.value}, (result) => {
+                $("#desa").find("option").remove();
+                $.map(result, function(val, i) {
+                    $('#desa').append(
+                        `
+                        <option value='${val.id_desa}'>${val.nama_desa}</option>
+                        `
+                        )
+                })
+            })
+        })
 
 	})
 </script>

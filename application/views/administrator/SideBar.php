@@ -26,20 +26,21 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-circle-o"></i>
-          <span>Dashboard</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="<?=base_url()?>administrator/alumni"><i class="fa fa-circle-o"></i> Alumni</a></li>
-          <li><a href="<?=base_url()?>administrator/fakultas"><i class="fa fa-circle-o"></i> Fakultas</a></li>
-          <li><a href="<?=base_url()?>administrator/prodi"><i class="fa fa-circle-o"></i> Program Studi</a></li>
-        </ul>
-      </li>
+      <li><a href="<?=base_url()?>administrator/dashboard"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+    </ul>
+    <ul class="sidebar-menu">
+      <?php if ($this->session->userdata('username') === 'p4nj') { ?>
+        <li><a href="<?=base_url()?>administrator/alumni"><i class="fa fa-circle-o"></i> Alumni</a></li>
+        <li><a href="<?=base_url()?>administrator/kecamatan"><i class="fa fa-circle-o"></i> Kecamatan</a></li>
+        <li><a href="<?=base_url()?>administrator/desa"><i class="fa fa-circle-o"></i> Desa</a></li>
+        <li><a href="<?=base_url()?>administrator/lembaga"><i class="fa fa-circle-o"></i> Lembaga</a></li>
+        <li><a href="<?=base_url()?>administrator/jabatan"><i class="fa fa-circle-o"></i> Jabatan</a></li>
+        <li><a href="<?=base_url()?>administrator/devisi"><i class="fa fa-circle-o"></i> Devisi</a></li>
+      <?php } else { ?>
+        <li><a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Visi & Misi</a></li>
+        <li><a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Kegiatan</a></li>
+        <li><a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Struktur</a></li>
+      <?php } ?>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -1,8 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Data Alumni
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -13,6 +12,25 @@
 
     	<div class="row">
     		<div class="col-md-12">
+                <?php if ($this->session->flashdata('tambahDataSukses')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                        <?php echo $this->session->flashdata('tambahDataSukses'); ?>
+                    </div>
+                <?php } elseif ($this->session->flashdata('hapusDataSukses')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                        <?php echo $this->session->flashdata('hapusDataSukses'); ?>
+                    </div>
+                <?php } elseif ($this->session->flashdata('updateDataSukses')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                        <?php echo $this->session->flashdata('updateDataSukses'); ?>
+                    </div>
+                <?php } ?>
     			<div class="box box-primary">
     				<div class="box-header">
     					<h3 class="box-title">Data Table With Full Features</h3>
@@ -21,18 +39,18 @@
     					<table id="example1" class="table table-bordered table-striped">
     						<thead>
     							<tr>
-    								<td colspan="7">
+    								<td colspan="8">
     									<a href="<?=base_url()?>administrator/tambah_alumni" class="btn btn-block btn-primary">Tambah Data</a>
     								</td>
     							</tr>
     							<tr>
     								<th>NO</th>
-    								<th>NIM</th>
+    								<th>NO KTP</th>
     								<th>Nama</th>
     								<th>Alamat</th>
-    								<th>Fakultas</th>
-    								<th>Prodi</th>
-    								<th>Actions</th>
+    								<th>Telepon</th>
+    								<th>Tahun Mondok</th>
+    								<th>Tahun Keluar</th>
     							</tr>
     						</thead>
     						<tbody>
@@ -41,18 +59,19 @@
     							foreach ($alumni as $a) { ?>
     								<tr>
     									<td><?=$no?></td>
-    									<td><?=$a['nim']?></td>
+    									<td><?=$a['no_ktp']?></td>
     									<td><?=$a['nama']?></td>
-    									<td><?=$a['alamat']?></td>
-    									<td><?=$a['nama_fakultas']?></td>
-    									<td><?=$a['nama_prodi']?></td>
+    									<td><?=$a['alamat'] . ' Kecamatan '. $a['nama_kecamatan'] . ' Desa ' . $a['nama_desa']?></td>
+    									<td><?=$a['telepon']?></td>
+    									<td><?=$a['thn_mondok']?></td>
+                                        <td><?=$a['thn_keluar']?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_alumni/<?=$a['nim']?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_alumni/<?=$a['id_alumni']?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_alumni/<?=$a['nim']?>" class="btn btn-danger">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_alumni/<?=$a['id_alumni']?>" class="btn btn-danger">Hapus</a>
     										</div>
     									</td>
     								</tr>

@@ -10,6 +10,7 @@
       </ol>
     </section>
     <section class="content">
+        <?php echo $this->session->userdata('id_petugas'); ?> 
     	<div class="row">
     		<!-- /.col -->
     		<div class="col-md-3 col-sm-6 col-xs-12">
@@ -117,7 +118,7 @@
     									<span class="progress-number"><b>160</b>/200</span>
 
     									<div class="progress sm">
-    										<div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+    										<div class="progress-bar progress-bar-aqua" style="width: 15%"></div>
     									</div>
     								</div>
     								<!-- /.progress-group -->

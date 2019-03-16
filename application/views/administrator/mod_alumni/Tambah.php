@@ -11,8 +11,7 @@
     </section>
     <section class="content">
     	<div class="row">
-    		<div class="col-md-12">
-    			
+    		<div class="col-md-12">    			
 
     			<div class="box box-primary">
     				<div class="box-header with-border">
@@ -23,8 +22,8 @@
     				<form action="<?=base_url()?>administrator/tambah_alumni" method="post">
     					<div class="box-body">
     						<div class="form-group">
-    							<label for="nim">NIM</label>
-    							<input type="text" name="nim" class="form-control" id="nim" placeholder="Enter NIM">
+    							<label for="nim">NO KTP</label>
+    							<input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter Nomor KTP">
     						</div>
     						<div class="form-group">
     							<label for="nama_lengkap">Nama Lengkap</label>
@@ -34,7 +33,7 @@
     							<label for="email">Email</label>
     							<input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
     						</div>
-    						<div class="form-group">
+    						<!-- <div class="form-group">
     							<label for="jk">Jenik Kelamin</label>
     							<div class="radio">
     								<label>
@@ -47,24 +46,24 @@
     									Perempuan
     								</label>
     							</div>
-    						</div>
+    						</div> -->
     						<div class="form-group">
     							<label>Alamat Lengkap</label>
     							<textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat"></textarea>
     						</div>
     						<div class="form-group">
     							<label>Fakultas</label>
-    							<select class="form-control" id="fakultas" name="fakultas">
-    								<option>-- Pilih Fakultas --</option>
+    							<select class="form-control" id="kecamatan" name="kecamatan">
+    								<option>-- Pilih Kecamatan --</option>
     								<?php 
-    									foreach ($fakultas as $f) { ?>
-    										<option value="<?=$f['id']?>"><?=$f['nama_fakultas']?></option>
+    									foreach ($kecamatan as $k) { ?>
+    										<option value="<?=$k['id_kecamatan']?>"><?=$k['nama_kecamatan']?></option>
     								<?php } ?>
     							</select>
     						</div>
     						<div class="form-group">
-    							<label>Program Studi</label>
-    							<select class="form-control" id="prodi" name="prodi">
+    							<label>Desa</label>
+    							<select class="form-control" id="desa" name="desa">
     							</select>
     						</div>
     						<div class="form-group">
@@ -75,10 +74,30 @@
     							<label for="tahun_lulus">Tahun Lulus</label>
     							<input type="text" name="tahun_lulus" class="form-control" id="tahun_lulus" placeholder="Enter Nomor Tahun Lulus">
     						</div>
+                            <div class="form-group">
+                                <label for="telepon">Telepon</label>
+                                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="Enter Nomor Tahun Lulus">
+                            </div>
     						<div class="form-group">
-    							<label for="no_hp">Nomor Handphone</label>
-    							<input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Enter Nomor Handphone">
+    							<label for="no_hp">Pekerjaan</label>
+    							<input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Nomor Handphone">
     						</div>
+                            <div class="form-group">
+                                <label for="nama_lengkap">Bidang Usaha</label>
+                                <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Nama Lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap">Akun Facebook</label>
+                                <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Nama Lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap">Username</label>
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Nama Lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap">Password</label>
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter Nama Lengkap">
+                            </div>
     					</div>
     					<!-- /.box-body -->
 
@@ -106,13 +125,13 @@ reserved.</strong>
 <script>
 	$(function () {		
 
-		$("#fakultas").on('change', function() {
-			$.post('<?=base_url()?>administrator/get_prodi', {id: this.value}, (result) => {
-				$("#prodi").find("option").remove();
+		$("#kecamatan").on('change', function() {
+			$.post('<?=base_url()?>administrator/get_desa', {id: this.value}, (result) => {
+				$("#desa").find("option").remove();
 				$.map(result, function(val, i) {
-					$('#prodi').append(
+					$('#desa').append(
 						`
-						<option value='${val.id}'>${val.nama_prodi}</option>
+						<option value='${val.id_desa}'>${val.nama_desa}</option>
 						`
 						)
 				})

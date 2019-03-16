@@ -17,7 +17,8 @@ class Auth extends CI_Controller
 
 	public function login() 
 	{
-		$this->load->view('administrator/login');
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga', 'id_lembaga');
+		$this->load->view('administrator/login', $data);
 	}
 
 	public function adminRegister()
@@ -42,21 +43,26 @@ class Auth extends CI_Controller
 		if (isset($_POST['login_button'])) {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
+			$lembaga = $this->input->post('lembaga');
 
 			$where = array(
-	            'username' => $username,
+	            'user' => $username,
 	            'password' => $password
         	);
 
-        	$cek = $this->App_model->login_proses("admin", $where)->num_rows();
+        	$cek = $this->db->query("SELECT * FROM tb_petugas WHERE user = '$username' AND password = '$password' AND level = '$lembaga' ")->row_array();
 
-        	if ($cek > 0) {
+        	if (count($cek) > 0) {
         		$sessionAdmin = array(
+        			'id_petugas' => $cek['level'],
         			'username' => $username,
         			'status' => 'loginSukses'
         		);
         		$this->session->set_userdata($sessionAdmin);
         		redirect(base_url()."administrator/dashboard");
+        	} else {
+        		$this->session->set_flashdata('loginError', 'Periksa Kembali Login Anda');
+        		redirect(base_url().'auth/login');
         	}
 		}
 	}

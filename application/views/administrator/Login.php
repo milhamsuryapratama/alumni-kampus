@@ -22,7 +22,13 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-
+    <?php if ($this->session->flashdata('loginError')): ?>
+      <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+        <?=$this->session->flashdata('loginError')?>
+      </div>
+    <?php endif ?>
     <form action="<?=base_url()?>auth/adminLogin" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="Username">
@@ -33,11 +39,16 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-12">
           <div class="has-feedback">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
+            <div class="form-group">
+              <select class="form-control" name="lembaga">            
+                <?php 
+                foreach ($lembaga as $l) { ?>
+                  <option value="<?=$l['id_lembaga']?>"><?=$l['nama_lembaga']?></option>
+                <?php } ?>
+              </select>
+            </div>
           </div>
         </div>
         <!-- /.col -->
@@ -47,18 +58,6 @@
         <!-- /.col -->
       </div>
     </form>
-
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    <!-- /.social-auth-links -->
-
-    <a href="#">I forgot my password</a><br>
-    <a href="<?=base_url()?>auth/register" class="text-center">Register a new membership</a>
 
   </div>
   <!-- /.login-box-body -->
