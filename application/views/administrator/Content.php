@@ -10,7 +10,7 @@
       </ol>
     </section>
     <section class="content">
-        <?php echo $this->session->userdata('id_petugas'); ?> 
+        <!-- <?php echo $this->session->userdata('id_petugas'); ?>  -->
     	<div class="row">
     		<!-- /.col -->
     		<div class="col-md-3 col-sm-6 col-xs-12">
@@ -213,4 +213,4 @@
 reserved.</strong>
 </footer>
 
-<script src="<?=base_url()?>assets/js/jquery.min.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/jquery.min.js"></script> -->

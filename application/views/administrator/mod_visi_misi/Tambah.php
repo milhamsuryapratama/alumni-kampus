@@ -54,3 +54,13 @@ reserved.</strong>
 </footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
+<script src="<?=base_url()?>assets/js/ckeditor/ckeditor.js"></script>
+
+<script>
+    $(function () {
+
+        CKEDITOR.replace('visi');
+        CKEDITOR.replace('misi');
+
+    });
+</script>

@@ -33,16 +33,28 @@
         <li><a href="<?=base_url()?>administrator/alumni"><i class="fa fa-circle-o"></i> Alumni</a></li>
         <li><a href="<?=base_url()?>administrator/kecamatan"><i class="fa fa-circle-o"></i> Kecamatan</a></li>
         <li><a href="<?=base_url()?>administrator/desa"><i class="fa fa-circle-o"></i> Desa</a></li>
-        <li><a href="<?=base_url()?>administrator/lembaga"><i class="fa fa-circle-o"></i> Lembaga</a></li>
-        <li><a href="<?=base_url()?>administrator/lembaga_nj"><i class="fa fa-circle-o"></i> Lembaga NJ</a></li>
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Lembaga</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="">
+            <li><a href="<?=base_url()?>administrator/lembaga"><i class="fa fa-circle-o"></i> Lembaga</a></li>
+            <li><a href="<?=base_url()?>administrator/lembaga_nj"><i class="fa fa-circle-o"></i> Lembaga NJ</a></li>
+          </ul>
+        </li>
         <li><a href="<?=base_url()?>administrator/jabatan"><i class="fa fa-circle-o"></i> Jabatan</a></li>
         <li><a href="<?=base_url()?>administrator/devisi"><i class="fa fa-circle-o"></i> Devisi</a></li>
         <li><a href="<?=base_url()?>administrator/struktur"><i class="fa fa-circle-o"></i> Struktur</a></li>
         <li><a href="<?=base_url()?>administrator/korcam"><i class="fa fa-circle-o"></i> Korcam</a></li>
+        <li><a href="<?=base_url()?>administrator/pengurus"><i class="fa fa-circle-o"></i> Pengurus</a></li>        
       <?php } else { ?>
         <li><a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Visi & Misi</a></li>
         <li><a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Kegiatan</a></li>
         <li><a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Struktur</a></li>
+       <!--  <li><a href="<?=base_url()?>administrator/korcam?lembaga=<?=$this->session->userdata('username')?>"><i class="fa fa-circle-o"></i> Korcam</a></li> -->
       <?php } ?>
     </ul>
   </section>

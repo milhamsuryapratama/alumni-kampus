@@ -931,5 +931,83 @@ class Administrator extends CI_Controller
 		}
 	}
 
+	public function pengurus()
+	{
+		$data['pengurus'] = $this->App_model->join_tiga_table('tb_pengurus','tb_alumni','tb_lembaga','tb_pengurus.id_alumni = tb_alumni.id_alumni','tb_pengurus.id_lembaga = tb_lembaga.id_lembaga');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_pengurus/Data',$data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_pengurus()
+	{
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga','id_lembaga');
+
+		if (isset($_POST['submit'])) {
+			$data_pengurus = array(
+				'id_alumni' => $this->input->post('id_alumni'),
+				'id_lembaga' => $this->input->post('lembaga'),
+				'username_pengurus' => $this->input->post('username'),
+				'password_pengurus' => md5($this->input->post('password')),
+			);
+
+			$query = $this->App_model->tambah_data('tb_pengurus',$data_pengurus);
+
+			if ($query) {
+				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+				redirect(base_url().'administrator/pengurus');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_pengurus/Tambah',$data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function edit_pengurus($id)
+	{
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga','id_lembaga');
+		$data['p'] = $this->App_model->ambil_data_by_id('tb_pengurus','id_pengurus',$id);
+
+		if (isset($_POST['update'])) {
+
+			$id_p = $this->input->post('id_pengurus');
+
+			$data_pengurus = array(
+				'id_alumni' => $this->input->post('id_alumni'),
+				'id_lembaga' => $this->input->post('lembaga'),
+				'username_pengurus' => $this->input->post('username'),
+				'password_pengurus' => md5($this->input->post('password')),
+			);
+
+			$query = $this->App_model->edit_data('tb_pengurus','id_pengurus',$id_p,$data_pengurus);
+
+			if ($query) {
+				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
+				redirect(base_url().'administrator/pengurus');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_pengurus/Edit',$data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_pengurus($id)
+	{
+		$query = $this->App_model->hapus_data('tb_pengurus','id_pengurus',$id);
+		if ($query) {
+			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+			redirect(base_url().'administrator/pengurus');
+		}
+	}
+
 }
 ?>
