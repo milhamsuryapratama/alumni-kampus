@@ -683,10 +683,17 @@ class Administrator extends CI_Controller
             $result = $this->App_model->auto_complete($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = $row->nama;
+                $arr_result[] = $row->id_alumni;
                 echo json_encode($arr_result);
             }
         }
+    }
+
+    public function get_alumni()
+    {
+    	$id_alumni = $this->input->post('id_alumni');
+    	$alumni = $this->App_model->ambil_data_by_id('tb_alumni','id_alumni',$id_alumni);
+    	$this->output->set_content_type('application/json')->set_output(json_encode($alumni));
     }
 
 	public function struktur()
@@ -773,5 +780,156 @@ class Administrator extends CI_Controller
 			redirect(base_url().'administrator/struktur?lembaga='.$this->session->userdata('username'));
 		}
 	}
+
+	public function lembaga_nj()
+	{
+		$data['nj'] = $this->App_model->ambil_data('tb_lembaga_nj','id_lembaga_nj');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_lembaga_nj/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_lembaga_nj()
+	{
+		if (isset($_POST['submit'])) {
+			$data_lembaga_nj = array(
+				'nama_lembaga_nj' => $this->input->post('nama_lembaga_nj'),
+				'situs' => $this->input->post('situs')
+			);
+
+			$query = $this->App_model->tambah_data('tb_lembaga_nj', $data_lembaga_nj);
+
+			if ($query) {
+				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+				redirect(base_url().'administrator/lembaga_nj');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_lembaga_nj/Tambah');
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function edit_lembaga_nj($id)
+	{
+		$data['nj'] = $this->App_model->ambil_data_by_id('tb_lembaga_nj', 'id_lembaga_nj',$id);
+
+		if (isset($_POST['update'])) {
+			$id_n = $this->input->post('id_lembaga_nj');
+
+			$data_lembaga_nj = array(
+				'nama_lembaga_nj' => $this->input->post('nama_lembaga_nj'),
+				'situs' => $this->input->post('situs')
+			);
+
+			$query = $this->App_model->edit_data('tb_lembaga_nj','id_lembaga_nj',$id_n,$data_lembaga_nj);
+
+			if ($query) {
+				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
+				redirect(base_url().'administrator/lembaga_nj');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_lembaga_nj/Edit', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_lembaga_nj($id)
+	{
+		$query = $this->App_model->hapus_data('tb_lembaga_nj','id_lembaga_nj',$id);
+		if ($query) {
+			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+			redirect(base_url().'administrator/lembaga_nj');
+		}
+	}
+
+	public function korcam()
+	{
+		$data['korcam'] = $this->App_model->join_tiga_table('tb_korcam','tb_kecamatan','tb_alumni','tb_korcam.id_kecamatan = tb_kecamatan.id_kecamatan','tb_korcam.id_alumni = tb_alumni.id_alumni');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_korcam/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_korcam()
+	{
+		$data['kecamatan'] = $this->App_model->ambil_data('tb_kecamatan','id_kecamatan');
+
+		if (isset($_POST['submit'])) {
+			$data_korcam = array(
+				'id_kecamatan' => $this->input->post('kecamatan'),
+				'id_alumni' => $this->input->post('id_alumni'),
+				'tahun' => $this->input->post('tahun'),
+				'username' => $this->input->post('username'),
+				'password' => md5($this->input->post('password')),
+				'status_korcam' => 'aktif'
+			);
+
+			$query = $this->App_model->tambah_data('tb_korcam',$data_korcam);
+
+			if ($query) {
+				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+				redirect(base_url().'administrator/korcam');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_korcam/Tambah',$data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function edit_korcam($id)
+	{
+		$data['kecamatan'] = $this->App_model->ambil_data('tb_kecamatan','id_kecamatan');
+		$data['k'] = $this->App_model->ambil_data_by_id('tb_korcam', 'id_korcam', $id);
+
+		if (isset($_POST['update'])) {
+			$id_k = $this->input->post('id_korcam');
+
+			$data_korcam = array(
+				'id_kecamatan' => $this->input->post('kecamatan'),
+				'id_alumni' => $this->input->post('id_alumni'),
+				'tahun' => $this->input->post('tahun'),
+				'username' => $this->input->post('username'),
+				'password' => md5($this->input->post('password'))
+			);
+
+			$query = $this->App_model->edit_data('tb_korcam','id_korcam',$id_k,$data_korcam);
+
+			if ($query) {
+				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
+				redirect(base_url().'administrator/korcam');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_korcam/Edit',$data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_korcam($id)
+	{
+		$query = $this->App_model->hapus_data('tb_korcam','id_korcam',$id);
+		if ($query) {
+			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+			redirect(base_url().'administrator/korcam');
+		}
+	}
+
 }
 ?>

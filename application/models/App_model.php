@@ -76,10 +76,10 @@ class App_model extends CI_Model
         }
     }
 
-    public function auto_complete($title){
-        $this->db->like('nama', $title , 'both');
-        $this->db->order_by('nama', 'ASC');
-        $this->db->limit(10);
+    public function auto_complete($title)
+    {
+        $this->db->like('id_alumni', $title , 'both');
+        $this->db->order_by('id_alumni', 'DESC');
         return $this->db->get('tb_alumni')->result();
     }
 }
