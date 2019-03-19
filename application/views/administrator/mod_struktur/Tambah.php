@@ -22,9 +22,13 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_struktur" method="post">
     					<div class="box-body">
+                            <div class="form-group">
+                                <label for="id_alumni">ID Alumni</label>
+                                <input type="text" name="id_alumni" class="form-control" id="id_alumni" placeholder="Enter ID Alumni">
+                            </div>
     						<div class="form-group">
     							<label for="nama_alumi">Nama Alumni</label>
-    							<input type="text" name="nama_alumi" class="form-control" id="nama_alumi" placeholder="Enter Nama Alumni">
+    							<input type="text" name="nama_alumni" class="form-control" id="nama_alumni" placeholder="Enter Nama Alumni" readonly>
     						</div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
@@ -79,13 +83,18 @@ reserved.</strong>
 <script>
     $(function(){
 
-        $( "#nama_alumi" ).autocomplete({
+        $( "#id_alumni" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
 
-        // $("#submit").click(function() {
-        //     console.log($("#nama_lembaga").val())
-        // })
+        $("#id_alumni").on('keydown', function(e) {
+           if(e.which == 9) {
+                let id_alumni = $("#id_alumni").val();
+                $.post("<?=base_url()?>administrator/get_alumni", {id_alumni: id_alumni}, (result) => {
+                    $("#nama_alumni").val(result.nama)
+                })
+            }
+        })
 
     })
 </script>

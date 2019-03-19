@@ -43,7 +43,7 @@ class Administrator extends CI_Controller
 			echo "<script>alert('Maaf, anda tidak memiliki akses pada menu ini')</script>";
 			redirect(base_url().'administrator/dashboard');
 		} else {
-			$data['alumni'] = $this->App_model->join_tiga_table('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.desa = tb_desa.id_desa');
+			$data['alumni'] = $this->App_model->join_tiga_table('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.id_desa = tb_desa.id_desa');
 
 			$this->load->view('administrator/Header');
 			$this->load->view('administrator/TopHeader');
@@ -64,8 +64,8 @@ class Administrator extends CI_Controller
 				'nama' => $this->input->post('nama_lengkap'),
 				'email' => $this->input->post('email'),
 				'alamat' => $this->input->post('alamat'),
-				'kecamatan' => $this->input->post('kecamatan'),
-				'desa' => $this->input->post('desa'),
+				'id_kecamatan' => $this->input->post('kecamatan'),
+				'id_desa' => $this->input->post('desa'),
 				'thn_mondok' => $this->input->post('tahun_masuk'),
 				'thn_keluar' => $this->input->post('tahun_lulus'),
 				'telepon' => $this->input->post('telepon'),
@@ -106,8 +106,8 @@ class Administrator extends CI_Controller
 				'nama' => $this->input->post('nama_lengkap'),
 				'email' => $this->input->post('email'),
 				'alamat' => $this->input->post('alamat'),
-				'kecamatan' => $this->input->post('kecamatan'),
-				'desa' => $this->input->post('desa'),
+				'id_kecamatan' => $this->input->post('kecamatan'),
+				'id_desa' => $this->input->post('desa'),
 				'thn_mondok' => $this->input->post('tahun_masuk'),
 				'thn_keluar' => $this->input->post('tahun_lulus'),
 				'telepon' => $this->input->post('telepon'),
@@ -296,7 +296,7 @@ class Administrator extends CI_Controller
 
 	public function lembaga()
 	{
-		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga', 'id_lembaga');
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga_alumni', 'id_lembaga_alumni');
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -312,7 +312,7 @@ class Administrator extends CI_Controller
 				'nama_lembaga' => $this->input->post('nama_lembaga')
 			);
 
-			$query = $this->App_model->tambah_data('tb_lembaga', $data_lembaga);
+			$query = $this->App_model->tambah_data('tb_lembaga_alumni', $data_lembaga);
 			if ($query) {
 				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
 				redirect(base_url().'administrator/lembaga');
@@ -328,7 +328,7 @@ class Administrator extends CI_Controller
 
 	public function edit_lembaga($id)
 	{
-		$data['l'] = $this->App_model->ambil_data_by_id('tb_lembaga', 'id_lembaga', $id);
+		$data['l'] = $this->App_model->ambil_data_by_id('tb_lembaga_alumni', 'id_lembaga_alumni', $id);
 
 		if (isset($_POST['update'])) {
 			$id_l = $this->input->post('id_lembaga');
@@ -337,7 +337,7 @@ class Administrator extends CI_Controller
 				'nama_lembaga' => $this->input->post('nama_lembaga')
 			);
 
-			$query = $this->App_model->edit_data('tb_lembaga','id_lembaga',$id_l,$data_lembaga);
+			$query = $this->App_model->edit_data('tb_lembaga_alumni','id_lembaga_alumni',$id_l,$data_lembaga);
 
 			if ($query) {
 				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
@@ -354,7 +354,7 @@ class Administrator extends CI_Controller
 
 	public function hapus_lembaga($id)
 	{
-		$query = $this->App_model->hapus_data('tb_lembaga','id_lembaga',$id);
+		$query = $this->App_model->hapus_data('tb_lembaga_alumni','id_lembaga_alumni',$id);
 		if ($query) {
 			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
 			redirect(base_url().'administrator/lembaga');
@@ -703,7 +703,7 @@ class Administrator extends CI_Controller
 		// ($table1,$table2,$table3,$table4,$params1,$params2,$params3)
 
 		//$data['struktur'] = $this->App_model->join_empat_table('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni');
-		$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga',$this->session->userdata('id_petugas'));
+		$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$this->session->userdata('id_petugas'));
  
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -719,10 +719,10 @@ class Administrator extends CI_Controller
 
 		if (isset($_POST['submit'])) {
 			$data_struktur = array(
-				'id_alumni' => '2',
+				'id_alumni' => $this->input->post('id_alumni'),
 				'id_jabatan' => $this->input->post('jabatan'),
 				'id_devisi' => $this->input->post('devisi'),
-				'id_lembaga' => $this->session->userdata('id_petugas'),
+				'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
 				'masa_bakti' => $this->input->post('masa_bakti'),
 				'status' => 'aktif'
 			);
@@ -754,7 +754,7 @@ class Administrator extends CI_Controller
 				'id_alumni' => '2',
 				'id_jabatan' => $this->input->post('jabatan'),
 				'id_devisi' => $this->input->post('devisi'),
-				'id_lembaga' => $this->session->userdata('id_petugas'),
+				'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
 				'masa_bakti' => $this->input->post('masa_bakti'),
 				'status' => 'aktif'
 			);
@@ -783,7 +783,7 @@ class Administrator extends CI_Controller
 
 	public function lembaga_nj()
 	{
-		$data['nj'] = $this->App_model->ambil_data('tb_lembaga_nj','id_lembaga_nj');
+		$data['nj'] = $this->App_model->ambil_data('tb_lembaga_nj','id_lembaga');
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -796,7 +796,7 @@ class Administrator extends CI_Controller
 	{
 		if (isset($_POST['submit'])) {
 			$data_lembaga_nj = array(
-				'nama_lembaga_nj' => $this->input->post('nama_lembaga_nj'),
+				'nama_lembaga' => $this->input->post('nama_lembaga_nj'),
 				'situs' => $this->input->post('situs')
 			);
 
@@ -817,17 +817,17 @@ class Administrator extends CI_Controller
 
 	public function edit_lembaga_nj($id)
 	{
-		$data['nj'] = $this->App_model->ambil_data_by_id('tb_lembaga_nj', 'id_lembaga_nj',$id);
+		$data['nj'] = $this->App_model->ambil_data_by_id('tb_lembaga_nj', 'id_lembaga',$id);
 
 		if (isset($_POST['update'])) {
 			$id_n = $this->input->post('id_lembaga_nj');
 
 			$data_lembaga_nj = array(
-				'nama_lembaga_nj' => $this->input->post('nama_lembaga_nj'),
+				'nama_lembaga' => $this->input->post('nama_lembaga_nj'),
 				'situs' => $this->input->post('situs')
 			);
 
-			$query = $this->App_model->edit_data('tb_lembaga_nj','id_lembaga_nj',$id_n,$data_lembaga_nj);
+			$query = $this->App_model->edit_data('tb_lembaga_nj','id_lembaga',$id_n,$data_lembaga_nj);
 
 			if ($query) {
 				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
@@ -844,7 +844,7 @@ class Administrator extends CI_Controller
 
 	public function hapus_lembaga_nj($id)
 	{
-		$query = $this->App_model->hapus_data('tb_lembaga_nj','id_lembaga_nj',$id);
+		$query = $this->App_model->hapus_data('tb_lembaga_nj','id_lembaga',$id);
 		if ($query) {
 			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
 			redirect(base_url().'administrator/lembaga_nj');

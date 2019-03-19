@@ -60,7 +60,7 @@
     								<option>-- Pilih Kecamatan --</option>
     								<?php 
     									foreach ($k as $k) { 
-                                            if ($k['id_kecamatan'] == $a['kecamatan']) { ?>
+                                            if ($k['id_kecamatan'] == $a['id_kecamatan']) { ?>
                                                 <option value="<?=$k['id_kecamatan']?>" selected><?=$k['nama_kecamatan']?></option>
                                             <?php } else { ?>
                                                 <option value="<?=$k['id_kecamatan']?>"><?=$k['nama_kecamatan']?></option>
@@ -69,7 +69,7 @@
     							</select>
     						</div>
     						<div class="form-group">
-    							<label>Desa</label> <input type="hidden" id="desa_id" value="<?=$a['desa']?>">
+    							<label>Desa</label> <input type="hidden" id="desa_id">
     							<select class="form-control" id="desa" name="desa">
                                     
     							</select>

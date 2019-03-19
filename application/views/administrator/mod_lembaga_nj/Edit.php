@@ -21,11 +21,11 @@
     				<!-- /.box-header -->
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/edit_lembaga_nj" method="post">
-                        <input type="hidden" name="id_lembaga_nj" value="<?=$nj['id_lembaga_nj']?>">
+                        <input type="hidden" name="id_lembaga_nj" value="<?=$nj['id_lembaga']?>">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nama_lembaga_nj">Nama Lembaga NJ</label>
-    							<input type="text" name="nama_lembaga_nj" class="form-control" id="nama_lembaga_nj" placeholder="Enter Nama Lembaga NJ" value="<?=$nj['nama_lembaga_nj']?>">
+    							<input type="text" name="nama_lembaga_nj" class="form-control" id="nama_lembaga_nj" placeholder="Enter Nama Lembaga NJ" value="<?=$nj['nama_lembaga']?>">
     						</div>
                             <div class="form-group">
                                 <label for="situs">Situs</label>

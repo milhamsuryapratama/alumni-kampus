@@ -56,15 +56,15 @@
     							foreach ($nj as $l) { ?>
     								<tr>
     									<td><?=$no?></td>
-    									<td><?=$l['nama_lembaga_nj']?></td>
+    									<td><?=$l['nama_lembaga']?></td>
                                         <td><?=$l['situs']?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_lembaga_nj/<?=$l['id_lembaga_nj']?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_lembaga_nj/<?=$l['id_lembaga']?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_lembaga_nj/<?=$l['id_lembaga_nj']?>" class="btn btn-danger">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_lembaga_nj/<?=$l['id_lembaga']?>" class="btn btn-danger">Hapus</a>
     										</div>
     									</td>
     								</tr>

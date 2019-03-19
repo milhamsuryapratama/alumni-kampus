@@ -31,6 +31,7 @@
                                     <th>Username</th>
                                     <th>Pengurus</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
     							</tr>
     						</thead>
     						<tbody>

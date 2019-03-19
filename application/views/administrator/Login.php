@@ -45,7 +45,7 @@
               <select class="form-control" name="lembaga">            
                 <?php 
                 foreach ($lembaga as $l) { ?>
-                  <option value="<?=$l['id_lembaga']?>"><?=$l['nama_lembaga']?></option>
+                  <option value="<?=$l['id_lembaga_alumni']?>"><?=$l['nama_lembaga']?></option>
                 <?php } ?>
               </select>
             </div>

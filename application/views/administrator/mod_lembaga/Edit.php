@@ -21,7 +21,7 @@
     				<!-- /.box-header -->
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/edit_lembaga" method="post">
-                        <input type="hidden" name="id_lembaga" value="<?=$l['id_lembaga']?>">
+                        <input type="hidden" name="id_lembaga" value="<?=$l['id_lembaga_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nama_lembaga">Nama Lembaga</label>

@@ -59,7 +59,7 @@
     									<td><?=$no?></td>
     									<td><?=$l['nama']?></td>
                                         <td><?=$l['nama_kecamatan']?></td>
-                                        <td><?=$l['status_korcam']?></td>
+                                        <td><?=$l['status']?></td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_korcam/<?=$l['id_korcam']?>" class="btn btn-success">Edit</a>
