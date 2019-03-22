@@ -40,18 +40,18 @@
                                     <option>-- Pilih Lembaga --</option>
                                     <?php 
                                         foreach ($lembaga as $f) { ?>
-                                            <option value="<?=$f['id_lembaga']?>"><?=$f['nama_lembaga']?></option>
+                                            <option value="<?=$f['id_lembaga_alumni']?>"><?=$f['nama_lembaga']?></option>
                                     <?php } ?>
                                 </select>
                             </div>  
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
-                            </div>
+                            </div> -->
     					</div>
     					<!-- /.box-body -->
 

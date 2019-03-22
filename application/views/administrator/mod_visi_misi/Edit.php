@@ -25,11 +25,11 @@
     					<div class="box-body">
     						<div class="form-group">
                                 <label>Visi</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." name="visi"><?=$vm['visi']?></textarea>
+                                <textarea class="form-control" rows="3" id="visi" placeholder="Enter ..." name="visi"><?=$vm['visi']?></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Misi</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." name="misi"><?=$vm['misi']?></textarea>
+                                <textarea class="form-control" rows="3" id="misi" placeholder="Enter ..." name="misi"><?=$vm['misi']?></textarea>
                             </div>
     					</div>
     					<!-- /.box-body -->
@@ -55,3 +55,13 @@ reserved.</strong>
 </footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
+<script src="<?=base_url()?>assets/js/ckeditor/ckeditor.js"></script>
+
+<script>
+    $(function () {
+
+        CKEDITOR.replace('visi');
+        CKEDITOR.replace('misi');
+
+    });
+</script>

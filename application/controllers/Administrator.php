@@ -501,7 +501,7 @@ class Administrator extends CI_Controller
 
 	public function visi_misi()
 	{
-		$data['vm'] = $this->App_model->ambil_data_by_id_result('tb_visi_misi', 'id_lembaga',$this->session->userdata('id_petugas'));
+		$data['vm'] = $this->App_model->ambil_data_by_id_result('tb_visi_misi', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -516,7 +516,7 @@ class Administrator extends CI_Controller
 			$data_vm = array(
 				'visi' => $this->input->post('visi'),
 				'misi' => $this->input->post('misi'),
-				'id_lembaga' => $this->session->userdata('id_petugas')
+				'id_lembaga_alumni' => $this->session->userdata('id_petugas')
 			);
 
 			$query = $this->App_model->tambah_data('tb_visi_misi', $data_vm);
@@ -543,7 +543,7 @@ class Administrator extends CI_Controller
 			$data_vm = array(
 				'visi' => $this->input->post('visi'),
 				'misi' => $this->input->post('misi'),
-				'id_lembaga' => $this->session->userdata('id_petugas')
+				'id_lembaga_alumni' => $this->session->userdata('id_petugas')
 			);
 
 			$query = $this->App_model->edit_data('tb_visi_misi','id_visi_misi',$id_vm,$data_vm);
@@ -570,7 +570,7 @@ class Administrator extends CI_Controller
 
 	public function kegiatan()
 	{
-		$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga',$this->session->userdata('id_petugas'));
+		$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -597,7 +597,7 @@ class Administrator extends CI_Controller
 	        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 	        	'foto_kegiatan' => $file_name['file_name'],
 	        	'status' => 'Aktif',
-	        	'id_lembaga' => $this->session->userdata('id_petugas')
+	        	'id_lembaga_alumni' => $this->session->userdata('id_petugas')
 
 	        );
 
@@ -637,7 +637,7 @@ class Administrator extends CI_Controller
 		        	'deskripsi' => $this->input->post('deskripsi'),
 		        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 		        	'status' => 'Aktif',
-		        	'id_lembaga' => $this->session->userdata('id_petugas')
+		        	'id_lembaga_alumni' => $this->session->userdata('id_petugas')
 	        	);	        	
 	        } else {
 	        	$data_kegiatan = array(
@@ -646,7 +646,7 @@ class Administrator extends CI_Controller
 		        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 		        	'foto_kegiatan' => $file_name['file_name'],
 		        	'status' => 'Aktif',
-		        	'id_lembaga' => $this->session->userdata('id_petugas')
+		        	'id_lembaga_alumni' => $this->session->userdata('id_petugas')
 	        	);
 	        	$unlink = $this->App_model->ambil_id_foto($id_k);
 	        	$path = 'assets/foto/kegiatan/';
@@ -933,7 +933,7 @@ class Administrator extends CI_Controller
 
 	public function pengurus()
 	{
-		$data['pengurus'] = $this->App_model->join_tiga_table('tb_pengurus','tb_alumni','tb_lembaga','tb_pengurus.id_alumni = tb_alumni.id_alumni','tb_pengurus.id_lembaga = tb_lembaga.id_lembaga');
+		$data['pengurus'] = $this->App_model->join_tiga_table('tb_pengurus','tb_alumni','tb_lembaga_alumni','tb_pengurus.id_alumni = tb_alumni.id_alumni','tb_pengurus.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni');
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -944,14 +944,15 @@ class Administrator extends CI_Controller
 
 	public function tambah_pengurus()
 	{
-		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga','id_lembaga');
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga_alumni','id_lembaga_alumni');
 
 		if (isset($_POST['submit'])) {
 			$data_pengurus = array(
 				'id_alumni' => $this->input->post('id_alumni'),
-				'id_lembaga' => $this->input->post('lembaga'),
-				'username_pengurus' => $this->input->post('username'),
-				'password_pengurus' => md5($this->input->post('password')),
+				'id_lembaga_alumni' => $this->input->post('lembaga'),
+				'status' => "aktif"
+				// 'username_pengurus' => $this->input->post('username'),
+				// 'password_pengurus' => md5($this->input->post('password')),
 			);
 
 			$query = $this->App_model->tambah_data('tb_pengurus',$data_pengurus);
@@ -971,7 +972,7 @@ class Administrator extends CI_Controller
 
 	public function edit_pengurus($id)
 	{
-		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga','id_lembaga');
+		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga_alumni','id_lembaga_alumni');
 		$data['p'] = $this->App_model->ambil_data_by_id('tb_pengurus','id_pengurus',$id);
 
 		if (isset($_POST['update'])) {
@@ -980,9 +981,9 @@ class Administrator extends CI_Controller
 
 			$data_pengurus = array(
 				'id_alumni' => $this->input->post('id_alumni'),
-				'id_lembaga' => $this->input->post('lembaga'),
-				'username_pengurus' => $this->input->post('username'),
-				'password_pengurus' => md5($this->input->post('password')),
+				'id_lembaga_alumni' => $this->input->post('lembaga'),
+				// 'username_pengurus' => $this->input->post('username'),
+				// 'password_pengurus' => md5($this->input->post('password')),
 			);
 
 			$query = $this->App_model->edit_data('tb_pengurus','id_pengurus',$id_p,$data_pengurus);

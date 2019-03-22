@@ -41,22 +41,22 @@
                                     <option>-- Pilih Lembaga --</option>
                                     <?php 
                                         foreach ($lembaga as $f) { 
-                                            if ($f['id_lembaga'] == $p['id_lembaga']) { ?>
-                                                <option value="<?=$f['id_lembaga']?>" selected><?=$f['nama_lembaga']?></option>
+                                            if ($f['id_lembaga_alumni'] == $p['id_lembaga_alumni']) { ?>
+                                                <option value="<?=$f['id_lembaga_alumni']?>" selected><?=$f['nama_lembaga']?></option>
                                             <?php } else { ?>
-                                                <option value="<?=$f['id_lembaga']?>"><?=$f['nama_lembaga']?></option>
+                                                <option value="<?=$f['id_lembaga_alumni']?>"><?=$f['nama_lembaga']?></option>
                                             <?php } ?>                                    
                                     <?php } ?>
                                 </select>
                             </div>  
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="<?=$p['username_pengurus']?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" value="<?=$p['password_pengurus']?>">
-                            </div>
+                            </div> -->
     					</div>
     					<!-- /.box-body -->
 

@@ -50,11 +50,11 @@ class Auth extends CI_Controller
 	            'password' => $password
         	);
 
-        	$cek = $this->db->query("SELECT * FROM tb_petugas WHERE user = '$username' AND password = '$password' AND level = '$lembaga' ")->row_array();
+        	$cek = $this->db->query("SELECT * FROM tb_petugas WHERE user = '$username' AND password = '$password' AND id_lembaga_alumni = '$lembaga' ")->row_array();
 
         	if (count($cek) > 0) {
         		$sessionAdmin = array(
-        			'id_petugas' => $cek['level'],
+        			'id_petugas' => $cek['id_lembaga_alumni'],
         			'username' => $username,
         			'status' => 'loginSukses'
         		);

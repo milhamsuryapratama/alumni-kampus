@@ -28,7 +28,7 @@
     							<tr>
     								<th>NO</th>
     								<th>Nama Alumni</th>
-                                    <th>Username</th>
+                                    <!-- <th>Username</th> -->
                                     <th>Pengurus</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -41,9 +41,9 @@
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$l['nama']?></td>
-                                        <td><?=$l['username_pengurus']?></td>
+                                        <!-- <td><?=$l['username_pengurus']?></td> -->
                                         <td><?=$l['nama_lembaga']?></td>
-                                        <td><?=$l['status_pengurus']?></td>
+                                        <td><?=$l['status']?></td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_pengurus/<?=$l['id_pengurus']?>" class="btn btn-success">Edit</a>

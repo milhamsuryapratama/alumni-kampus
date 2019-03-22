@@ -51,6 +51,11 @@ class App_model extends CI_Model
     	return $this->db->join($table2,$params1)->join($table3,$params2)->get($table1)->result_array();
     }
 
+    public function join_tiga_table_by_id_result($table1,$table2,$table3,$params1,$params2,$paramsWhere,$id_lembaga)
+    {
+        return $this->db->join($table2,$params1)->join($table3,$params2)->get_where($table1, array($paramsWhere => $id_lembaga))->result_array();
+    }
+
     public function join_empat_table_by_id($table1,$table2,$table3,$table4,$params1,$params2,$params3,$paramsWhere,$id_petugas)
     {
         return $this->db->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get_where($table1, array($paramsWhere => $id_petugas))->result_array();
