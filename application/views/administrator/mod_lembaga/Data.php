@@ -46,6 +46,7 @@
     							<tr>
     								<th>NO</th>
     								<th>Nama Lembaga</th>
+                                    <th>Status</th>
     								<th>Actions</th>
     							</tr>
     						</thead>
@@ -56,6 +57,13 @@
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$l['nama_lembaga']?></td>
+                                        <td>
+                                            <?php if ($l['status'] == "Y") {
+                                                echo "Aktif";
+                                            } else {
+                                                echo "Tidak Aktif";
+                                            } ?>
+                                        </td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_lembaga/<?=$l['id_lembaga_alumni']?>" class="btn btn-success">Edit</a>

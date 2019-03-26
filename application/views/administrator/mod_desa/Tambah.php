@@ -22,12 +22,8 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_desa" method="post">
     					<div class="box-body">
-    						<div class="form-group">
-    							<label for="nama_desa">Nama Desa</label>
-    							<input type="text" name="nama_desa" class="form-control" id="nama_desa" placeholder="Enter Nama Desa">
-    						</div>
                             <div class="form-group">
-                                <label>Fakultas</label>
+                                <label>Kecamatan</label>
                                 <select class="form-control" id="kecamatan" name="kecamatan">
                                     <option>-- Pilih Kecamatan --</option>
                                     <?php 
@@ -36,6 +32,10 @@
                                     <?php } ?>
                                 </select>
                             </div>
+    						<div class="form-group">
+    							<label for="nama_desa">Nama Desa</label>
+    							<input type="text" name="nama_desa" class="form-control" id="nama_desa" placeholder="Enter Nama Desa">
+    						</div>                            
     					</div>
     					<!-- /.box-body -->
 

@@ -20,7 +20,7 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_alumni" method="post">
+    				<form action="<?=base_url()?>administrator/edit_alumni" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_alumni" value="<?=$a['id_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
@@ -98,13 +98,17 @@
                                 <label for="akun_fb">Akun Facebook</label>
                                 <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Akun Facebook" value="<?=$a['akun_fb']?>">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="<?=$a['username']?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" value="<?=$a['password']?>">
+                            </div> -->
+                            <div class="form-group">
+                                <label for="foto_alumni">Foto</label>
+                                <input type="file" name="foto_alumni" class="form-control" id="foto_alumni">
                             </div>
     					</div>
     					<!-- /.box-body -->

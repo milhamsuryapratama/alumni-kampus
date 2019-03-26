@@ -7,7 +7,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Halo Admin</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -25,13 +25,47 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <?php if ($this->session->userdata('username') === 'p4nj') { ?>
+        <?php if ($this->session->userdata('id_petugas') === '2') { ?>
         <li>
           <a href="<?=base_url()?>administrator/dashboard">
             <i class="fa fa-calendar"></i> <span>Dashboard</span>
             <span class="pull-right-container">
             </span>
           </a>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Data Lembaga</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Visi & Misi</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Kegiatan</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Struktur</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li>
@@ -82,15 +116,7 @@
             <span class="pull-right-container">
             </span>
           </a>
-        </li>
-
-        <li>
-          <a href="<?=base_url()?>administrator/struktur">
-            <i class="fa fa-calendar"></i> <span>Struktur</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
+        </li>        
 
         <li>
           <a href="<?=base_url()?>administrator/korcam">
@@ -100,13 +126,13 @@
           </a>
         </li>
 
-        <li>
+        <!-- <li>
           <a href="<?=base_url()?>administrator/pengurus">
             <i class="fa fa-calendar"></i> <span>Pengurus</span>
             <span class="pull-right-container">
             </span>
           </a>
-        </li>
+        </li> -->
 
         <?php } else { ?>
 

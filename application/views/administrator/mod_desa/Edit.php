@@ -23,10 +23,6 @@
     				<form action="<?=base_url()?>administrator/edit_desa" method="post">
     					<div class="box-body">
                             <input type="hidden" name="id_desa" value="<?=$p['id_desa']?>">
-    						<div class="form-group">
-                                <label for="nama_desa">Nama Desa</label>
-                                <input type="text" name="nama_desa" class="form-control" id="nama_desa" placeholder="Enter Nama Desa" value="<?=$p['nama_desa']?>">
-                            </div>
                             <div class="form-group">
                                 <label>Kecamatan</label>
                                 <select class="form-control" id="kecamatan" name="kecamatan">
@@ -41,6 +37,10 @@
                                         } ?>
                                 </select>
                             </div>
+    						<div class="form-group">
+                                <label for="nama_desa">Nama Desa</label>
+                                <input type="text" name="nama_desa" class="form-control" id="nama_desa" placeholder="Enter Nama Desa" value="<?=$p['nama_desa']?>">
+                            </div>                            
     					</div>
     					<!-- /.box-body -->
 

@@ -46,6 +46,11 @@ class App_model extends CI_Model
         return $this->db->order_by($field, 'DESC')->join($table2,$params1)->get($table1)->result_array();
     }
 
+    public function join_dua_table_by_id($table1,$table2,$params1,$field,$paramsWhere,$id_lembaga)
+    {
+        return $this->db->order_by($field, 'DESC')->join($table2,$params1)->get_where($table1, array($paramsWhere => $id_lembaga))->result_array();
+    }
+
     public function join_tiga_table($table1,$table2,$table3,$params1,$params2)
     {
     	return $this->db->join($table2,$params1)->join($table3,$params2)->get($table1)->result_array();
@@ -54,6 +59,11 @@ class App_model extends CI_Model
     public function join_tiga_table_by_id_result($table1,$table2,$table3,$params1,$params2,$paramsWhere,$id_lembaga)
     {
         return $this->db->join($table2,$params1)->join($table3,$params2)->get_where($table1, array($paramsWhere => $id_lembaga))->result_array();
+    }
+
+    public function join_empat_table($table1,$table2,$table3,$table4,$params1,$params2,$params3)
+    {
+        return $this->db->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get($table1)->result_array();
     }
 
     public function join_empat_table_by_id($table1,$table2,$table3,$table4,$params1,$params2,$params3,$paramsWhere,$id_petugas)
@@ -69,6 +79,16 @@ class App_model extends CI_Model
     public function hitung_data_by_id($table,$field,$id)
     {
         return $this->db->get_where($table, array($field => $id))->num_rows();
+    }
+
+    public function ambil_id_foto_alumni($id)
+    {
+        $this->db->from('tb_alumni');
+        $this->db->where('id_alumni', $id);
+        $result = $this->db->get('');
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        }
     }
 
     public function ambil_id_foto($id)

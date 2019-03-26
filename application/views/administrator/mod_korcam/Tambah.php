@@ -22,10 +22,11 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_korcam" method="post">
     					<div class="box-body">
+                            <input type="hidden" name="id_alumni" id="id_alumni">
     						<div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="id_alumni">ID Alumni</label>
-                                    <input type="text" name="id_alumni" class="form-control" id="id_alumni" placeholder="Enter ID Alumni">
+                                    <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter No KTP">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -47,14 +48,6 @@
                             <div class="form-group">
                                 <label for="tahun">Tahun</label>
                                 <input type="text" name="tahun" class="form-control" id="tahun" placeholder="Enter Tahun">
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
                             </div>
     					</div>
     					<!-- /.box-body -->
@@ -85,15 +78,16 @@ reserved.</strong>
 <script>
     $(function(){
 
-        $( "#id_alumni" ).autocomplete({
+        $( "#no_ktp" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
 
-        $("#id_alumni").on('keydown', function(e) {
+        $("#no_ktp").on('keydown', function(e) {
            if(e.which == 9) {
-                let id_alumni = $("#id_alumni").val();
-                $.post("<?=base_url()?>administrator/get_alumni", {id_alumni: id_alumni}, (result) => {
+                let no_ktp = $("#no_ktp").val();
+                $.post("<?=base_url()?>administrator/get_alumni", {no_ktp: no_ktp}, (result) => {
                     $("#nama_alumni").val(result.nama)
+                    $("#id_alumni").val(result.id_alumni)
                 })
             }
         })

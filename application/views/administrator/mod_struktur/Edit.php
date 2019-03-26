@@ -22,6 +22,7 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/edit_struktur" method="post">
                         <input type="hidden" name="id_struktur" value="<?=$s['id_struktur']?>">
+                        <input type="hidden" name="id_alumni" value="<?=$s['id_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nama_alumi">Nama Alumni</label>

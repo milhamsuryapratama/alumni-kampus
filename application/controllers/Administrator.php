@@ -20,10 +20,14 @@ class Administrator extends CI_Controller
 
 	public function dashboard() 
 	{
+		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();
+		
+		$data['title'] = "Dashboard";
+
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
 		$this->load->view('administrator/SideBar');
-		$this->load->view('administrator/Content');
+		$this->load->view('administrator/Content', $data);
 		$this->load->view('administrator/Footer');
 	}
 
@@ -59,6 +63,15 @@ class Administrator extends CI_Controller
 		// $data['desa'] = $this->App_model->ambil_data('tb_desa', 'id_desa');
 
 		if (isset($_POST['submit'])) {
+
+			$config['upload_path'] = 'assets/foto/alumni';
+	        $config['allowed_types'] = '*';
+	        $config['encrypt_name'] = TRUE;
+
+	        $this->load->library('upload', $config);
+	        $this->upload->do_upload('foto_alumni');
+	        $file_name = $this->upload->data();
+
 			$data_alumni = array(
 				'no_ktp' => $this->input->post('no_ktp'),
 				'nama' => $this->input->post('nama_lengkap'),
@@ -73,7 +86,8 @@ class Administrator extends CI_Controller
 				'bidang_usaha' => $this->input->post('bidang_usaha'),
 				'akun_fb' => $this->input->post('akun_fb'),
 				'username' => $this->input->post('username'),
-				'password' => md5($this->input->post('password'))
+				'password' => md5($this->input->post('password')),
+				'foto' => $file_name['file_name']
 			);
 
 			$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
@@ -101,22 +115,53 @@ class Administrator extends CI_Controller
 
 			$n = $this->input->post('id_alumni');
 
-			$data_alumni = array(
-				'no_ktp' => $this->input->post('no_ktp'),
-				'nama' => $this->input->post('nama_lengkap'),
-				'email' => $this->input->post('email'),
-				'alamat' => $this->input->post('alamat'),
-				'id_kecamatan' => $this->input->post('kecamatan'),
-				'id_desa' => $this->input->post('desa'),
-				'thn_mondok' => $this->input->post('tahun_masuk'),
-				'thn_keluar' => $this->input->post('tahun_lulus'),
-				'telepon' => $this->input->post('telepon'),
-				'pekerjaan' => $this->input->post('pekerjaan'),
-				'bidang_usaha' => $this->input->post('bidang_usaha'),
-				'akun_fb' => $this->input->post('akun_fb'),
-				'username' => $this->input->post('username'),
-				'password' => md5($this->input->post('password'))
-			);
+			$config['upload_path'] = 'assets/foto/alumni';
+	        $config['allowed_types'] = '*';
+	        $config['encrypt_name'] = TRUE;
+
+	        $this->load->library('upload', $config);
+	        $this->upload->do_upload('foto_alumni');
+	        $file_name = $this->upload->data();
+
+			if (empty($file_name['file_name'])) {
+				$data_alumni = array(
+					'no_ktp' => $this->input->post('no_ktp'),
+					'nama' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'alamat' => $this->input->post('alamat'),
+					'id_kecamatan' => $this->input->post('kecamatan'),
+					'id_desa' => $this->input->post('desa'),
+					'thn_mondok' => $this->input->post('tahun_masuk'),
+					'thn_keluar' => $this->input->post('tahun_lulus'),
+					'telepon' => $this->input->post('telepon'),
+					'pekerjaan' => $this->input->post('pekerjaan'),
+					'bidang_usaha' => $this->input->post('bidang_usaha'),
+					'akun_fb' => $this->input->post('akun_fb'),
+					// 'username' => $this->input->post('username'),
+					// 'password' => md5($this->input->post('password'))
+				);
+			} else {
+				$data_alumni = array(
+					'no_ktp' => $this->input->post('no_ktp'),
+					'nama' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'alamat' => $this->input->post('alamat'),
+					'id_kecamatan' => $this->input->post('kecamatan'),
+					'id_desa' => $this->input->post('desa'),
+					'thn_mondok' => $this->input->post('tahun_masuk'),
+					'thn_keluar' => $this->input->post('tahun_lulus'),
+					'telepon' => $this->input->post('telepon'),
+					'pekerjaan' => $this->input->post('pekerjaan'),
+					'bidang_usaha' => $this->input->post('bidang_usaha'),
+					'akun_fb' => $this->input->post('akun_fb'),
+					'username' => $this->input->post('username'),
+					'password' => md5($this->input->post('password')),
+					'foto' => $file_name['file_name']
+				);
+				$unlink = $this->App_model->ambil_id_foto_alumni($n);
+	        	$path = 'assets/foto/alumni/';
+    			@unlink($path.$unlink->foto);
+			}        
 			
 			$query = $this->App_model->edit_data('tb_alumni','id_alumni',$n,$data_alumni);
 
@@ -501,7 +546,8 @@ class Administrator extends CI_Controller
 
 	public function visi_misi()
 	{
-		$data['vm'] = $this->App_model->ambil_data_by_id_result('tb_visi_misi', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
+		// $data['vm'] = $this->App_model->ambil_data_by_id_result('tb_visi_misi', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
+		$data['vm'] = $this->App_model->join_dua_table_by_id('tb_visi_misi','tb_lembaga_alumni','tb_visi_misi.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_visi_misi.id_visi_misi','tb_visi_misi.id_lembaga_alumni',$this->session->userdata('id_petugas'));
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -570,7 +616,8 @@ class Administrator extends CI_Controller
 
 	public function kegiatan()
 	{
-		$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
+		//$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
+		$data['kegiatan'] = $this->App_model->join_dua_table_by_id('tb_kegiatan','tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_kegiatan.id_kegiatan','tb_kegiatan.id_lembaga_alumni',$this->session->userdata('id_petugas'));
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -597,8 +644,8 @@ class Administrator extends CI_Controller
 	        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 	        	'foto_kegiatan' => $file_name['file_name'],
 	        	'status' => 'Aktif',
-	        	'id_lembaga_alumni' => $this->session->userdata('id_petugas')
-
+	        	'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
+	        	'author' => $this->session->userdata('user')
 	        );
 
 	        $query = $this->App_model->tambah_data('tb_kegiatan', $data_kegiatan);
@@ -683,7 +730,7 @@ class Administrator extends CI_Controller
             $result = $this->App_model->auto_complete($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = $row->id_alumni;
+                $arr_result[] = $row->no_ktp;
                 echo json_encode($arr_result);
             }
         }
@@ -691,8 +738,8 @@ class Administrator extends CI_Controller
 
     public function get_alumni()
     {
-    	$id_alumni = $this->input->post('id_alumni');
-    	$alumni = $this->App_model->ambil_data_by_id('tb_alumni','id_alumni',$id_alumni);
+    	$no_ktp = $this->input->post('no_ktp');
+    	$alumni = $this->App_model->ambil_data_by_id('tb_alumni','no_ktp',$no_ktp);
     	$this->output->set_content_type('application/json')->set_output(json_encode($alumni));
     }
 
@@ -724,7 +771,7 @@ class Administrator extends CI_Controller
 				'id_devisi' => $this->input->post('devisi'),
 				'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
 				'masa_bakti' => $this->input->post('masa_bakti'),
-				'status' => 'aktif'
+				'status' => 'Y'
 			);
 
 			$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
@@ -749,14 +796,15 @@ class Administrator extends CI_Controller
 
 		if (isset($_POST['update'])) {
 			$id_s = $this->input->post('id_struktur');
+			$id_a = $this->input->post('id_alumni');
 
 			$data_struktur = array(
-				'id_alumni' => '2',
+				'id_alumni' => $id_a,
 				'id_jabatan' => $this->input->post('jabatan'),
 				'id_devisi' => $this->input->post('devisi'),
 				'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
 				'masa_bakti' => $this->input->post('masa_bakti'),
-				'status' => 'aktif'
+				'status' => 'Y'
 			);
 
 			$query = $this->App_model->edit_data('tb_struktur','id_struktur',$id_s,$data_struktur);
@@ -871,9 +919,7 @@ class Administrator extends CI_Controller
 				'id_kecamatan' => $this->input->post('kecamatan'),
 				'id_alumni' => $this->input->post('id_alumni'),
 				'tahun' => $this->input->post('tahun'),
-				'username' => $this->input->post('username'),
-				'password' => md5($this->input->post('password')),
-				'status_korcam' => 'aktif'
+				'status' => 'Y'
 			);
 
 			$query = $this->App_model->tambah_data('tb_korcam',$data_korcam);
@@ -1008,6 +1054,12 @@ class Administrator extends CI_Controller
 			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
 			redirect(base_url().'administrator/pengurus');
 		}
+	}
+
+	public function get_kecamatan()
+	{
+		$kecamatan = $this->db->query("SELECT nama_kecamatan FROM tb_kecamatan")->result();
+		$this->output->set_content_type('application/json')->set_output(json_encode($kecamatan));
 	}
 
 }

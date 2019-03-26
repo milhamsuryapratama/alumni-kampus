@@ -29,6 +29,7 @@
     								<th>NO</th>
     								<th>Visi</th>
                                     <th>Misi</th>
+                                    <th>Lembaga</th>
     								<th>Actions</th>
     							</tr>
     						</thead>
@@ -40,6 +41,7 @@
     									<td><?=$no?></td>
     									<td><?=$l['visi']?></td>
                                         <td><?=$l['misi']?></td>
+                                        <td><?=$l['nama_lembaga']?></td>
     									<td>
     										<div class="btn-group">
     											<a href="<?=base_url()?>administrator/edit_visi_misi/<?=$l['id_visi_misi']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-success">Edit</a>

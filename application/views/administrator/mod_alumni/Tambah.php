@@ -19,7 +19,7 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/tambah_alumni" method="post">
+    				<form action="<?=base_url()?>administrator/tambah_alumni" method="post" enctype="multipart/form-data">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nim">NO KTP</label>
@@ -52,7 +52,7 @@
     							<textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat"></textarea>
     						</div>
     						<div class="form-group">
-    							<label>Fakultas</label>
+    							<label>Kecamatan</label>
     							<select class="form-control" id="kecamatan" name="kecamatan">
     								<option>-- Pilih Kecamatan --</option>
     								<?php 
@@ -97,6 +97,10 @@
                             <div class="form-group">
                                 <label for="nama_lengkap">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Nama Lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label for="foto_alumni">Foto</label>
+                                <input type="file" name="foto_alumni" class="form-control" id="foto_alumni">
                             </div>
     					</div>
     					<!-- /.box-body -->

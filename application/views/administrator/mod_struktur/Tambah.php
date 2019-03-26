@@ -22,9 +22,10 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_struktur" method="post">
     					<div class="box-body">
+                            <input type="hidden" name="id_alumni" id="id_alumni">
                             <div class="form-group">
                                 <label for="id_alumni">ID Alumni</label>
-                                <input type="text" name="id_alumni" class="form-control" id="id_alumni" placeholder="Enter ID Alumni">
+                                <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter No KTP">
                             </div>
     						<div class="form-group">
     							<label for="nama_alumi">Nama Alumni</label>
@@ -83,15 +84,20 @@ reserved.</strong>
 <script>
     $(function(){
 
-        $( "#id_alumni" ).autocomplete({
+        $( "#no_ktp" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
 
-        $("#id_alumni").on('keydown', function(e) {
+        $("#no_ktp").on('keydown', function(e) {
            if(e.which == 9) {
-                let id_alumni = $("#id_alumni").val();
-                $.post("<?=base_url()?>administrator/get_alumni", {id_alumni: id_alumni}, (result) => {
-                    $("#nama_alumni").val(result.nama)
+                let no_ktp = $("#no_ktp").val();
+                $.post("<?=base_url()?>administrator/get_alumni", {no_ktp: no_ktp}, (result) => {
+                    if (result == null) {
+                        alert("SALAH");
+                    } else {
+                        $("#nama_alumni").val(result.nama)
+                        $("#id_alumni").val(result.id_alumni)
+                    }                    
                 })
             }
         })
