@@ -90,7 +90,7 @@ class Auth extends CI_Controller
 	public function login() 
 	{
 		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga_alumni', 'id_lembaga_alumni');
-		$this->load->view('administrator/login', $data);
+		$this->load->view('administrator/Login', $data);
 	}
 
 	public function adminRegister()
