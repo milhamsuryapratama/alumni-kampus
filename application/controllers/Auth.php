@@ -105,7 +105,7 @@ class Auth extends CI_Controller
 			$query = $this->App_model->tambah_data("admin", $data);
 
 			if ($query) {
-				redirect(base_url()."auth/login");
+				redirect(base_url()."auth/Login");
 			}
 		}
 	}
@@ -166,6 +166,11 @@ class Auth extends CI_Controller
 	{
 		$this->session->sess_destroy();
         redirect(base_url().'auth/login');
+	}
+
+	public function hash()
+	{
+		echo md5('yoyo');
 	}
 }
  ?>

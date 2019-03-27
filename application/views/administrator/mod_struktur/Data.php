@@ -22,7 +22,7 @@
     						<thead>
     							<tr>
     								<td colspan="7">
-    									<a href="<?=base_url()?>administrator/tambah_struktur" class="btn btn-block btn-primary">Tambah Data</a>
+    									<a href="<?=base_url()?>administrator/tambah_struktur?lembaga=<?=$_GET['lembaga']?>" class="btn btn-block btn-primary">Tambah Data</a>
     								</td>
     							</tr>
     							<tr>
@@ -46,11 +46,11 @@
                                         <td><?=$l['masa_bakti']?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_struktur/<?=$l['id_struktur']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_struktur/<?=$l['id_struktur']?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_struktur/<?=$l['id_struktur']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-danger">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_struktur/<?=$l['id_struktur']?>" class="btn btn-danger">Hapus</a>
     										</div>
     									</td>
     								</tr>

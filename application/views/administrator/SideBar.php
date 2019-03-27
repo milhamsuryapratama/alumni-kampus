@@ -36,6 +36,104 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Data Master</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Visi & Misi</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/desa?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Desa</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/kecamatan?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Kecamatan</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/lembaga?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Lembaga Alumni</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/lembaga_nj?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Lembaga NJ</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/jabatan?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Jabatan</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/devisi?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Devisi</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('id_petugas')?>">
+                <i class="fa fa-calendar"></i> <span>Kegiatan</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/tambah_anggota_fks?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Anggota FKS</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <!-- <li>
+              <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Kegiatan</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('username')?>">
+                <i class="fa fa-calendar"></i> <span>Struktur</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li> -->
+          </ul>
+        </li>
+
+        <!-- <li class="treeview">
+          <a href="#">
             <i class="fa fa-dashboard"></i> <span>Data Lembaga</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -66,11 +164,11 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li>
           <a href="<?=base_url()?>administrator/alumni">
-            <i class="fa fa-calendar"></i> <span>Alumni</span>
+            <i class="fa fa-calendar"></i> <span>Data Alumni</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -78,18 +176,20 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Desa & Kecamatan</span>
+            <i class="fa fa-dashboard"></i> <span>Kepengurusan</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url()?>administrator/kecamatan"><i class="fa fa-circle-o"></i> Kecamatan</a></li>
-            <li><a href="<?=base_url()?>administrator/desa"><i class="fa fa-circle-o"></i> Desa</a></li>
+            <li><a href="<?=base_url()?>administrator/struktur?lembaga=2"><i class="fa fa-circle-o"></i> Struktur P4NJ</a></li>
+            <li><a href="<?=base_url()?>administrator/struktur?lembaga=3"><i class="fa fa-circle-o"></i> Struktur NJIC</a></li>
+            <li><a href="<?=base_url()?>administrator/struktur?lembaga=1"><i class="fa fa-circle-o"></i> Struktur FKS</a></li>
+            <li><a href="<?=base_url()?>administrator/korcam"><i class="fa fa-circle-o"></i> Korcam</a></li>
           </ul>
         </li>
 
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Lembaga</span>
             <span class="pull-right-container">
@@ -124,7 +224,7 @@
             <span class="pull-right-container">
             </span>
           </a>
-        </li>
+        </li> -->
 
         <!-- <li>
           <a href="<?=base_url()?>administrator/pengurus">
@@ -137,7 +237,7 @@
         <?php } else { ?>
 
         <li>
-          <a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('username')?>">
+          <a href="<?=base_url()?>administrator/visi_misi?lembaga=<?=$this->session->userdata('id_petugas')?>">
             <i class="fa fa-calendar"></i> <span>Visi & Misi</span>
             <span class="pull-right-container">
             </span>
@@ -145,7 +245,7 @@
         </li>
 
         <li>
-          <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>">
+          <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('id_petugas')?>">
             <i class="fa fa-calendar"></i> <span>Kegiatan</span>
             <span class="pull-right-container">
             </span>
@@ -153,7 +253,7 @@
         </li>
 
         <li>
-          <a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('username')?>">
+          <a href="<?=base_url()?>administrator/struktur?lembaga=<?=$this->session->userdata('id_petugas')?>">
             <i class="fa fa-calendar"></i> <span>Struktur</span>
             <span class="pull-right-container">
             </span>

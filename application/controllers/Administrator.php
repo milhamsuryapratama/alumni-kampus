@@ -24,7 +24,7 @@ class Administrator extends CI_Controller
 		
 		$data['title'] = "Dashboard";
 
-		$this->load->view('administrator/Header');
+		$this->load->view('administrator/Header', $data);
 		$this->load->view('administrator/TopHeader');
 		$this->load->view('administrator/SideBar');
 		$this->load->view('administrator/Content', $data);
@@ -475,6 +475,22 @@ class Administrator extends CI_Controller
 		}
 	}
 
+	public function nonaktif_jabatan($id)
+	{
+		$query = $this->db->query("UPDATE tb_jabatan SET status = 'N' WHERE id_jabatan = '".$id."' ");
+		if ($query) {
+			redirect(base_url().'administrator/jabatan');
+		}
+	}
+
+	public function aktifkan_jabatan($id)
+	{
+		$query = $this->db->query("UPDATE tb_jabatan SET status = 'Y' WHERE id_jabatan = '".$id."'");
+		if ($query) {
+			redirect(base_url().'administrator/jabatan');
+		}
+	}
+
 	public function devisi()
 	{
 		$data['devisi'] = $this->App_model->ambil_data('tb_devisi','id_devisi');
@@ -540,6 +556,22 @@ class Administrator extends CI_Controller
 		$query = $this->App_model->hapus_data('tb_devisi','id_devisi',$id);
 		if ($query) {
 			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+			redirect(base_url().'administrator/devisi');
+		}
+	}
+
+	public function nonaktif_devisi($id)
+	{
+		$query = $this->db->query("UPDATE tb_devisi SET status = 'N' WHERE id_devisi = '".$id."' ");
+		if ($query) {
+			redirect(base_url().'administrator/devisi');
+		}
+	}
+
+	public function aktifkan_devisi($id)
+	{
+		$query = $this->db->query("UPDATE tb_devisi SET status = 'Y' WHERE id_devisi = '".$id."'");
+		if ($query) {
 			redirect(base_url().'administrator/devisi');
 		}
 	}
@@ -635,24 +667,39 @@ class Administrator extends CI_Controller
 	        $config['encrypt_name'] = TRUE;
 
 	        $this->load->library('upload', $config);
-	        $this->upload->do_upload('foto_kegiatan');
-	        $file_name = $this->upload->data();
+	        
+	        if ($this->upload->do_upload('foto_kegiatan')) {
+	        	$file_name = $this->upload->data();
 
-	        $data_kegiatan = array(
-	        	'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-	        	'deskripsi' => $this->input->post('deskripsi'),
-	        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
-	        	'foto_kegiatan' => $file_name['file_name'],
-	        	'status' => 'Aktif',
-	        	'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
-	        	'author' => $this->session->userdata('user')
-	        );
+	        	//compress images
+	        	$config['image_library'] = 'gd2';
+	        	$config['source_image'] = 'assets/foto/kegiatan/'.$file_name['file_name'];
+	        	$config['create_thumb'] = FALSE;
+	        	$config['maintain_ratio'] = FALSE;
+	        	$config['quality'] = '50%';
+	        	$config['width'] = 1600;
+	        	$config['height'] = 681;
+	        	$config['new_image'] = 'assets/foto/kegiatan/'.$file_name['file_name'];
+	        	$this->load->library('image_lib', $config);
+	        	$this->image_lib->resize();
 
-	        $query = $this->App_model->tambah_data('tb_kegiatan', $data_kegiatan);
+	        	$data_kegiatan = array(
+	        		'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+	        		'slug' => url_title($this->input->post('judul_kegiatan'), 'dash', TRUE),
+	        		'deskripsi' => $this->input->post('deskripsi'),
+	        		'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
+	        		'foto_kegiatan' => $file_name['file_name'],
+	        		'status' => 'Aktif',
+	        		'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
+	        		'author' => $this->session->userdata('user')
+	        	);
 
-	        if ($query) {
-	        	redirect(base_url().'administrator/kegiatan?lembaga='.$this->session->userdata('username'));
-	        }
+	        	$query = $this->App_model->tambah_data('tb_kegiatan', $data_kegiatan);
+
+	        	if ($query) {
+	        		redirect(base_url().'administrator/kegiatan?lembaga='.$this->session->userdata('username'));
+	        	}
+	        }	        	        
 
 		} else {
 			$this->load->view('administrator/Header');
@@ -736,55 +783,147 @@ class Administrator extends CI_Controller
         }
     }
 
+    public function get_fks_anggota()
+    {
+    	if (isset($_GET['term'])) {
+            $result = $this->App_model->auto_fks($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = $row->no_ktp;
+                echo json_encode($arr_result);
+            }
+        }
+    }
+
+    public function get_anggota_fks_by_id()
+    {
+    	$nis = $this->input->post('nis');
+    	$fks = $this->App_model->ambil_data_by_id('anggota_fks','nis',$nis);
+    	$this->output->set_content_type('application/json')->set_output(json_encode($fks));
+    }
+
     public function get_alumni()
     {
     	$no_ktp = $this->input->post('no_ktp');
-    	$alumni = $this->App_model->ambil_data_by_id('tb_alumni','no_ktp',$no_ktp);
-    	$this->output->set_content_type('application/json')->set_output(json_encode($alumni));
+    	$fks = $this->App_model->ambil_data_by_id('tb_alumni','no_ktp',$no_ktp);
+    	$this->output->set_content_type('application/json')->set_output(json_encode($fks));
+    }
+
+    public function get_struktur()
+    {
+    	$id = $this->input->post('id_alumni');
+    	$query = $this->db->query("SELECT id_alumni FROM tb_struktur WHERE id_alumni = '".$id."' ")->num_rows();
+    	if ($query > 0) {
+    		echo "Fail";
+    	} else {
+    		echo "Sukses";
+    	}
     }
 
 	public function struktur()
 	{
-		// $this->db->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get($table1)->result_array();
-
-		// ($table1,$table2,$table3,$table4,$params1,$params2,$params3)
-
-		//$data['struktur'] = $this->App_model->join_empat_table('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni');
-		$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$this->session->userdata('id_petugas'));
+		if ($_GET['lembaga'] == '1') {
+			$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','anggota_fks','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.nis = anggota_fks.nis','tb_struktur.id_lembaga_alumni',$_GET['lembaga']);
  
-		$this->load->view('administrator/Header');
-		$this->load->view('administrator/TopHeader');
-		$this->load->view('administrator/SideBar');
-		$this->load->view('administrator/mod_struktur/Data', $data);
-		$this->load->view('administrator/Footer');
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_struktur/Data', $data);
+			$this->load->view('administrator/Footer');
+		} else {
+			$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$_GET['lembaga']);
+ 
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_struktur/Data', $data);
+			$this->load->view('administrator/Footer');
+		}		
+
+		// if ($_GET['lembaga'] == '2') {
+		// 	$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$_GET['lembaga']);
+ 
+		// 	$this->load->view('administrator/Header');
+		// 	$this->load->view('administrator/TopHeader');
+		// 	$this->load->view('administrator/SideBar');
+		// 	$this->load->view('administrator/mod_struktur/Data', $data);
+		// 	$this->load->view('administrator/Footer');
+		// 	// echo "P4nj";
+		// } elseif ($_GET['lembaga'] == '3') {
+		// 	$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$_GET['lembaga']);
+ 
+		// 	$this->load->view('administrator/Header');
+		// 	$this->load->view('administrator/TopHeader');
+		// 	$this->load->view('administrator/SideBar');
+		// 	$this->load->view('administrator/mod_struktur/Data', $data);
+		// 	$this->load->view('administrator/Footer');
+		// } elseif ($_GET['lembaga'] == '1') {
+		// 	$data['struktur'] = $this->App_model->join_empat_table_by_id('tb_struktur','tb_jabatan','tb_devisi','tb_alumni','tb_struktur.id_jabatan = tb_jabatan.id_jabatan','tb_struktur.id_devisi = tb_devisi.id_devisi','tb_struktur.id_alumni = tb_alumni.id_alumni','tb_struktur.id_lembaga_alumni',$_GET['lembaga']);
+ 
+		// 	$this->load->view('administrator/Header');
+		// 	$this->load->view('administrator/TopHeader');
+		// 	$this->load->view('administrator/SideBar');
+		// 	$this->load->view('administrator/mod_struktur/Data', $data);
+		// 	$this->load->view('administrator/Footer');
+		// } else {
+		// 	echo "GAGAL";
+		// }
 	}
 
 	public function tambah_struktur()
 	{
 		$data['jabatan'] = $this->App_model->ambil_data('tb_jabatan', 'id_jabatan');
-		$data['devisi'] = $this->App_model->ambil_data('tb_devisi', 'id_devisi');
+		$data['devisi'] = $this->App_model->ambil_data('tb_devisi', 'id_devisi');		
 
 		if (isset($_POST['submit'])) {
-			$data_struktur = array(
-				'id_alumni' => $this->input->post('id_alumni'),
-				'id_jabatan' => $this->input->post('jabatan'),
-				'id_devisi' => $this->input->post('devisi'),
-				'id_lembaga_alumni' => $this->session->userdata('id_petugas'),
-				'masa_bakti' => $this->input->post('masa_bakti'),
-				'status' => 'Y'
-			);
 
-			$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
+			$id_lembaga_alumni = $this->input->post('id_lembaga_alumni');
 
-			if ($query) {
-				redirect(base_url().'administrator/struktur?lembaga='.$this->session->userdata('username'));
-			}
+			if ($id_lembaga_alumni == '1') {
+				$data_struktur = array(
+					'nis' => $this->input->post('nis'),
+					'id_jabatan' => $this->input->post('jabatan'),
+					'id_devisi' => $this->input->post('devisi'),
+					'id_lembaga_alumni' => $this->input->post('id_lembaga_alumni'),
+					'masa_bakti' => $this->input->post('masa_bakti'),
+					'status' => 'Y'
+				);
+
+				$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
+
+				if ($query) {
+					redirect(base_url().'administrator/struktur?lembaga='.$this->input->post('id_lembaga_alumni'));
+				}
+			} else {
+				$data_struktur = array(
+					'id_alumni' => $this->input->post('id_alumni'),
+					'id_jabatan' => $this->input->post('jabatan'),
+					'id_devisi' => $this->input->post('devisi'),
+					'id_lembaga_alumni' => $this->input->post('id_lembaga_alumni'),
+					'masa_bakti' => $this->input->post('masa_bakti'),
+					'status' => 'Y'
+				);
+
+				$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
+
+				if ($query) {
+					redirect(base_url().'administrator/struktur?lembaga='.$this->input->post('id_lembaga_alumni'));
+				}
+			}			
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_struktur/Tambah', $data);
-			$this->load->view('administrator/Footer');
+			if ($_GET['lembaga'] == '1') {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_struktur/TambahFks', $data);
+				$this->load->view('administrator/Footer');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_struktur/Tambah', $data);
+				$this->load->view('administrator/Footer');
+			}
 		}
 	}
 
@@ -977,6 +1116,22 @@ class Administrator extends CI_Controller
 		}
 	}
 
+	public function nonaktif_korcam($id)
+	{
+		$query = $this->db->query("UPDATE tb_korcam SET status = 'N' WHERE id_korcam = '".$id."' ");
+		if ($query) {
+			redirect(base_url().'administrator/korcam');
+		}
+	}
+
+	public function aktifkan_korcam($id)
+	{
+		$query = $this->db->query("UPDATE tb_korcam SET status = 'Y' WHERE id_korcam = '".$id."'");
+		if ($query) {
+			redirect(base_url().'administrator/korcam');
+		}
+	}
+
 	public function pengurus()
 	{
 		$data['pengurus'] = $this->App_model->join_tiga_table('tb_pengurus','tb_alumni','tb_lembaga_alumni','tb_pengurus.id_alumni = tb_alumni.id_alumni','tb_pengurus.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni');
@@ -1060,6 +1215,96 @@ class Administrator extends CI_Controller
 	{
 		$kecamatan = $this->db->query("SELECT nama_kecamatan FROM tb_kecamatan")->result();
 		$this->output->set_content_type('application/json')->set_output(json_encode($kecamatan));
+	}
+
+	public function data_anggota_fks()
+	{
+		//$data['fks'] = $this->App_model->ambil_data('anggota_fks','nis');
+		$data['fks'] = $this->App_model->join_dua_table('anggota_fks','tb_lembaga_nj','anggota_fks.pendidikan = tb_lembaga_nj.id_lembaga','anggota_fks.nis');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_fks/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_anggota_fks()
+	{
+		$data['lembaga_nj'] = $this->App_model->ambil_data('tb_lembaga_nj','id_lembaga');		
+
+		if (isset($_POST['submit'])) {
+			$data_fks = array(
+				'nis' => $this->input->post('nis'),
+				'nama' => $this->input->post('nama'),
+				'alamat' => $this->input->post('alamat'),
+				'desa' => $this->input->post('desa'),
+				'kecamatan' => $this->input->post('kecamatan'),
+				'gang_wilayah' => $this->input->post('gang_wilayah'),
+				'pendidikan' => $this->input->post('pendidikan'),
+				'telepon' => $this->input->post('telepon'),
+				'username' => $this->input->post('username'),
+				'password' => md5($this->input->post('password')),
+			);
+
+			$query = $this->App_model->tambah_data('anggota_fks',$data_fks);
+
+			if ($query) {
+				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+				redirect(base_url().'administrator/data_anggota_fks');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_fks/Tambah', $data);
+			$this->load->view('administrator/Footer');
+		}		
+	}
+
+	public function edit_anggota_fks($nis)
+	{
+		$data['lembaga_nj'] = $this->App_model->ambil_data('tb_lembaga_nj','id_lembaga');
+		$data['fks'] = $this->App_model->ambil_data_by_id('anggota_fks', 'nis', $nis);
+
+		if (isset($_POST['submit'])) {
+
+			$nis = $this->input->post('nis');
+
+			$data_fks = array(
+				'nama' => $this->input->post('nama'),
+				'alamat' => $this->input->post('alamat'),
+				'desa' => $this->input->post('desa'),
+				'kecamatan' => $this->input->post('kecamatan'),
+				'gang_wilayah' => $this->input->post('gang_wilayah'),
+				'pendidikan' => $this->input->post('pendidikan'),
+				'telepon' => $this->input->post('telepon'),
+				'username' => $this->input->post('username'),
+				'password' => md5($this->input->post('password')),
+			);
+
+			$query = $this->App_model->edit_data('anggota_fks','nis',$nis,$data_fks);
+
+			if ($query) {
+				$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
+				redirect(base_url().'administrator/data_anggota_fks');
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_fks/Edit', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_anggota_fks($nis)
+	{
+		$query = $this->App_model->hapus_data('anggota_fks','nis',$nis);
+		if ($query) {
+			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+			redirect(base_url().'administrator/data_anggota_fks');
+		}
 	}
 
 }

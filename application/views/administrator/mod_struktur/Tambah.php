@@ -22,7 +22,7 @@
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_struktur" method="post">
     					<div class="box-body">
-                            <input type="hidden" name="id_alumni" id="id_alumni">
+                            <input type="hidden" name="id_alumni" id="id_alumni"> <input type="hidden" name="id_lembaga_alumni" id="id_lembaga_alumni" value="<?=$_GET['lembaga']?>">
                             <div class="form-group">
                                 <label for="id_alumni">ID Alumni</label>
                                 <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter No KTP">
@@ -84,6 +84,8 @@ reserved.</strong>
 <script>
     $(function(){
 
+        $("#submit").attr('disabled', true);
+
         $( "#no_ktp" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
@@ -95,8 +97,16 @@ reserved.</strong>
                     if (result == null) {
                         alert("SALAH");
                     } else {
-                        $("#nama_alumni").val(result.nama)
-                        $("#id_alumni").val(result.id_alumni)
+                        $.post("<?=base_url()?>administrator/get_struktur", {id_alumni: result.id_alumni},(response) => {
+                            if (response == "Fail") {
+                                alert("Alumni Ini Telah Menjadi Struktur dari  Lembaga Lain");
+                                $("#submit").attr('disabled', true);
+                            } else {
+                                $("#submit").attr('disabled', false);
+                                $("#nama_alumni").val(result.nama);
+                                $("#id_alumni").val(result.id_alumni);
+                            }
+                        })                        
                     }                    
                 })
             }

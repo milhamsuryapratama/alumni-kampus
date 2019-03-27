@@ -107,5 +107,12 @@ class App_model extends CI_Model
         $this->db->order_by('id_alumni', 'DESC');
         return $this->db->get('tb_alumni')->result();
     }
+
+    public function auto_fks($title)
+    {
+        $this->db->like('nis', $title , 'both');
+        $this->db->order_by('nis', 'DESC');
+        return $this->db->get('anggota_fks')->result();
+    }
 }
  ?>

@@ -71,6 +71,15 @@
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
     											<a href="<?=base_url()?>administrator/hapus_jabatan/<?=$l['id_jabatan']?>" class="btn btn-danger">Hapus</a>
+
+                                                <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
+
+                                                <?php 
+                                                    if ($l['status'] == "Y") { ?>
+                                                        <a href="<?=base_url()?>administrator/nonaktif_jabatan/<?=$l['id_jabatan']?>" class="btn btn-danger">Nonaktifkan</a>
+                                                    <?php } else { ?>
+                                                        <a href="<?=base_url()?>administrator/aktifkan_jabatan/<?=$l['id_jabatan']?>" class="btn btn-success">Aktifkan</a>
+                                                <?php } ?>
     										</div>
     									</td>
     								</tr>
