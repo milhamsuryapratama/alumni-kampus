@@ -49,7 +49,7 @@
 
                                                     <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-                                                    <a href="<?=base_url()?>administrator/hapus_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-danger">Hapus</a>
+                                                    <a href="<?=base_url()?>administrator/hapus_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
                                                 </div>
                                             <?php } else { ?>
                                                 <p>Anda Tidak Memiliki Akses</p>

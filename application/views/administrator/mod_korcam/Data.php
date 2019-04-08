@@ -72,15 +72,15 @@
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_korcam/<?=$l['id_korcam']?>" class="btn btn-danger">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_korcam/<?=$l['id_korcam']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
 
                                                 <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
                                                 <?php 
                                                     if ($l['status'] == "Y") { ?>
-                                                        <a href="<?=base_url()?>administrator/nonaktif_korcam/<?=$l['id_korcam']?>" class="btn btn-danger">Nonaktifkan</a>
+                                                        <a href="<?=base_url()?>administrator/nonaktif_korcam/<?=$l['id_korcam']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menonaktifkan Data Ini ?')">Nonaktifkan</a>
                                                     <?php } else { ?>
-                                                        <a href="<?=base_url()?>administrator/aktifkan_korcam/<?=$l['id_korcam']?>" class="btn btn-success">Aktifkan</a>
+                                                        <a href="<?=base_url()?>administrator/aktifkan_korcam/<?=$l['id_korcam']?>" class="btn btn-success" onclick="return confirm('Anda Yakin Ingin Mengaktifkan Data Ini ?')">Aktifkan</a>
                                                 <?php } ?>
     										</div>
     									</td>

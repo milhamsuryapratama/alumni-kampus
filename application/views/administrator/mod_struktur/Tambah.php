@@ -59,7 +59,7 @@
     					<!-- /.box-body -->
 
     					<div class="box-footer">
-    						<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button> <button type="button" id="cancle" name="cancle" class="btn btn-primary" onclick="self.history.back()">Batal</button>
+    						<button type="submit" id="submit" name="submit" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Menyimpan Data Ini ?')">Submit</button> <button type="button" id="cancle" name="cancle" class="btn btn-primary" onclick="self.history.back()">Batal</button>
     					</div>
     				</form>
     			</div>
@@ -91,7 +91,7 @@ reserved.</strong>
         });
 
         $("#no_ktp").on('keydown', function(e) {
-           if(e.which == 9) {
+           if(e.which == 13) {
                 let no_ktp = $("#no_ktp").val();
                 $.post("<?=base_url()?>administrator/get_alumni", {no_ktp: no_ktp}, (result) => {
                     if (result == null) {

@@ -20,8 +20,8 @@ class Administrator extends CI_Controller
 
 	public function dashboard() 
 	{
-		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();
-		
+		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();	
+		$data['jml'] = $this->db->query("SELECT COUNT(id_kecamatan) as count FROM tb_alumni GROUP BY id_kecamatan")->result();
 		$data['title'] = "Dashboard";
 
 		$this->load->view('administrator/Header', $data);
@@ -29,6 +29,12 @@ class Administrator extends CI_Controller
 		$this->load->view('administrator/SideBar');
 		$this->load->view('administrator/Content', $data);
 		$this->load->view('administrator/Footer');
+	}
+
+	public function jml_alumni_per_kecamatan()
+	{
+		$jml = $this->db->query("SELECT COUNT(id_kecamatan) as count FROM tb_alumni GROUP BY id_kecamatan")->result();
+		$this->output->set_content_type('application/json')->set_output(json_encode($jml));
 	}
 
 	public function form()
@@ -697,7 +703,68 @@ class Administrator extends CI_Controller
 	        	$query = $this->App_model->tambah_data('tb_kegiatan', $data_kegiatan);
 
 	        	if ($query) {
-	        		redirect(base_url().'administrator/kegiatan?lembaga='.$this->session->userdata('username'));
+
+	        		$data_token = array(
+	        			"to" => "fQv9L5ThSqY:APA91bElCV-8VQHgoRSKsnglQCyCxwT8zK70C3XyzgZdYBrRlz0zmXFWfp8JSsG5TZwRHHyy58Kjq7cha0PVPfP14pojTYIEj_xAvrmZtvWLo5dLLXOvb8SX0udSy351b1BylK5CO8GT",
+	        			"notification" => array(
+	        				"title" => "ILHAM",	
+	        				"body" => "HALO"
+	        			)
+	        		);
+
+	        		$encode = json_encode($data_token);
+
+	        		$curlone = curl_init();	
+	        		curl_setopt_array($curlone, array(
+	        			CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
+	        			CURLOPT_RETURNTRANSFER => true,
+	        			CURLOPT_POST => true,
+	        			CURLOPT_POSTFIELDS => $encode,	
+	        			CURLOPT_SSL_VERIFYPEER => false,
+	        			CURLOPT_HTTPHEADER => array(
+	        				"Authorization: key=AAAAk7jFO4w:APA91bE9SOVbjzLe1uGRrI5Xq_HgpGMMu_6p-qNurhsoKKmFM8XP38m2yvLAj_oVvhJ8oDDt7_DYRnX_vjLTL3jQm1pvl_P7DnX2WN7s6NVRMqq4VuTANnWUWlwFc02EMUysEGsnFJ_s",
+	        				"Content-Type: application/json"
+	        			),
+	        		));
+
+	        		$response1 = curl_exec($curlone);
+	        		$err1 = curl_error($curlone);
+
+	        		echo $response1;
+
+	        		curl_close($curlone);
+
+        			// $ch = curl_init();
+ 
+			        // // Set the url, number of POST vars, POST data
+			        // curl_setopt($ch, CURLOPT_URL, $url);
+			 
+			        // curl_setopt($ch, CURLOPT_POST, true);
+			        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			 
+			        // // Disabling SSL Certificate support temporarly
+			        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			 
+			        // curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+			 
+			        // // Execute post
+			        // $result = curl_exec($ch);
+			        // if ($result === FALSE) {
+			        //     echo 'Curl failed: ' . curl_error($ch);
+			        // }
+			 
+			        // // Close connection
+			        // curl_close($ch);
+
+        			// $this->load->library("curl");
+        			// $this->curl->create("https://fcm.googleapis.com/fcm/send");
+        			// $this->curl->option("HEADER", $headers);
+        			// $this->curl->option("returntransfer", true);
+        			// $this->curl->option("postfields", json_encode($field));
+        			// $this->curl->execute();
+
+	        		// redirect(base_url().'administrator/kegiatan?lembaga='.$this->session->userdata('username'));
 	        	}
 	        }	        	        
 

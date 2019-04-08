@@ -4,7 +4,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?=base_url()?>assets/foto/logo/logop4nj.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Halo Admin</p>
@@ -187,6 +187,14 @@
             <li><a href="<?=base_url()?>administrator/struktur?lembaga=1"><i class="fa fa-circle-o"></i> Struktur FKS</a></li>
             <li><a href="<?=base_url()?>administrator/korcam"><i class="fa fa-circle-o"></i> Korcam</a></li>
           </ul>
+        </li>
+
+        <li>
+          <a href="<?=base_url()?>auth/logout">
+            <i class="fa fa-calendar"></i> <span>Sign out</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
         </li>
 
         <!-- <li class="treeview">

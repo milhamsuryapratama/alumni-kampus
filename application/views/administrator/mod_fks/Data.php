@@ -72,7 +72,7 @@
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_anggota_fks/<?=$p['nis']?>" class="btn btn-danger">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_anggota_fks/<?=$p['nis']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
     										</div>
     									</td>
     								</tr>
