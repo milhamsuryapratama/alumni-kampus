@@ -31,6 +31,7 @@
                                     <th>Jabatan</th>
                                     <th>Devisi</th>
                                     <th>Masa Bakti</th>
+                                    <th>Status</th>
     								<th>Actions</th>
     							</tr>
     						</thead>
@@ -44,13 +45,25 @@
                                         <td><?=$l['nama_jabatan']?></td>
                                         <td><?=$l['nama_devisi']?></td>
                                         <td><?=$l['masa_bakti']?></td>
+                                        <td><?=
+                                            $l['status_struktur'] === "Y" ? "Aktif" : "Tidak Aktif"
+                                        ?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_struktur/<?=$l['id_struktur']?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_struktur/<?=$l['id_struktur']?>?lembaga=<?=$_GET['lembaga']?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_struktur/<?=$l['id_struktur']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_struktur/<?=$l['id_struktur']?>?lembaga=<?=$_GET['lembaga']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+
+                                                <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
+
+                                                <?php 
+                                                    if ($l['status_struktur'] == "Y") { ?>
+                                                        <a href="<?=base_url()?>administrator/nonaktif_struktur/<?=$l['id_struktur']?>?lembaga=<?=$_GET['lembaga']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menonaktifkan Data Ini ?')">Nonaktifkan</a>
+                                                    <?php } else { ?>
+                                                        <a href="<?=base_url()?>administrator/aktifkan_struktur/<?=$l['id_struktur']?>?lembaga=<?=$_GET['lembaga']?>" class="btn btn-success" onclick="return confirm('Anda Yakin Ingin Mengaktifkan Data Ini ?')">Aktifkan</a>
+                                                <?php } ?>
     										</div>
     									</td>
     								</tr>

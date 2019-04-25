@@ -38,6 +38,16 @@
                                     <?php 
                                         if ($k['jenis_kegiatan'] == 'aksi sosial') { ?>
                                             <option value="aksi sosial" selected>Aksi Sosial</option>
+                                            <option value="aksi pengajian">Aksi Pengajian</option>
+                                            <option value="aksi umum">Aksi Umum</option>
+                                        <?php } elseif ($k['jenis_kegiatan'] == 'aksi pengajian') { ?>
+                                            <option value="aksi sosial">Aksi Sosial</option>
+                                            <option value="aksi pengajian" selected>Aksi Pengajian</option>
+                                            <option value="aksi umum">Aksi Umum</option>
+                                        <?php } else { ?>
+                                            <option value="aksi sosial">Aksi Sosial</option>
+                                            <option value="aksi pengajian">Aksi Pengajian</option>
+                                            <option value="aksi umum" selected>Aksi Umum</option>
                                         <?php }
                                     ?>
                                 </select>

@@ -35,6 +35,8 @@
                                 <select class="form-control" id="jenis_kegiatan" name="jenis_kegiatan">
                                     <option>-- Pilih Jenis Kegiatan --</option>
                                     <option value="aksi sosial">Aksi Sosial</option>
+                                    <option value="aksi pengajian">Aksi Pengajian</option>
+                                    <option value="aksi umum">Aksi Umum</option>
                                 </select>
                             </div>
                             <div class="form-group">

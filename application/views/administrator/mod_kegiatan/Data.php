@@ -22,7 +22,7 @@
     						<thead>
     							<tr>
     								<td colspan="7">
-    									<a href="<?=base_url()?>administrator/tambah_kegiatan?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-block btn-primary">Tambah Data</a>
+    									<a href="<?=base_url()?>administrator/tambah_kegiatan?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-block btn-primary">Tambah Data</a>
     								</td>
     							</tr>
     							<tr>
@@ -43,17 +43,13 @@
                                         <td><?=$l['jenis_kegiatan']?></td>
                                         <td><?=$l['nama']?></td>
     									<td>
-                                            <?php if ($l['author'] == $this->session->userdata('user')) { ?>
-                                                <div class="btn-group">
-                                                    <a href="<?=base_url()?>administrator/edit_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-success">Edit</a>
+                                            <div class="btn-group">
+                                                <a href="<?=base_url()?>administrator/edit_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-success">Edit</a>
 
-                                                    <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
+                                                <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-                                                    <a href="<?=base_url()?>administrator/hapus_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('username')?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
-                                                </div>
-                                            <?php } else { ?>
-                                                <p>Anda Tidak Memiliki Akses</p>
-                                            <?php } ?>    										
+                                                <a href="<?=base_url()?>administrator/hapus_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+                                            </div>   										
     									</td>
     								</tr>
     							<?php $no++; } ?>

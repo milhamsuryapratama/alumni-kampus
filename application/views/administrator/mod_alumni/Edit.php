@@ -11,8 +11,7 @@
     </section>
     <section class="content">
     	<div class="row">
-    		<div class="col-md-12">
-    			
+    		<div class="col-md-6">
 
     			<div class="box box-primary">
     				<div class="box-header with-border">
@@ -24,16 +23,16 @@
                         <input type="hidden" name="id_alumni" value="<?=$a['id_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
-                                <label for="nim">NO KTP</label>
+                                <label for="nim">NO KTP *</label>
                                 <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter Nomor KTP" value="<?=$a['no_ktp']?>" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="nama_lengkap">Nama Lengkap</label>
-                                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Enter Nama Lengkap" value="<?=$a['nama']?>">
+                                <label for="nama_lengkap">Nama Lengkap *</label>
+                                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Enter Nama Lengkap" value="<?=$a['nama']?>" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="<?=$a['email']?>">
+                                <label for="email">Email *</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="<?=$a['email']?>" required>
                             </div>
                             <!-- <div class="form-group">
                                 <label for="jk">Jenik Kelamin</label>
@@ -50,12 +49,12 @@
                                 </div>
                             </div> -->
     						<div class="form-group">
-    							<label>Alamat Lengkap</label>
-    							<textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat"><?=$a['alamat']?></textarea>
+    							<label>Alamat Lengkap *</label>
+    							<textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat" required><?=$a['alamat']?></textarea>
     						</div>
     						<div class="form-group">
-    							<label>Kecamatan</label>
-    							<select class="form-control" id="kecamatan" name="kecamatan">
+    							<label>Kecamatan *</label>
+    							<select class="form-control" id="kecamatan" name="kecamatan" required>
 
     								<option>-- Pilih Kecamatan --</option>
     								<?php 
@@ -69,35 +68,24 @@
     							</select>
     						</div>
     						<div class="form-group">
-    							<label>Desa</label> <input type="hidden" id="desa_id">
-    							<select class="form-control" id="desa" name="desa">
+    							<label>Desa *</label> <input type="hidden" id="desa_id">
+    							<select class="form-control" id="desa" name="desa" required>
                                     
     							</select>
     						</div>
     						<div class="form-group">
-                                <label for="tahun_masuk">Tahun Masuk</label>
-                                <input type="text" name="tahun_masuk" class="form-control" id="tahun_masuk" placeholder="Enter Nomor Tahun Masuk" value="<?=$a['thn_mondok']?>">
+                                <label for="tahun_masuk">Tahun Masuk *</label>
+                                <input type="text" name="tahun_masuk" class="form-control" id="tahun_masuk" placeholder="Enter Nomor Tahun Masuk" value="<?=$a['thn_mondok']?>" required>
                             </div>
                             <div class="form-group">
-                                <label for="tahun_lulus">Tahun Lulus</label>
-                                <input type="text" name="tahun_lulus" class="form-control" id="tahun_lulus" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['thn_keluar']?>">
+                                <label for="tahun_lulus">Tahun Lulus *</label>
+                                <input type="text" name="tahun_lulus" class="form-control" id="tahun_lulus" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['thn_keluar']?>" required>
                             </div>
                             <div class="form-group">
-                                <label for="telepon">Telepon</label>
-                                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['telepon']?>">
+                                <label for="telepon">Telepon *</label>
+                                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="Enter Nomor Tahun Lulus" value="<?=$a['telepon']?>" required>
                             </div>
-                            <div class="form-group">
-                                <label for="pekerjaan">Pekerjaan</label>
-                                <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Nomor Handphone" value="<?=$a['pekerjaan']?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="bidang_usaha">Bidang Usaha</label>
-                                <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha" value="<?=$a['bidang_usaha']?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="akun_fb">Akun Facebook</label>
-                                <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Akun Facebook" value="<?=$a['akun_fb']?>">
-                            </div>
+                            
                             <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="<?=$a['username']?>">
@@ -105,22 +93,51 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" value="<?=$a['password']?>">
-                            </div> -->
-                            <div class="form-group">
-                                <label for="foto_alumni">Foto</label>
-                                <input type="file" name="foto_alumni" class="form-control" id="foto_alumni">
-                            </div>
+                            </div> -->                            
     					</div>
     					<!-- /.box-body -->
-
-    					<div class="box-footer">
-    						<button type="submit" id="update" name="update" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Mengupdate Data Ini ?')">Update</button> <button type="button" id="cancle" name="cancle" class="btn btn-primary" onclick="self.history.back()">Batal</button>
-    					</div>
-    				</form>
     			</div>
-
-
     		</div>
+
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="pekerjaan">Pekerjaan *</label>
+                            <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Nomor Handphone" value="<?=$a['pekerjaan']?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bidang_usaha">Bidang Usaha *</label>
+                            <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha" value="<?=$a['bidang_usaha']?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bidang_usaha">Ganti Foto Usaha (bila perlu)</label>
+                            <input type="file" name="foto_usaha" class="form-control" id="foto_alumni">
+                            <small>Foto Usaha Lihat <a href="<?=base_url()?>assets/foto/alumni/<?=$a['foto_usaha']?>" target="blank">disini</a></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="akun_fb">Akun Facebook</label>
+                            <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Akun Facebook" value="<?=$a['akun_fb']?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="foto_alumni">Ganti Foto Diri (bila perlu)</label>
+                            <input type="file" name="foto_alumni" class="form-control" id="foto_alumni">
+                            <small>Lihat Foto <a href="<?=base_url()?>assets/foto/alumni/<?=$a['foto']?>" target="blank">disini</a></small>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" id="update" name="update" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Mengupdate Data Ini ?')">Update</button> <button type="button" id="cancle" name="cancle" class="btn btn-primary" onclick="self.history.back()">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     	</div>
     </section>
 </div>

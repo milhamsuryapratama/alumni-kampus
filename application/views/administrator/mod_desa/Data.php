@@ -40,7 +40,7 @@
     						<thead>
     							<tr>
     								<td colspan="7">
-    									<a href="<?=base_url()?>administrator/tambah_desa" class="btn btn-block btn-primary">Tambah Data</a>
+    									<a href="<?=base_url()?>administrator/tambah_desa?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-block btn-primary">Tambah Data</a>
     								</td>
     							</tr>
     							<tr>
@@ -60,11 +60,11 @@
                                         <td><?=$p['nama_kecamatan']?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_desa/<?=$p['id_desa']?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_desa/<?=$p['id_desa']?>?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_desa/<?=$p['id_desa']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_desa/<?=$p['id_desa']?>?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
     										</div>
     									</td>
     								</tr>

@@ -122,28 +122,69 @@ class Auth extends CI_Controller
 	            'password' => $password
         	);
 
-        	$cek = $this->db->query("SELECT * FROM tb_alumni WHERE username = '$username' AND password = '$password' ")->row_array();
+        	$cekAsAdmin = $this->db->query("SELECT * FROM administrator WHERE username = '$username' AND password = '$password' ")->row_array();
 
-        	if (count($cek) > 0) {
-        		$cek2 = $this->db->query("SELECT * FROM tb_struktur WHERE id_alumni = '".$cek['id_alumni']."' AND id_lembaga_alumni = '".$lembaga."' ")->row_array();
-        		if (count($cek2) > 0) {
-        			$cek3 = $this->db->query("SELECT nama_lembaga FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '".$cek2['id_lembaga_alumni']."' ")->row_array();
-        			$sessionAdmin = array(
-	        			'id_petugas' => $lembaga,
-	        			'username' => $cek3['nama_lembaga'],
-	        			'user' => $cek['id_alumni'],
-	        			'status' => 'loginSukses'
-	        		);
-	        		$this->session->set_userdata($sessionAdmin);
-	        		redirect(base_url()."administrator/dashboard");
+        	if (count($cekAsAdmin) > 0) {
+        		$sessionAdmin = array(
+        			'loggedAs' => 'admin',
+        			'id_lembaga' => '2',
+	        		'nama_lembaga' => 'P4NJ',
+        			'username' => $cekAsAdmin['username'],
+        			'status' => 'loginSukses',
+        			'user' => 'admin'
+        		);
+        		$this->session->set_userdata($sessionAdmin);
+        		redirect(base_url()."administrator/dashboard");
+        	}
+
+        	if ($lembaga === '1') {
+        		$cekfks = $this->db->query("SELECT * FROM anggota_fks WHERE username = '$username' AND password = '$password' ")->row_array();
+
+        		if (count($cekfks) > 0) {
+        			$cekfks_struktur = $this->db->query("SELECT * FROM tb_struktur WHERE nis = '".$cekfks['nis']."' AND id_lembaga_alumni = '".$lembaga."' ")->row_array();
+        			if (count($cekfks_struktur) > 0) {
+        				$cek_nama_lembaga = $this->db->query("SELECT nama_lembaga FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '".$cekfks_struktur['id_lembaga_alumni']."' ")->row_array();
+        				$sessionAdmin = array(
+        					'id_lembaga' => $lembaga,
+        					'nama_lembaga' => $cek_nama_lembaga['nama_lembaga'],
+        					'id_alumni' => $cekfks['id_alumni'],
+        					'nama' => $cekfks['nama'],
+        					'status' => 'loginSukses',
+        					'user' => $cekfks['nis']
+        				);
+        				$this->session->set_userdata($sessionAdmin);
+        				redirect(base_url()."administrator/dashboard");
+        			}
         		} else {
         			$this->session->set_flashdata('loginError', 'Anda Bukan Pengurus');
         			redirect(base_url().'auth/login');
         		}
         	} else {
-        		$this->session->set_flashdata('loginError', 'Periksa Kembali Login Anda');
-        		redirect(base_url().'auth/login');
-        	}
+        		$cek = $this->db->query("SELECT * FROM tb_alumni WHERE username = '$username' AND password = '$password' ")->row_array();
+
+        		if (count($cek) > 0) {
+        			$cek2 = $this->db->query("SELECT * FROM tb_struktur WHERE id_alumni = '".$cek['id_alumni']."' AND id_lembaga_alumni = '".$lembaga."' ")->row_array();
+        			if (count($cek2) > 0) {
+        				$cek3 = $this->db->query("SELECT nama_lembaga FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '".$cek2['id_lembaga_alumni']."' ")->row_array();
+        				$sessionAdmin = array(
+        					'id_lembaga' => $lembaga,
+        					'nama_lembaga' => $cek3['nama_lembaga'],
+        					'id_alumni' => $cek['id_alumni'],
+        					'nama' => $cek['nama'],
+        					'status' => 'loginSukses',
+        					'user' => $cek['id_alumni']
+        				);
+        				$this->session->set_userdata($sessionAdmin);
+        				redirect(base_url()."administrator/dashboard");
+        			} else {
+        				$this->session->set_flashdata('loginError', 'Anda Bukan Pengurus');
+        				redirect(base_url().'auth/login');
+        			}
+        		} else {
+        			$this->session->set_flashdata('loginError', 'Periksa Kembali Login Anda');
+        			redirect(base_url().'auth/login');
+        		}
+        	}        	
 
         	// $cek = $this->db->query("SELECT * FROM tb_petugas WHERE user = '$username' AND password = '$password' AND id_lembaga_alumni = '$lembaga' ")->row_array();
 
@@ -170,7 +211,9 @@ class Auth extends CI_Controller
 
 	public function hash()
 	{
-		echo md5('yoyo');
+		$data['k'] = $this->App_model->join_tiga_table('tb_korcam','tb_kecamatan','tb_alumni','tb_korcam.id_kecamatan = tb_kecamatan.id_kecamatan','tb_korcam.id_alumni = tb_alumni.id_alumni','tb_korcam.id_korcam','5');
+
+		print_r($data);
 	}
 }
  ?>

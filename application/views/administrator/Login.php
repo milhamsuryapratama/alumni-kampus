@@ -42,7 +42,8 @@
         <div class="col-xs-12">
           <div class="has-feedback">
             <div class="form-group">
-              <select class="form-control" name="lembaga">            
+              <select class="form-control" name="lembaga">    
+                <option value="admin">Admin</option>        
                 <?php 
                 foreach ($lembaga as $l) { ?>
                   <option value="<?=$l['id_lembaga_alumni']?>"><?=$l['nama_lembaga']?></option>

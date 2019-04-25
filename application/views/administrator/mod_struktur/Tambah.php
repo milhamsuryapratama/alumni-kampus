@@ -20,7 +20,7 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/tambah_struktur" method="post">
+    				<form action="<?=base_url()?>administrator/tambah_struktur?lembaga=<?=$_GET['lembaga']?>" method="post">
     					<div class="box-body">
                             <input type="hidden" name="id_alumni" id="id_alumni"> <input type="hidden" name="id_lembaga_alumni" id="id_lembaga_alumni" value="<?=$_GET['lembaga']?>">
                             <div class="form-group">
@@ -89,6 +89,14 @@ reserved.</strong>
         $( "#no_ktp" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
+
+        $("#no_ktp").on('input', function() {
+            if ($("#no_ktp").val() == '') {
+                $("#submit").attr('disabled', true);
+                $("#nama_alumni").val('');
+                $("#id_alumni").val('');
+            }
+        })
 
         $("#no_ktp").on('keydown', function(e) {
            if(e.which == 13) {

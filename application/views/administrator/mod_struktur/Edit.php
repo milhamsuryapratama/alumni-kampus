@@ -20,16 +20,22 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_struktur" method="post">
+    				<form action="<?=base_url()?>administrator/edit_struktur?lembaga=<?=$_GET['lembaga']?>" method="post">
                         <input type="hidden" name="id_struktur" value="<?=$s['id_struktur']?>">
                         <input type="hidden" name="id_alumni" value="<?=$s['id_alumni']?>">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nama_alumi">Nama Alumni</label>
                                 <?php 
-                                $al = $this->db->query("SELECT nama FROM tb_alumni WHERE id_alumni = '".$s['id_alumni']."' ")->row_array() ?>
-                                
-    							<input type="text" name="nama_alumi" class="form-control" id="nama_alumi" placeholder="Enter Nama Alumni" value="<?=$al['nama']?>">
+
+                                if ($s['nis'] == 0) {
+                                    $al = $this->db->query("SELECT nama FROM tb_alumni WHERE id_alumni = '".$s['id_alumni']."' ")->row_array(); ?>
+                                    <input type="text" name="nama_alumi" class="form-control" id="nama_alumi" placeholder="Enter Nama Alumni" value="<?=$al['nama']?>">
+                                <?php } else {
+                                    $al = $this->db->query("SELECT nama FROM anggota_fks WHERE nis = '".$s['nis']."' ")->row_array(); ?>
+                                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Enter Nama Alumni" value="<?=$al['nama']?>">
+                                <?php } ?>
+                                    							
     						</div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>

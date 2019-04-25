@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Mar 2019 pada 10.24
+-- Generation Time: 25 Apr 2019 pada 22.22
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -37,7 +37,7 @@ CREATE TABLE `administrator` (
 --
 
 INSERT INTO `administrator` (`id`, `username`, `password`) VALUES
-(1, 'p4nj', '4fc87af16463701d955786587983e9dd');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,9 @@ CREATE TABLE `anggota_fks` (
 
 INSERT INTO `anggota_fks` (`nis`, `nama`, `alamat`, `desa`, `kecamatan`, `gang_wilayah`, `pendidikan`, `telepon`, `username`, `password`) VALUES
 (123, 'lkj', 'lkj', 'lkj', 'lkj', 'lkj', '6', 'lkj', 'lkj', '48e2e79fec9bc01d9a00e0a8fa68b289'),
-(234, 'poi', 'poi', 'poi', 'poi', 'opi', '4', '111222333444', 'poi', 'd6e1c05c8a81c2ae74c7aedea5ec92c1');
+(222, 'eee', 'eee', 'eee', 'eee', 'e', '6', '086333333333', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f'),
+(234, 'poiler', 'poipoi', 'poi', 'poi', 'opi', '6', '111222333444', '', 'd41d8cd98f00b204e9800998ecf8427e'),
+(456, 'Deni', 'Dusun Krajan II', 'Karanggeger', 'Pajarakan', 'Gang E', '5', '085233887665', '', 'd41d8cd98f00b204e9800998ecf8427e');
 
 -- --------------------------------------------------------
 
@@ -88,21 +90,26 @@ CREATE TABLE `tb_alumni` (
   `email` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(255) NOT NULL,
+  `foto_usaha` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `tb_alumni`
 --
 
-INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`) VALUES
-(2, '1212', 'User Alumni', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni', '12345', ''),
-(3, '1212', 'User Alumni korcam', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni2', '12345', ''),
-(4, '1212', 'User Alumni Pengurus', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni3', '111111', ''),
-(5, '3513172111980001', 'Luthfi Nurul H', 1, 1, 'skldjfgdhbk', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'luthfi', 'blogsayailham@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', ''),
-(6, '3513172111980005', 'Junaidi', 1, 1, 'Maron Wetan', '085337665221', '2005', '2010', 'Pengusaha', 'Pengusaha', 'junaidi', 'junaidi@gmail.com', 'junaidi', 'a708cb9bebf84a140d408a8251450091', 'a154f06b7e7275a572a4c531aef8c508.jpg'),
-(7, '3513172111980008', 'kokola', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'koko', 'kokoba@gmail.com', 'koko', '37f525e2b6fc3cb4abd882f708ab80eb', 'f777d789e4d08d75aca9f1e2595c6702.jpg'),
-(8, '3513172111980009', 'yoyo', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'yoyo', 'yoyo@gmail.com', 'yoyo', '48dc8d29308eb256edc76f25def07251', 'cdb7cfcf39ba7a6c76245f47865455a7.png');
+INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`) VALUES
+(2, '1212', 'User Alumni', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni', '12345', '', ''),
+(3, '1212', 'User Alumni korcam', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni2', '12345', '', ''),
+(4, '1212', 'User Alumni Pengurus', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni3', '111111', '', ''),
+(5, '3513172111980001', 'Luthfi Nurul H', 4, 6, 'skldjfgdhbk', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'luthfi', 'blogsayailham@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', '4fd488116cc3a1db3615587b4dd1faee.jpg', '2b5e4a7001459ad762aba634f3567436.jpg'),
+(6, '3513172111980005', 'Junaidi', 6, 9, 'Maron Wetan', '085337665221', '2005', '2010', 'Pengusaha', 'Pengusaha', 'junaidi', 'junaidi@gmail.com', 'junaidi', 'a708cb9bebf84a140d408a8251450091', 'a154f06b7e7275a572a4c531aef8c508.jpg', ''),
+(7, '3513172111980008', 'kokola', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'koko', 'kokoba@gmail.com', 'koko', '37f525e2b6fc3cb4abd882f708ab80eb', 'f777d789e4d08d75aca9f1e2595c6702.jpg', ''),
+(8, '3513172111980009', 'yoyo', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'yoyo', 'yoyo@gmail.com', 'yoyo', '48dc8d29308eb256edc76f25def07251', 'cdb7cfcf39ba7a6c76245f47865455a7.png', ''),
+(9, '555', 'fffffffff', 4, 6, 'klhdfkhdgkjhfkjgh', '111222333444', '2016', '2020', 'Pengusaha', 'Pengusaha', 'kjdfdfdf', 'dfg@gmail.com', 'oo', 'e47ca7a09cf6781e29634502345930a7', 'a8a33ad58e60beaeecd3fece00f02008.jpg', ''),
+(10, '11111', 'bbb', 6, 9, 'bbb', '085337665221', '2007', '2018', 'Pengusaha', 'Pengusaha', 'bbb', 'bbb@gmail.com', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', '', ''),
+(11, '565656', 'ttto', 4, 6, 'ttt', '085337665221', '2009', '2018', 'Pengusaha', 'Pengusaha', 'ttt', 'ttt@gmail.com', 'ttt', '9990775155c3518a0d7917f7780b24aa', '', ''),
+(12, '3513170512980001', 'Aldo Rivaldo', 6, 9, 'Dusun Krajan II RT 01 RW 003', '085233876551', '2003', '2010', 'Wiraswasta', 'Konveksi', 'Aldo Rivaldo', 'aldorivaldo21@gmail.com', 'aldo', 'b104ab9a0e58c861b9628208b3fecd58', '13ff8ac94b04dfe012d76582059e8e78.jpg', 'ab99697c392960c1d18b3f4fb128aa60.jpg');
 
 -- --------------------------------------------------------
 
@@ -124,7 +131,11 @@ INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`) VALUES
 (1, 'Tongas Wetan', 1),
 (2, 'Klampok', 1),
 (3, 'Purut', 2),
-(4, 'Mada Karipura', 2);
+(4, 'Mada Karipura', 2),
+(6, 'Maron Wetan', 4),
+(7, 'Wonorejo', 4),
+(9, 'Karanggeger', 6),
+(10, 'Karangbong', 6);
 
 -- --------------------------------------------------------
 
@@ -219,7 +230,9 @@ CREATE TABLE `tb_kecamatan` (
 
 INSERT INTO `tb_kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
 (1, 'Tongas'),
-(2, 'Lumbang');
+(2, 'Lumbang'),
+(4, 'Maron'),
+(6, 'Pajarakan');
 
 -- --------------------------------------------------------
 
@@ -229,23 +242,28 @@ INSERT INTO `tb_kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
 
 CREATE TABLE `tb_kegiatan` (
   `id_kegiatan` int(11) NOT NULL,
-  `judul_kegiatan` varchar(50) NOT NULL,
+  `judul_kegiatan` varchar(200) NOT NULL,
   `slug` varchar(100) NOT NULL,
   `deskripsi` text NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_lembaga_alumni` int(11) NOT NULL,
   `foto_kegiatan` varchar(100) NOT NULL,
   `jenis_kegiatan` varchar(20) NOT NULL,
-  `author` int(11) NOT NULL
+  `author` int(11) NOT NULL,
+  `tanggal_posting` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_kegiatan`
 --
 
-INSERT INTO `tb_kegiatan` (`id_kegiatan`, `judul_kegiatan`, `slug`, `deskripsi`, `status`, `id_lembaga_alumni`, `foto_kegiatan`, `jenis_kegiatan`, `author`) VALUES
-(1, 'Seminar Pemilu Tanpa Hoaks, Mungkinkah?', 'seminar-pemilu-tanpa-hoaks-mungkinkah', '<p>Secara subtansial, Pemilihan Umum (Pemilu) bisa dimaknai sebagai aktualisasi nilai-nilai demokrasi. Dalam sistem demokrasi, Pemilu menjadi salah satu sarana untuk memilih wakil-wakil rakyat di Parlemen dan Presiden dan Wakil Presiden. Pemilu juga bisa menjadi satu bentuk pengakuan terhadap kedaulatan rakyat dan hak-hak warga Negara dalam sistem politik yang demokratis. Sebab, rakyat tidak mungkin memerintah secara langsung, sehingga diperlukan cara untuk memilih wakil rakyat dan pemimpin dalam memerintah suatu negara selama jangka waktu tertentu.</p>\r\n\r\n<p>Secara yuridis, Pemilu merupakan amanat konstitusi UUD 1945 hasil amandemen. Dalam pasal 22 UUD 1945 huruf E, ayat 2 bahwa&nbsp;<em>&ldquo;tujuan Pemilu adalah untuk memilih para wakil yang duduk dalam pemerintahan atau DPR (Dewan Perwakilan Rakyat), DPD (Dewan Perwakilan Daerah). Pemilu juga bertujuan memilih Presiden/Wakil Presiden, dan DPRD (Dewan Perwakilan Rakyat Daerah)&rdquo;</em>. Dalam konteks ini, Pemilu dimaksudkan sebagai sebuah proses transisi dalam memilih wakil rakyat dan Presiden beserta wakilnya. Sehingga pemilu bisa disebut sebagai ritual politik yang sangat sakral.</p>\r\n\r\n<p>Namun belakangan, sakralitas pemilu tersebut telah mengalami desktruksi. Ini terjadi seiring maraknya penggunaan informasi palsu&nbsp;(hoax) dalam&nbsp;setiap momentum politik seperti pemilihan kepala Daerah (Pilkada), pemilihan anggota legislatif (Pileg) dan pemilihan Presiden dan Wakil Presiden (Pilpres).&nbsp;Hampir dipastikan dalam setiap momentum pemilu sejak Pilpres 2014 hoax selalu mewarnainya. Kontennyapun beragam, mulai dari issue Agama, etnis, antek asing, PKI, kriminalisasi ulama dan lain sebagainya. Issue-issue ini secara bergantian berseliweran di media sosial seperti facebook, group Whatsapp dan lain-lain.</p>\r\n\r\n<p>Tentu ini menjadi preseden buruk bagi masa depan kualitas demokrasi dan politik kita. Mengapa demikian, sudah bisa dipastikan kedepan perpolitikan akan diisi dengan berita-berita palsu yang disebut hoax, dan dampaknya akan timbul perpecahan diantara sesame anak bangsa. Bahkan kalau kita mencermati media sosial, publik seperti terbelah dan mengalami sekat-sekat sosial dengan sebutan Kecebong (sebutan untuk pendukung 01) dan Kampret (sebutan pendukung Capres 02).</p>\r\n\r\n<blockquote>\r\n<h2><strong>Hasrat Kekuasaan</strong></h2>\r\n</blockquote>\r\n\r\n<p>Dalam Pasal 69 Undang-undang Nomor 10 Tahun 2016 tentang Pilkada telah diatur dengan jelas bahwa larangan dalam kampanye seperti menghasut, memfitnah, mengadu domba partai politik, perseorangan dan atau kelompok masyarakat. Maraknya, hoax dalam dinamika politik dewasa ini, tampaknya para elit kita tidak siap kalah dalam berkompetisi secara politik. Hasrat kekuasaan yang sangat tinggi mengharuskan mereka menghalalkan segala cara untuk mewujudkan keinginannya. Hal ini juga diperparah dengan minimnya politik etis dalam diri para elit politik, sehingga persaingan politik diantara mereka jauh dari nilai-nilai politik etik sebagaimana dalam Pancasila.</p>\r\n\r\n<p>Menurut Guru besar Ilmu Komunikasi Universitas Padjajaran, Bandung, Deddy Mulyana (Kompas.com,08/02/2017), bahwa faktor utama yang menyebabkan hoax mudah tersebar di Indonesia karena karakter asli masyarakat Indonesia tidak terbiasa berbeda pendapat atau berdemokrasi secara sehat. Hal ini juga didukung dengan kecenderungan masyarakat Indonesia tidak terbiasa mencatat dan menyimpan data sehingga sering berbicara tanpa data.&nbsp;&nbsp;Di sisi lain, ia menyebut masyarakat lebih senang membahas aspek-aspek yang berkaitan dengan kekerasan, sensualitas, drama, intrik dan misteri. Dan tampaknya, politik merupakan bidang yang memiliki aspek-aspek tersebut. sehingga tidak heran kalau hoax sering sekali terjadi pada tema politik. Khususnya saat terjadi perebutan kekuasaan yang menjatuhkan lawan politik seperti dalam pilkada, Pileg dan Pilpres.</p>\r\n\r\n<p>Jika politik hoax ini terus dilestarikan dalam setiap pemilu, sudah pasti masa depan demokrasi kita sangat buram. Bagaimana tidak, hoax disamping memiliki nilai provokasi dan penghasutan publik, juga upaya pembodohan masyarakat. Karena masyarakat dipaksa untuk percaya pada informasi yang tidak bisa dipertanggung jawabkan kebenarannya. Efeknya, begitu luar biasa, karena berita hoax itu biasanya dishare secara berulang-ulang melalui media sosial sehingga publik mempercayainya sebagai sebuah kebenaran. Karena kesalahan yang disampaikan secara berulang-ulang akan diyakini sebagai sebuah kebenaran.</p>\r\n', 'Aktif', 1, 'a6ac11dbc14178a9e22b8960cfac9c28.jpg', 'aksi sosial', 8),
-(2, 'Seminar Pemilu Tanpa Hoaks, Mungkinkah?', 'seminar-pemilu-tanpa-hoaks-mungkinkah', '<p>Secara subtansial, Pemilihan Umum (Pemilu) bisa dimaknai sebagai aktualisasi nilai-nilai demokrasi. Dalam sistem demokrasi, Pemilu menjadi salah satu sarana untuk memilih wakil-wakil rakyat di Parlemen dan Presiden dan Wakil Presiden. Pemilu juga bisa menjadi satu bentuk pengakuan terhadap kedaulatan rakyat dan hak-hak warga Negara dalam sistem politik yang demokratis. Sebab, rakyat tidak mungkin memerintah secara langsung, sehingga diperlukan cara untuk memilih wakil rakyat dan pemimpin dalam memerintah suatu negara selama jangka waktu tertentu.</p>\r\n\r\n<p>Secara yuridis, Pemilu merupakan amanat konstitusi UUD 1945 hasil amandemen. Dalam pasal 22 UUD 1945 huruf E, ayat 2 bahwa&nbsp;<em>&ldquo;tujuan Pemilu adalah untuk memilih para wakil yang duduk dalam pemerintahan atau DPR (Dewan Perwakilan Rakyat), DPD (Dewan Perwakilan Daerah). Pemilu juga bertujuan memilih Presiden/Wakil Presiden, dan DPRD (Dewan Perwakilan Rakyat Daerah)&rdquo;</em>. Dalam konteks ini, Pemilu dimaksudkan sebagai sebuah proses transisi dalam memilih wakil rakyat dan Presiden beserta wakilnya. Sehingga pemilu bisa disebut sebagai ritual politik yang sangat sakral.</p>\r\n\r\n<p>Namun belakangan, sakralitas pemilu tersebut telah mengalami desktruksi. Ini terjadi seiring maraknya penggunaan informasi palsu&nbsp;(hoax) dalam&nbsp;setiap momentum politik seperti pemilihan kepala Daerah (Pilkada), pemilihan anggota legislatif (Pileg) dan pemilihan Presiden dan Wakil Presiden (Pilpres).&nbsp;Hampir dipastikan dalam setiap momentum pemilu sejak Pilpres 2014 hoax selalu mewarnainya. Kontennyapun beragam, mulai dari issue Agama, etnis, antek asing, PKI, kriminalisasi ulama dan lain sebagainya. Issue-issue ini secara bergantian berseliweran di media sosial seperti facebook, group Whatsapp dan lain-lain.</p>\r\n\r\n<p>Tentu ini menjadi preseden buruk bagi masa depan kualitas demokrasi dan politik kita. Mengapa demikian, sudah bisa dipastikan kedepan perpolitikan akan diisi dengan berita-berita palsu yang disebut hoax, dan dampaknya akan timbul perpecahan diantara sesame anak bangsa. Bahkan kalau kita mencermati media sosial, publik seperti terbelah dan mengalami sekat-sekat sosial dengan sebutan Kecebong (sebutan untuk pendukung 01) dan Kampret (sebutan pendukung Capres 02).</p>\r\n\r\n<blockquote>\r\n<h2><strong>Hasrat Kekuasaan</strong></h2>\r\n</blockquote>\r\n\r\n<p>Dalam Pasal 69 Undang-undang Nomor 10 Tahun 2016 tentang Pilkada telah diatur dengan jelas bahwa larangan dalam kampanye seperti menghasut, memfitnah, mengadu domba partai politik, perseorangan dan atau kelompok masyarakat. Maraknya, hoax dalam dinamika politik dewasa ini, tampaknya para elit kita tidak siap kalah dalam berkompetisi secara politik. Hasrat kekuasaan yang sangat tinggi mengharuskan mereka menghalalkan segala cara untuk mewujudkan keinginannya. Hal ini juga diperparah dengan minimnya politik etis dalam diri para elit politik, sehingga persaingan politik diantara mereka jauh dari nilai-nilai politik etik sebagaimana dalam Pancasila.</p>\r\n\r\n<p>Menurut Guru besar Ilmu Komunikasi Universitas Padjajaran, Bandung, Deddy Mulyana (Kompas.com,08/02/2017), bahwa faktor utama yang menyebabkan hoax mudah tersebar di Indonesia karena karakter asli masyarakat Indonesia tidak terbiasa berbeda pendapat atau berdemokrasi secara sehat. Hal ini juga didukung dengan kecenderungan masyarakat Indonesia tidak terbiasa mencatat dan menyimpan data sehingga sering berbicara tanpa data.&nbsp;&nbsp;Di sisi lain, ia menyebut masyarakat lebih senang membahas aspek-aspek yang berkaitan dengan kekerasan, sensualitas, drama, intrik dan misteri. Dan tampaknya, politik merupakan bidang yang memiliki aspek-aspek tersebut. sehingga tidak heran kalau hoax sering sekali terjadi pada tema politik. Khususnya saat terjadi perebutan kekuasaan yang menjatuhkan lawan politik seperti dalam pilkada, Pileg dan Pilpres.</p>\r\n\r\n<p>Jika politik hoax ini terus dilestarikan dalam setiap pemilu, sudah pasti masa depan demokrasi kita sangat buram. Bagaimana tidak, hoax disamping memiliki nilai provokasi dan penghasutan publik, juga upaya pembodohan masyarakat. Karena masyarakat dipaksa untuk percaya pada informasi yang tidak bisa dipertanggung jawabkan kebenarannya. Efeknya, begitu luar biasa, karena berita hoax itu biasanya dishare secara berulang-ulang melalui media sosial sehingga publik mempercayainya sebagai sebuah kebenaran. Karena kesalahan yang disampaikan secara berulang-ulang akan diyakini sebagai sebuah kebenaran.</p>\r\n', 'Aktif', 2, 'bce670315cd9d7c08937bc0e40b1ccef.jpg', 'aksi sosial', 5);
+INSERT INTO `tb_kegiatan` (`id_kegiatan`, `judul_kegiatan`, `slug`, `deskripsi`, `status`, `id_lembaga_alumni`, `foto_kegiatan`, `jenis_kegiatan`, `author`, `tanggal_posting`) VALUES
+(1, 'UNUJA Gelar Kuliah Umum Bersama Menkumham', 'seminar-pemilu-tanpa-hoaks-mungkinkah', '<p>Universitas Nurul Jadid tetap konsisten untuk menjaga komitmen pengembangan Tridharma Perguruan Tinggi dan menebar kebermanfaatan di semua lini kehidupan, salah satunya dalam menanamkan kesadaran hukum bagi seluruh sivitas akademika dan masyarakat umum, dengan didorong komitmen tersebut, pada hari Rabu (27/3) Universitas Nurul Jadid menggelar Kuliah Umum bersama Mentri Hukum dan Hak Asasi Manusia Republik Indonesia.</p>\r\n\r\n<p>Kuliah Umum kali ini disampaikan langsung oleh Menkumham, Bapak Yasonna Hamonangan Laoly, SH., M.SC., P.hD. dan dihadiri oleh Rektor, Wakil Rektor, Dekanat serta beberapa pejabat Pemerintah Daerah Kabupaten Probolinggo, Wakapolres Probolinggo dan Komandan Kodim 0820, bertempat di auditorium Universitas Nurul Jadid.</p>\r\n\r\n<p>Adapun tema yang diangkat dalam Kuliah Umum ini adalah &ldquo;Membangun Kesadaran Hukum Menuju Terwujudnya Masyarakat Berkeadilan&rdquo;, beliau menjelaskan bahwa menurut Pasal&nbsp; 1&nbsp; ayat&nbsp; (3)&nbsp; UUD&nbsp; NRI&nbsp; 1945&nbsp; secara&nbsp; tegas&nbsp; menyatakan:&nbsp; &rdquo;Negara Indonesia adalah negara hukum.&rdquo;&nbsp;&nbsp; Negara&nbsp;&nbsp; hukum yang dimaksud dalam ketentuan Pasal 1 ayat (3) UUD NRI 1945 adalah negara yang menegakkan supremasi hukum untuk mewujudkan kebenaran dan keadilan, dimana di dalamnya tidak ada&nbsp;&nbsp;&nbsp; kekuasaan yang tidak dapat dipertanggungjawabkan. Negara Hukum Indonesia diilhami oleh ide dasar&nbsp;<em>rechtsstaat</em><em>&nbsp;</em>dan&nbsp;<em>rule of law</em>.</p>\r\n\r\n<p>Bapak Mentri juga menuturkan, bahwa kunci kesuksesan hidup ini ada 3, yakni&nbsp;<em>Intellegence&nbsp;</em>(kecerdasan)<em>,&nbsp; Energy&nbsp;</em>(tenaga)<em>,&nbsp;</em>dan<em>&nbsp;Integrity&nbsp;</em>(integritas), dan disiplin tanpa komitmen sama seperti mobil mewah tanpa bahan bakar. Pada akhir penyampaian materi, beliau menjelaskan tentang 4 L dalam hidup, yang terdiri dari&nbsp;<em>Life</em>&nbsp;(hidup),&nbsp;<em>Love</em>&nbsp;(cinta),&nbsp;<em>Learn&nbsp;</em>(belajar) dan akhirnya&nbsp;<em>Leave a Legacy&nbsp;</em>(meninggalkan warisan).&nbsp;<strong>(Humas)</strong></p>\r\n', 'Aktif', 1, 'c9aad70829d98320ae11b8b8ea6ecc22.JPG', 'aksi umum', 8, '2019-04-26'),
+(9, 'Selamat Datang Bapak Panglima TNI dan Kapolri', 'bakti-sosial-5', '<p>Universitas Nurul Jadid kembali kedatangan tamu kehormatan yang menjadi tokoh sentral dalam menjaga keamanan Negara Kesatuan Republik Indonesia. Kedua tamu itu adalah Panglima Tentara Nasional Republik Indonesia, Bapak Marsekal Hadi Tjahjanto, S.IP. dan Kepala Kepolisian Republik Indonesia, Jendral Polisi Prof. H. Muhammad Tito Karnavian. Ph.D. Keduanya hadir dan disambut oleh Pengasuh dan Rektor Nurul Jadid dengan prosesi pengalungan sorban dan pemberian kopiah khas UNUJA.</p>\r\n\r\n<p>Acara &quot;Ngaji Kebangsaan&quot; ini dilaksanakan pada Selasa (2/4) di Auditorium Universitas Nurul Jadid dan dihadiri pula oleh Wakil Bupati Probolinggo, Bapak Drs. HA. Timbul Prihanjoko, beberapa pejabat Kepolisian dan TNI di Kabupaten Probolinggo, dosen, guru, mahasiswa, serta siswa dan siswi di seluruh lembaga pendidikan Pondok Pesantren Nurul Jadid.</p>\r\n\r\n<p>Panglima TNI dan Kapolri kali ini mengisi kegiatan Ngaji Kebangsaan dengan tema &ldquo;Mempererat Persatuan Menjaga Kesatuan Membangun Indonesia Berkeadaban&rdquo; dengan harapan bahwa Indonesia akan selalu menjadi negara yang aman dan tenteram di tengah harmoni dan keberagaman agama, suku, dan bahasa dengan memegang erat nilai-nilai Bhineka Tunggal Ika.&nbsp;<strong>Humas</strong></p>\r\n', 'Aktif', 2, 'c4b5c5875e688e741de5d103bca4662a.JPG', 'aksi umum', 5, '2019-04-26'),
+(10, 'Ngaji Kebangsaan bareng Panglima TNI dan Kapolri', 'bakti-sosial-6', '<p>Selasa (2/4), bangun mental persatuan dan kesatuan untuk membangun Indonesia berkeadaban, Ponpes. Nurul Jadid dan Universitas Nurul Jadid memperoleh kunjungan tamu kehormatan dari Panglima TNI, Marsekal TNI Hadi Tjahjanto, S.IP., dan Kepala Kepolisian Negara Republik Indonesia, Jenderal Pol. Prof. H. Muhammad Tito Karnavian, Ph.D.</p>\r\n\r\n<p>Acara yang dikemas dalam &ldquo;Ngaji Kebangsaan&rdquo; tersebut mendapat antusiasme yang sangat meriah dari para mahasiswa dan santri Nurul Jadid. Kedatangan beliau disambut dengan sambutan dan gemuruh tepuk tangan dan ucapan selamat datang dari mahasiswa dan santri.</p>\r\n\r\n<p>Acara &ldquo;Ngaji Kebangsaan&rdquo; ini menjadi&nbsp;salah satu rangkaian kunjungan Panglima TNI dan Kapolri ke pondok-pondok pesantren di Jawa Timur.</p>\r\n\r\n<p>Dalam sambutan awal, Pengasuh Ponpes. Nurul Jadid, KH. Moh. Zuhri Zaini, BA., menyampaikan ucapan selamat datang dan terima kasih kepada Panglima TNI dan Kapolri yang sudah menyempatkan waktunya untuk menyapa dan memberikan semangat kepada santri dan mahasiswa.</p>\r\n\r\n<p>Beliau juga berpesan agar kegiatan &ldquo;Ngaji Kebangsaan&rdquo; ini bisa benar-benar diserap oleh santri dan mahasiswa sehingga bisa meningkatkan semangat juang dalam menjaga persatuan dan kesatuan bangsa dan negara khususnya antar umat beragama.</p>\r\n\r\n<p>Turut hadir dalam &ldquo;Ngaji Kebangsaan&rdquo;, Wakil Bupati Probolinggo-Drs. HA. Timbul Prihanjoko, Kapolres Probolinggo-AKBP Eddwi Kurniyanto, Dandim Probolinggo-Letkol Inf Imam Wibowo dan seluruh tamu undangan dan jajaran pemerintahan di lingkungan Kabupaten Probolinggo.</p>\r\n\r\n<p>Selain mengisi &ldquo;Ngaji Kebangsaan&rdquo;, Panglima TNI dan Kapolri juga telah direncanakan untuk meresmikan Kesatuan Santri Patriot Pondok Pesantren Nurul Jadid, serta Resimen Mahasiswa UNUJA.</p>\r\n\r\n<p>Dalam orasi &ldquo;Ngaji Kebangsaan&rdquo; yang disampaikan oleh Panglima TNI, beliau berpesan agar kita semua bisa saling menjaga kerukunan dan stabilitas keamanan negara. Beliau juga mengapresiasi para santri dan mahasiswa karena bisa menjadi salah satu tonggak penegak Bhineka Tunggal Ika, karena pada diri santri sudah terbiasa diterpa dengan segala macam perbedaan yang ada namun bisa tetap hidup dan berdampingan secara guyub rukun.&nbsp;<strong>(Humas)</strong></p>\r\n', 'Aktif', 2, 'bbd616dd162ae4257bc7a5fe694001e7.JPG', 'aksi umum', 5, '2019-04-25'),
+(11, 'Seminar Nasional bersama Ka. Dinkes Probolinggo', 'seminar-nasional-bersama-ka-dinkes-probolinggo', '<p>Sabtu (16/3) bertempat di Aula Universitas Nurul Jadid, sebagai salah satu langkah dalam memperkaya khazanah keilmuan yang&nbsp;&nbsp;nantinya bisa dijadikan bekal dalam dunia kerja profesional bahkan kehidupan bermasyarakat secara luas, Himpunan Mahasiswa Program Studi (Himaprodi) Keperawatan Fakultas Kesehatan Universitas Nurul Jadid menggelar Seminar Nasional bertemakan &ldquo;Peningkatan Kepuasan Pelanggan dalam Prespektif Management Rumah Sakit&rdquo;.</p>\r\n\r\n<p>Hadir dalam seminar, Dekan Fakultas Kesehatan-Handono Fatkhur Rahman, Wakil Rektor I-Hambali, dosen serta mahasiswa dari berbagi Perguruan Tinggi. Sebagai narasumber, Himaprodi Keperawatan mengundang Ka. Dinkes Probolinggo-dr. Anang Budi dan Dosen Keperawatan-Husnul Khotimah.</p>\r\n\r\n<p>Dalam penyampaiannya, dr. Budi&nbsp;<em>(sapaan akrab beliau)&nbsp;</em>mengapresiasi atas penyelenggaraan Seminar Nasional yang digawangi oleh teman-teman mahasiswa yang terhimpun dalam Himaprodi Keperawan. Menurutnya, dengan semangat para pemuda khususnya para mahasiswa yang&nbsp;<em>aware&nbsp;</em>terhadap kebutuhan informasi dan pengetahuan yang diperlukan dalam menelaah tantangan kedepan khususnya dalam bidang kesehatan, maka dengan cara saling tatap muka dan&nbsp;<em>sharing&nbsp;</em>informasi seperti ini menjadi cara yang tepat untuk terus meningkatkan pengetahuan dan pengalaman yang nantinya bisa diterapkan dalam kehidupan dunia kerja profesional.</p>\r\n\r\n<p>Dengan demikian, sebagai mahasiswa Prodi Keperawatan sudahlah tentu menjadi sebuah keharusan untuk mengetahui perkembangan pelayanan kesehatan. Agar ini bisa dijadikan bekal ketika para mahasiswa nanti telah lulus dan terjun ke dunia profesional kesehatan.&nbsp;<strong>(Humas)</strong></p>\r\n', 'Aktif', 1, 'ad435f9466ac51e1f28ead487a3a07f5.jpg', 'aksi umum', 8, '2019-04-26'),
+(12, '3 Mahasiswa Juarai Lomba Tingkat Nasional', 'langganan-juara-kiprah-3-mahasiswa-juarai-lomba-tingkat-nasional', '<p>Utus 3 mahasiswanya, Universitas Nurul Jadid (UNUJA) ikuti&nbsp;<em>Arabic Language Festival&nbsp;</em>(Alfest 02) Tingkat Nasional di Universitas Muhammadiyah Malang (UMM). Ketiga mahasiswa tersebut, yakni Agil Fahmi Attaufiqi, Moch. Hasan Miutawakkil dan Badrus Zaman dari Prodi. Pendidikan Bahasa Arab. Ketiga mahasiswa tersebut telah berulang kali mengikuti ajang lomba debat Bahasa Arab dan selalu menempatkan diri sebagai juara.</p>\r\n\r\n<p>Kali ini mereka berhasil menunjukkan prestasi gemilangnya untuk yang kesekian kali dengan menyabet gelar sebagai Juara Nasional. Juara 1 tingkat Nasional yang didapat merupakan hasil dari ketekunan, kerja keras, dan do&rsquo;a. Dalam ajang debat Bahas Arab tingkat Nasional di UMM, Agil&nbsp;<em>dkk&nbsp;</em>berhasil menyisihkan beberapa kampus dengan perolehan poin tertinggi, 510 terpaut jauh 19 poin dari juara ke 2, yakni 491.</p>\r\n\r\n<p>Keberhasilan ini menjadi kebanggaan tersendiri bagi Agil&nbsp;<em>dkk</em>. Meraka berharap bisa terus memacu semangatnya agar bisa selalu memberikan yang terbaik serta menjadi pelecut semangat&nbsp;&nbsp;bagi teman-teman mahasiswa yang lainnya agar juga bisa turut merasakan panggung kompetisi baik tingkat regional, nasional bahkan internasional.</p>\r\n\r\n<p>Ucapan selamat pun disampaikan oleh Wakil Rektor III, M. Noer Fadli Hidayat atas prestasi -prestasi gemilang yang diraih hingga detik ini. Dengan demikian, mereka telah turut andil dalam mengharumkan nama universitas dan segenap sivitas akademik di dalamnya. Tentunya, dengan adanya prestasi yang diraih, universitas akan terus mendorong potensi-potensi mahasiswa yang lainnya agar juga selalu bermunculan prestasi-prestasi disetiap bidang keilmuan yang ada.</p>\r\n\r\n<p>Selanjutnya, ketika dikonfirmasi kepada bagian kemahasiswaan, Agil&nbsp;<em>dkk</em>&nbsp;juga sudah harus mempersiapkan diri untuk mengikuti ajang lomba berikutnya. Semoga bisa terus memberikan yang terbaik dan menjadi penyemangat bagi mahasiswa lainnya.&nbsp;<strong>(Humas)</strong></p>\r\n', 'Aktif', 1, 'fd98a595354192b050bc3789ec5ef65e.jpg', 'aksi umum', 8, '2019-04-26'),
+(13, 'Sinergi UB dan UNUJA; Tebar Manfaat yang Seluas-luasnya', 'sinergi-ub-dan-unuja-tebar-manfaat-yang-seluas-luasnya', '<p>Sebagai langkah untuk terus membangun kualitas&nbsp;<em>networking</em>&nbsp;atau kerja sama&nbsp;di berbagai lini, hari ini Universitas Nurul Jadid mengadakan kerja sama dengan Universitas Brawjiaya (UB) Malang dalam rangka pengembangan Tridharma Perguruan Tinggi dan Sumber Daya Manusia.</p>\r\n\r\n<p>Nota Kesepahaman ini ditandatangani pada hari Senin (11/3) di Aula Mini Universitas Nurul Jadid. Acara ini dihadiri oleh Rektor Universitas Nurul Jadid, KH. Abdul Hamid Wahid, M.Ag. dan Rektor Universitas Brawijaya, Prof. Dr. Ir. Nuhfil Hanani, AR., MS. beserta jajaran Rektorat, Dekanat dan pimpinan lembaga-lembaga dari kedua belah pihak.</p>\r\n\r\n<p>Kontrak kerja sama yang berdurasi selama 5 tahun ini akan dilaksanakan dalam beberapa bentuk program, seperti penyelenggaraan pendidikan, penelitian, pengabdian kepada masyarakat dan pelatihan, kolaborasi riset dan pengembangan sumber daya, kegiatan dan kajian ilmiah serta seminar dan lokakarya.</p>\r\n\r\n<p>Kedua belah pihak sangat mendukung atas terjalinnya kerja sama, sehingga kedepan bisa saling bersinergi untuk turut menebar manfaat yang seluas-luasnya bagi masyarakat, bangsa dan negara bahkan dunia.&nbsp;<strong>(</strong><strong>Humas)</strong></p>\r\n', 'Aktif', 3, '04c7d0c5f1403f4d134bdf8896d9dec5.JPG', 'aksi umum', 6, '2019-04-26');
 
 -- --------------------------------------------------------
 
@@ -268,7 +286,8 @@ CREATE TABLE `tb_korcam` (
 INSERT INTO `tb_korcam` (`id_korcam`, `id_kecamatan`, `id_alumni`, `tahun`, `status`) VALUES
 (1, 1, 2, '2019', 'Y'),
 (2, 2, 3, '2019', 'Y'),
-(3, 1, 4, '2020', 'Y');
+(3, 1, 4, '2020', 'Y'),
+(5, 4, 12, '2020', 'Y');
 
 -- --------------------------------------------------------
 
@@ -279,17 +298,18 @@ INSERT INTO `tb_korcam` (`id_korcam`, `id_kecamatan`, `id_alumni`, `tahun`, `sta
 CREATE TABLE `tb_lembaga_alumni` (
   `id_lembaga_alumni` int(11) NOT NULL,
   `nama_lembaga` varchar(50) NOT NULL,
-  `status` enum('Y','N') NOT NULL
+  `status` enum('Y','N') NOT NULL,
+  `logo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_lembaga_alumni`
 --
 
-INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`) VALUES
-(1, 'FKSJ', 'Y'),
-(2, 'P4NJ', 'Y'),
-(3, 'NJIC', 'Y');
+INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`, `logo`) VALUES
+(1, 'FKSJ', 'Y', 'logofksj.png'),
+(2, 'P4NJ', 'Y', 'logop4nj.png'),
+(3, 'NJIC', 'Y', 'logonjic.png');
 
 -- --------------------------------------------------------
 
@@ -309,8 +329,8 @@ CREATE TABLE `tb_lembaga_nj` (
 
 INSERT INTO `tb_lembaga_nj` (`id_lembaga`, `nama_lembaga`, `situs`) VALUES
 (1, 'Taman Pengasuhan Anak Ar-Rahmah (TPA)', 'Mohon Maaf Website Dalam Tahap Pengembangan'),
-(2, 'Pendidikan Anak Usia Dini (PAUD)', ''),
-(3, 'SMA', ''),
+(2, 'Pendidikan Anak Usia Dini (PAUD)', 'http://google.co.id'),
+(3, 'SMA', 'http://google.co.id'),
 (4, 'SMK', 'http://smknj.sch.id/'),
 (5, 'MA', 'http://manuruljadid.sch.id/main/'),
 (6, 'UNUJA', 'https://www.unuja.ac.id/');
@@ -367,6 +387,27 @@ INSERT INTO `tb_petugas` (`id_petugas`, `nama`, `telepon`, `alamat`, `foto`, `us
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_promosi`
+--
+
+CREATE TABLE `tb_promosi` (
+  `id_promosi` int(11) NOT NULL,
+  `id_alumni` int(11) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_akhir` date NOT NULL,
+  `status_promosi` enum('Y','N') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_promosi`
+--
+
+INSERT INTO `tb_promosi` (`id_promosi`, `id_alumni`, `tgl_mulai`, `tgl_akhir`, `status_promosi`) VALUES
+(2, 5, '2019-04-27', '2019-04-28', 'Y');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_soal`
 --
 
@@ -398,7 +439,7 @@ CREATE TABLE `tb_struktur` (
   `id_devisi` int(11) NOT NULL,
   `id_alumni` int(11) NOT NULL,
   `nis` int(11) NOT NULL,
-  `status` enum('Y','N') NOT NULL,
+  `status_struktur` enum('Y','N') NOT NULL,
   `id_lembaga_alumni` int(11) NOT NULL,
   `masa_bakti` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -407,11 +448,16 @@ CREATE TABLE `tb_struktur` (
 -- Dumping data untuk tabel `tb_struktur`
 --
 
-INSERT INTO `tb_struktur` (`id_struktur`, `id_jabatan`, `id_devisi`, `id_alumni`, `nis`, `status`, `id_lembaga_alumni`, `masa_bakti`) VALUES
-(2, 2, 2, 5, 0, 'Y', 2, '2010'),
+INSERT INTO `tb_struktur` (`id_struktur`, `id_jabatan`, `id_devisi`, `id_alumni`, `nis`, `status_struktur`, `id_lembaga_alumni`, `masa_bakti`) VALUES
 (5, 2, 2, 6, 0, 'Y', 3, '2010'),
 (6, 1, 2, 8, 0, 'Y', 1, '2018'),
-(7, 2, 2, 0, 123, 'Y', 1, '2019');
+(8, 0, 0, 7, 0, 'Y', 2, ''),
+(10, 1, 1, 5, 0, 'Y', 2, '2019'),
+(13, 2, 2, 11, 0, 'Y', 0, '2019'),
+(19, 1, 1, 0, 123, 'Y', 1, '2019'),
+(20, 2, 2, 12, 0, 'Y', 2, '2018'),
+(22, 1, 2, 10, 0, 'Y', 3, '2018'),
+(23, 2, 2, 0, 234, 'Y', 1, '2018');
 
 -- --------------------------------------------------------
 
@@ -433,7 +479,7 @@ CREATE TABLE `tb_visi_misi` (
 INSERT INTO `tb_visi_misi` (`id_visi_misi`, `visi`, `misi`, `id_lembaga_alumni`) VALUES
 (1, '<p>Menjadi perguruan tinggi terkemuka dalam melahirkan intelektual muslim Ahlussunnah yang profesional.</p>\r\n', '<p>Menyelenggarakan pendidikan dan pengajaran yang unggul dalam bidang studi islam</p>\r\n', 1),
 (4, '<p>Mendidik para santri yang unggul dalam keilmuan, akhlaqul karimah dan skill</p>\r\n', '<p>Dengan visi tersebut maka Pesantren Assalafiyyah merumuskan misi sebagai berikut:&bull; Mewujudkan proses belajar mengajar yang efektif dan efesien dalam memahami kitab kuning, tahfidz Al-Quran, dan mata pelajaran madrasah</p>\r\n\r\n<ol>\r\n	<li>Mewujudkan suasana Islami dan harmonis di lingkungan pesantren dan madrasah</li>\r\n	<li>Meningkatkan keterampilan dan life skill</li>\r\n	<li>Membangun semangat berprestasi</li>\r\n</ol>\r\n', 3),
-(6, '<p>Mewujudkan manusia beriman, bertaqwa, berilmu dan berakhlaqul karimah.</p>\r\n', '<ol>\n	<li>Melatih pembiasaan berbuat sifat-sifat terpuji dalam kehidupan sehari-hari</li>\n	<li>Melatih pembiasaan melaksanakan ibadah baik yang wajib maupun yang sunnah</li>\n	<li>Melaksanakan bimbingan intensi membaca al-quran dan membaca kitab salalfiyah.</li>\n	<li>Menyelenggarakan bimbingan belajar yang disesuaikan dengan kemampuan santri.</li>\n	<li>&nbsp;Melaksanakan bimbingan terpadu antara kegiatan pesantren dan kegiatan sekolah.</li>\n</ol>\n', 2);
+(11, '<p>Terbentuknya manusia yang beriman, bertaqwa, berakhlak al-karimah, berilmu, berwawasan luas, berpandangan ke depan, cakap, terampil, mandiri, kreatif, memiliki etos kerja, toleran, bertanggung jawab kemasyarakatan serta berguna bagi agama, bangsa dan negara.</p>\r\n', '<ol>\r\n	<li>Penanaman keimanan, ketaqwaan kepada Allah dan pembinaan akhlak al-karimah.</li>\r\n	<li>Pendidikan keilmuan dan pengembangan wawasan.</li>\r\n	<li>Pengembangan bakat dan minat.</li>\r\n	<li>Pembinaan keterampilan dan keahlian.</li>\r\n	<li>Pengembangan kewirausahaan dan kemandirian.</li>\r\n	<li>Penanaman kesadaran hidup sehat dan kepedulian terhadap lingkungan.</li>\r\n	<li>Penanaman tanggung jawab kemasyarakatan dan kebangsaan.</li>\r\n</ol>\r\n', 2);
 
 --
 -- Indexes for dumped tables
@@ -524,6 +570,12 @@ ALTER TABLE `tb_petugas`
   ADD PRIMARY KEY (`id_petugas`);
 
 --
+-- Indexes for table `tb_promosi`
+--
+ALTER TABLE `tb_promosi`
+  ADD PRIMARY KEY (`id_promosi`);
+
+--
 -- Indexes for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
@@ -554,27 +606,27 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT for table `anggota_fks`
 --
 ALTER TABLE `anggota_fks`
-  MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
+  MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=457;
 --
 -- AUTO_INCREMENT for table `tb_alumni`
 --
 ALTER TABLE `tb_alumni`
-  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tb_desa`
 --
 ALTER TABLE `tb_desa`
-  MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_devisi`
 --
 ALTER TABLE `tb_devisi`
-  MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_jawaban`
 --
@@ -584,17 +636,17 @@ ALTER TABLE `tb_jawaban`
 -- AUTO_INCREMENT for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
-  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tb_korcam`
 --
 ALTER TABLE `tb_korcam`
-  MODIFY `id_korcam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_korcam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_lembaga_alumni`
 --
@@ -604,7 +656,7 @@ ALTER TABLE `tb_lembaga_alumni`
 -- AUTO_INCREMENT for table `tb_lembaga_nj`
 --
 ALTER TABLE `tb_lembaga_nj`
-  MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_pengurus`
 --
@@ -616,6 +668,11 @@ ALTER TABLE `tb_pengurus`
 ALTER TABLE `tb_petugas`
   MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `tb_promosi`
+--
+ALTER TABLE `tb_promosi`
+  MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
@@ -624,12 +681,12 @@ ALTER TABLE `tb_soal`
 -- AUTO_INCREMENT for table `tb_struktur`
 --
 ALTER TABLE `tb_struktur`
-  MODIFY `id_struktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_struktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `tb_visi_misi`
 --
 ALTER TABLE `tb_visi_misi`
-  MODIFY `id_visi_misi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_visi_misi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

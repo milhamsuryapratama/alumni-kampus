@@ -39,12 +39,13 @@
     					<table id="example1" class="table table-bordered table-striped">
     						<thead>
     							<tr>
-    								<td colspan="8">
-    									<a href="<?=base_url()?>administrator/tambah_anggota_fks" class="btn btn-block btn-primary">Tambah Data</a>
+    								<td colspan="9">
+    									<a href="<?=base_url()?>administrator/tambah_anggota_fks?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-block btn-primary">Tambah Data</a>
     								</td>
     							</tr>
     							<tr>
     								<th>NO</th>
+                                    <th>NIS</th>
     								<th>Nama</th>
                                     <th>alamat</th>
                                     <th>Kecamatan</th>
@@ -60,6 +61,7 @@
     							foreach ($fks as $p) { ?>
     								<tr>
     									<td><?=$no?></td>
+                                        <td><?=$p['nis']?></td>
     									<td><?=$p['nama']?></td>
                                         <td><?=$p['alamat']?></td>
                                         <td><?=$p['kecamatan']?></td>
@@ -68,11 +70,11 @@
                                         <td><?=$p['nama_lembaga']?></td>
     									<td>
     										<div class="btn-group">
-    											<a href="<?=base_url()?>administrator/edit_anggota_fks/<?=$p['nis']?>" class="btn btn-success">Edit</a>
+    											<a href="<?=base_url()?>administrator/edit_anggota_fks/<?=$p['nis']?>?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-success">Edit</a>
     											
     											<button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
-    											<a href="<?=base_url()?>administrator/hapus_anggota_fks/<?=$p['nis']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
+    											<a href="<?=base_url()?>administrator/hapus_anggota_fks/<?=$p['nis']?>?lembaga=<?=$this->session->userdata('nama_lembaga');?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini ?')">Hapus</a>
     										</div>
     									</td>
     								</tr>

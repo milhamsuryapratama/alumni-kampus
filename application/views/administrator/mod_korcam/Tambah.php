@@ -25,7 +25,7 @@
                             <input type="hidden" name="id_alumni" id="id_alumni">
     						<div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="id_alumni">ID Alumni</label>
+                                    <label for="id_alumni">NO KTP</label>
                                     <input type="text" name="no_ktp" class="form-control" id="no_ktp" placeholder="Enter No KTP">
                                 </div>
                             </div>
@@ -78,16 +78,50 @@ reserved.</strong>
 <script>
     $(function(){
 
+        $("#submit").attr('disabled', true);
+
         $( "#no_ktp" ).autocomplete({
             source: "<?=base_url()?>administrator/get_autocomplete"
         });
 
+        $("#no_ktp").on('input', function() {
+            if ($("#no_ktp").val() == '') {
+                $("#submit").attr('disabled', true);
+                $("#nama_alumni").val('');
+                $("#id_alumni").val('');
+            }
+        })
+
+        // $("#no_ktp").on('keydown', function(e) {
+
+        //    if(e.which == 13) {            
+        //         let no_ktp = $("#no_ktp").val();
+        //         $.post("<?=base_url()?>administrator/get_alumni", {no_ktp: no_ktp}, (result) => {
+        //             $("#submit").attr('disabled', false);
+        //             $("#nama_alumni").val(result.nama)
+        //             $("#id_alumni").val(result.id_alumni)
+        //         })
+        //     }
+        // })
+
         $("#no_ktp").on('keydown', function(e) {
-           if(e.which == 9) {
+           if(e.which == 13) {
                 let no_ktp = $("#no_ktp").val();
                 $.post("<?=base_url()?>administrator/get_alumni", {no_ktp: no_ktp}, (result) => {
-                    $("#nama_alumni").val(result.nama)
-                    $("#id_alumni").val(result.id_alumni)
+                    if (result == null) {
+                        alert("SALAH");
+                    } else {
+                        $.post("<?=base_url()?>administrator/get_korcam", {id_alumni: result.id_alumni},(response) => {
+                            if (response == "Fail") {
+                                alert("Alumni Ini Telah Menjadi Korcam ");
+                                $("#submit").attr('disabled', true);
+                            } else {
+                                $("#submit").attr('disabled', false);
+                                $("#nama_alumni").val(result.nama);
+                                $("#id_alumni").val(result.id_alumni);
+                            }
+                        })                        
+                    }                    
                 })
             }
         })

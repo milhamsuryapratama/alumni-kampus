@@ -20,9 +20,9 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/tambah_struktur" method="post">
+    				<form action="<?=base_url()?>administrator/tambah_struktur?lembaga=<?=$_GET['lembaga']?>" method="post">
     					<div class="box-body">
-                            <!-- <input type="hidden" name="nis" id="nis"> --> <input type="text" name="id_lembaga_alumni" id="id_lembaga_alumni" value="<?=$_GET['lembaga']?>">
+                            <!-- <input type="hidden" name="nis" id="nis"> --> <input type="hidden" name="id_lembaga_alumni" id="id_lembaga_alumni" value="<?=$_GET['lembaga']?>">
                             <div class="form-group">
                                 <label for="nis">NIS</label>
                                 <input type="text" name="nis" class="form-control" id="nis" placeholder="Enter NIS">
@@ -90,16 +90,30 @@ reserved.</strong>
             source: "<?=base_url()?>administrator/get_fks_anggota"
         });
 
+        $("#nis").on('input', function() {
+            if ($("#nis").val() == '') {
+                $("#submit").attr('disabled', true);
+                $("#nama").val('');
+            }
+        })
+
         $("#nis").on('keydown', function(e) {
-           if(e.which == 9) {
+           if(e.which == 13) {
                 let nis = $("#nis").val();
                 $.post("<?=base_url()?>administrator/get_anggota_fks_by_id", {nis: nis}, (result) => {
                     if (result == null) {
                         alert("SALAH");
                     } else {
-                        $("#submit").attr('disabled', false);
-                        $("#nama").val(result.nama);
-                        $("#nis").val(result.nis);                       
+                        $.post("<?=base_url()?>administrator/get_struktur_fks", {nis: result.nis},(response) => {
+                            if (response == "Fail") {
+                                alert("Alumni Ini Telah Menjadi Struktur dari  Lembaga Lain");
+                                $("#submit").attr('disabled', true);
+                            } else {
+                                $("#submit").attr('disabled', false);
+                                $("#nama").val(result.nama);
+                                // $("#id_alumni").val(result.id_alumni);
+                            }
+                        })                       
                     }                    
                 })
             }
