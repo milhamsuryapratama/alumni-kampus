@@ -1,12 +1,16 @@
 Akses Login
 
+Login Admin
+	username : admin
+	password : admin
+
 Lembaga P4NJ
 	username : luthfi
 	password : luthfi
 
 Lembaga FKS
-	username : yoyo
-	password : yoyo
+	username : lkj	
+	password : lkj
 
 Lembaga NJIC
 	username : junaidi

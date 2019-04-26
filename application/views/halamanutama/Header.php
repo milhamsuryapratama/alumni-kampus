@@ -8,6 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title><?=$title?></title>
+<link rel="icon" href="<?=base_url()?>assets/foto/logo/5cc25ceca1902.64px.ico" type="image/gif"> 
 <link href="<?=base_url()?>assets/homepages/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary JavaScript plugins) -->
 <script src="<?=base_url()?>assets/homepages/js/bootstrap.js"></script>

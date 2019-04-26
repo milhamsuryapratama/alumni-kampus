@@ -11,7 +11,7 @@
 				foreach ($kegiatan as $k) { ?>
 					<div class="col-md-4 wel_grid">
 						<img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" class="img-responsive" alt=""/>
-						<span style="text-align: justify;"><h5><a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a></h5></span>
+						<span><p><a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a></p></span>
 						<!-- <p><?=substr($k['deskripsi'],0,100)?></p> -->
 					</div>
 					<!-- <div class="col-md-4 camp-grid">

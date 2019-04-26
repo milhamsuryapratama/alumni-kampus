@@ -131,7 +131,8 @@ class Auth extends CI_Controller
 	        		'nama_lembaga' => 'P4NJ',
         			'username' => $cekAsAdmin['username'],
         			'status' => 'loginSukses',
-        			'user' => 'admin'
+        			'user' => 'admin',
+        			'nama' => 'admin'
         		);
         		$this->session->set_userdata($sessionAdmin);
         		redirect(base_url()."administrator/dashboard");
@@ -147,7 +148,7 @@ class Auth extends CI_Controller
         				$sessionAdmin = array(
         					'id_lembaga' => $lembaga,
         					'nama_lembaga' => $cek_nama_lembaga['nama_lembaga'],
-        					'id_alumni' => $cekfks['id_alumni'],
+        					'nis' => $cekfks['nis'],
         					'nama' => $cekfks['nama'],
         					'status' => 'loginSukses',
         					'user' => $cekfks['nis']

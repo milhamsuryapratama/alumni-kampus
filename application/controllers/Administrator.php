@@ -9,7 +9,7 @@ class Administrator extends CI_Controller
 	{
 		parent::__construct();
 		if ($this->session->userdata('status') != 'loginSukses') {
-			redirect(base_url().'auth/login');
+			redirect(base_url().'auth/Login');
 		}
 	}
 

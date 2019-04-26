@@ -117,6 +117,7 @@
                     <div class="form-group">
                         <label for="nama_lengkap">Password *</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
+                        <small>Password Minimal 8 Digit</small>
                     </div>
                     <div class="form-group">
                         <label for="foto_alumni">Foto Diri *</label>
@@ -156,6 +157,15 @@ reserved.</strong>
 				})
 			})
 		})
+
+        $("#password").on('focusout', function() {
+            if ($("#password").val().length < 8) {
+                alert('Password Harus Lebih Dari 8 Digit');
+                $("#submit").attr('disabled', true);
+            } else {
+                $("#submit").attr('disabled', false);
+            }
+        })
 
 	})
 </script>

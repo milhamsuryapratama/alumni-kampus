@@ -6,6 +6,7 @@
   <title>Admin Login Panel</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" href="<?=base_url()?>assets/foto/logo/5cc25ceca1902.128px.ico" type="image/gif"> 
   <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/css/AdminLTE.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/css/_all-skins.min.css">

@@ -29,6 +29,11 @@ class Pages extends CI_Controller
 		$this->load->view('halamanutama/Footer');
 	}
 
+	public function edut()
+	{
+		$this->load->view('halamanutama/eduindex');
+	}
+
 	public function visi_misi()
 	{
 		$data['title'] = "Visi Misi - P4NJ JEMBER";

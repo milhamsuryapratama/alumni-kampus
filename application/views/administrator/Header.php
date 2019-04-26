@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Administrator</title>
+  <link rel="icon" href="<?=base_url()?>assets/foto/logo/5cc25ceca1902.64px.ico" type="image/gif"> 
   <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/AdminLTE.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/_all-skins.min.css">

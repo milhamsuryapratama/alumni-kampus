@@ -41,7 +41,11 @@
     						<thead>
     							<tr>
     								<td colspan="7">
-    									<a href="<?=base_url()?>administrator/tambah_visi_misi?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-block btn-primary">Tambah Data</a>
+                                        <?php if (count($vm) > 0) { ?>
+                                            <a href="<?=base_url()?>administrator/tambah_visi_misi?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-block btn-primary" disabled>Tambah Data</a>
+                                        <?php } else { ?>
+                                            <a href="<?=base_url()?>administrator/tambah_visi_misi?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-block btn-primary">Tambah Data</a>
+                                        <?php } ?>    									
     								</td>
     							</tr>
     							<tr>

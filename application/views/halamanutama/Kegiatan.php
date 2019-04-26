@@ -24,6 +24,9 @@
 				<?php } ?>
 				
 			<?php } ?>
+			<nav>
+				<?php echo $halaman; ?>
+			</nav>
 		</div>	
 		<div class="col-md-4 single-page-right">				
 			<form method="GET" action="<?=base_url()?>pages/kegiatan">
@@ -51,10 +54,7 @@
 				<div class="clearfix"> </div>
 			</div>				
 		</div>
-		<div class="clearfix"> </div>
-		<nav>
-			<?php echo $halaman; ?>
-		</nav>
+		<div class="clearfix"> </div>		
 	</div>	
 </div>	
 	<!--//blog-->
