@@ -1570,5 +1570,16 @@ class Administrator extends CI_Controller
 		}
 	}
 
+	public function reset_password()
+	{
+		$id_alumni = $this->input->post('id_alumni');
+		$pwd = md5($this->input->post('password'));
+		$query = $this->db->query("UPDATE tb_alumni SET password = '$pwd' WHERE id_alumni = '".$id_alumni."'");
+		if ($query) {
+			$this->session->set_flashdata('resetPassword', 'Sukses Mereset Password');
+			redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+		}
+	}
+
 }
 ?>

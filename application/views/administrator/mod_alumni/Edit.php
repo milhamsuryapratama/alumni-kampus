@@ -138,6 +138,29 @@
                 </div>
             </div>
         </form>
+
+        <form method="post" action="<?=base_url()?>administrator/reset_password">
+            <input type="hidden" name="id_alumni" value="<?=$a['id_alumni']?>">
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-body">
+                       <div class="form-group">
+                        <label for="nama_lengkap">Username * </label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="<?=$a['username']?>" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_lengkap">Reset Password (bila perlu)</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
+                        <small style="color: red">Password Minimal 8 Digit</small>
+                    </div>
+                    <div class="box-footer">
+                      <button type="submit" id="resetpwd" name="resetpwd" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Mereser Password ?')">Reset Passrowd</button>
+                  </div>  
+                </div>                
+            </div>
+        </form>            
+
+        
     	</div>
     </section>
 </div>
@@ -188,6 +211,15 @@ reserved.</strong>
                         )
                 })
             })
+        })
+
+        $("#password").on('focusout', function() {
+            if ($("#password").val().length < 8) {
+                alert('Password Harus Lebih Dari 8 Digit');
+                $("#submit").attr('disabled', true);
+            } else {
+                $("#submit").attr('disabled', false);
+            }
         })
 
 	})
