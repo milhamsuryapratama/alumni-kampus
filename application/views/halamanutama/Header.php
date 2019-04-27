@@ -123,7 +123,7 @@
 							<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>)"></div>
 							<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 								<div class="hero_slide_content text-center">
-									<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+									<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut" style="color: #42f46e; font-weight: bold;"><?=$k['judul_kegiatan']?></h1>
 								</div>
 							</div>
 						</div>
