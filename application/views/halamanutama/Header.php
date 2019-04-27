@@ -117,35 +117,17 @@
 			<div class="hero_slider_container">
 				<div class="hero_slider owl-carousel">
 
-					<!-- Hero Slide -->
-					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/04c7d0c5f1403f4d134bdf8896d9dec5.JPG)"></div>
-						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
-							<div class="hero_slide_content text-center">
-								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+					<?php  
+					foreach ($kegiatan as $k) { ?>
+						<div class="hero_slide">
+							<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>)"></div>
+							<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+								<div class="hero_slide_content text-center">
+									<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- Hero Slide -->
-					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/bbd616dd162ae4257bc7a5fe694001e7.JPG)"></div>
-						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
-							<div class="hero_slide_content text-center">
-								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
-							</div>
-						</div>
-					</div>
-
-					<!-- Hero Slide -->
-					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/c9aad70829d98320ae11b8b8ea6ecc22.JPG)"></div>
-						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
-							<div class="hero_slide_content text-center">
-								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
-							</div>
-						</div>
-					</div>
+					<?php } ?>
 
 				</div>
 
