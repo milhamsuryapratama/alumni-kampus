@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Course Project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="<?=base_url()?>assets/foto/logo/5cc25ceca1902.64px.ico" type="image/gif"> 
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/bootstrap4/bootstrap.min.css">
 <link href="<?=base_url()?>assets/homeassets/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -118,7 +119,7 @@
 
 					<!-- Hero Slide -->
 					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/04c7d0c5f1403f4d134bdf8896d9dec5.JPG)"></div>
+						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/04c7d0c5f1403f4d134bdf8896d9dec5.JPG)"></div>
 						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 							<div class="hero_slide_content text-center">
 								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
@@ -128,7 +129,7 @@
 
 					<!-- Hero Slide -->
 					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/bbd616dd162ae4257bc7a5fe694001e7.JPG)"></div>
+						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/bbd616dd162ae4257bc7a5fe694001e7.JPG)"></div>
 						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 							<div class="hero_slide_content text-center">
 								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
@@ -138,7 +139,7 @@
 
 					<!-- Hero Slide -->
 					<div class="hero_slide">
-						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/c9aad70829d98320ae11b8b8ea6ecc22.JPG)"></div>
+						<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/c9aad70829d98320ae11b8b8ea6ecc22.JPG)"></div>
 						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 							<div class="hero_slide_content text-center">
 								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
