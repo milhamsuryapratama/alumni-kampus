@@ -158,17 +158,32 @@
 			<div class="home_background_container prlx_parent">
 				<div class="home_background prlx" style="background-image: url(http://localhost/project/assets/foto/logo/nuruljadid.png); transform: translate(0%, -15%) translate3d(0px, 0px, 0px); opacity: 0.7"></div>
 			</div>
-			<div class="home_content" style="background-color: #42f46e;">
-				<h1 style="color: black">					 
-					<?php if ($title == 'Visi Misi - P4NJ JEMBER') {
-						echo "Visi Misi";
-					} elseif ($title == 'Kegiatan - P4NJ JEMBER') {
-						echo "Kegiatan";
-					} elseif ($title == 'Promosi - P4NJ JEMBER') {
-						echo "Promosi";
-					} ?>
-				</h1>
-			</div>
+			<?php if ($title == 'Visi Misi - P4NJ JEMBER') { ?>
+				<div class="home_content" style="background-color: #42f46e;">
+					<h1 style="color: black">					 
+						Visi Misi
+					</h1>
+				</div>
+			<?php } elseif ($title == 'Kegiatan - P4NJ JEMBER') { ?>
+				<div class="home_content" style="background-color: #42f46e;">
+					<h1 style="color: black">					 
+						Kegiatan
+					</h1>
+				</div>
+			<?php } elseif ($title == 'Promosi - P4NJ JEMBER') { ?>
+				<div class="home_content" style="background-color: #42f46e;">
+					<h1 style="color: black">					 
+						Promosi
+					</h1>
+				</div>
+			<?php } else { ?>
+				<div class="home_content" style="background-color: #42f46e;">
+					<h1 style="color: black">					 
+						Detail Kegiatan
+					</h1>
+				</div>
+			<?php } ?>
+			
 		</div>
 	<?php } ?>
 

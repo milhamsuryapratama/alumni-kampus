@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 Apr 2019 pada 22.22
+-- Generation Time: 27 Apr 2019 pada 13.58
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -109,7 +109,7 @@ INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa
 (9, '555', 'fffffffff', 4, 6, 'klhdfkhdgkjhfkjgh', '111222333444', '2016', '2020', 'Pengusaha', 'Pengusaha', 'kjdfdfdf', 'dfg@gmail.com', 'oo', 'e47ca7a09cf6781e29634502345930a7', 'a8a33ad58e60beaeecd3fece00f02008.jpg', ''),
 (10, '11111', 'bbb', 6, 9, 'bbb', '085337665221', '2007', '2018', 'Pengusaha', 'Pengusaha', 'bbb', 'bbb@gmail.com', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', '', ''),
 (11, '565656', 'ttto', 4, 6, 'ttt', '085337665221', '2009', '2018', 'Pengusaha', 'Pengusaha', 'ttt', 'ttt@gmail.com', 'ttt', '9990775155c3518a0d7917f7780b24aa', '', ''),
-(12, '3513170512980001', 'Aldo Rivaldo', 6, 9, 'Dusun Krajan II RT 01 RW 003', '085233876551', '2003', '2010', 'Wiraswasta', 'Konveksi', 'Aldo Rivaldo', 'aldorivaldo21@gmail.com', 'aldo', 'b104ab9a0e58c861b9628208b3fecd58', '13ff8ac94b04dfe012d76582059e8e78.jpg', 'ab99697c392960c1d18b3f4fb128aa60.jpg');
+(12, '3513170512980001', 'Aldo Rivaldo', 6, 9, 'Dusun Krajan II RT 01 RW 003', '085233876551', '2003', '2010', 'Wiraswasta', 'Konveksi', 'Aldo Rivaldo', 'aldorivaldo21@gmail.com', 'aldo', '980549e2439b09286008085ea0285b59', '73d8a53332beff12d23e914115da67f5.jpg', 'ab99697c392960c1d18b3f4fb128aa60.jpg');
 
 -- --------------------------------------------------------
 
@@ -146,15 +146,15 @@ INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`) VALUES
 CREATE TABLE `tb_devisi` (
   `id_devisi` int(11) NOT NULL,
   `nama_devisi` varchar(20) NOT NULL,
-  `status` enum('Y','N') NOT NULL
+  `status_devisi` enum('Y','N') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_devisi`
 --
 
-INSERT INTO `tb_devisi` (`id_devisi`, `nama_devisi`, `status`) VALUES
-(1, 'Keorganisasian', 'N'),
+INSERT INTO `tb_devisi` (`id_devisi`, `nama_devisi`, `status_devisi`) VALUES
+(1, 'Keorganisasian', 'Y'),
 (2, 'Distributor', 'Y');
 
 -- --------------------------------------------------------
@@ -166,14 +166,14 @@ INSERT INTO `tb_devisi` (`id_devisi`, `nama_devisi`, `status`) VALUES
 CREATE TABLE `tb_jabatan` (
   `id_jabatan` int(11) NOT NULL,
   `nama_jabatan` varchar(20) NOT NULL,
-  `status` enum('Y','N') NOT NULL
+  `status_jabatan` enum('Y','N') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_jabatan`
 --
 
-INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`, `status`) VALUES
+INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`, `status_jabatan`) VALUES
 (1, 'Ketua ', 'Y'),
 (2, 'Wakil', 'Y');
 
@@ -403,7 +403,8 @@ CREATE TABLE `tb_promosi` (
 --
 
 INSERT INTO `tb_promosi` (`id_promosi`, `id_alumni`, `tgl_mulai`, `tgl_akhir`, `status_promosi`) VALUES
-(2, 5, '2019-04-27', '2019-04-28', 'Y');
+(2, 5, '2019-04-27', '2019-04-28', 'Y'),
+(3, 12, '2019-04-27', '2019-04-29', 'Y');
 
 -- --------------------------------------------------------
 
@@ -439,7 +440,7 @@ CREATE TABLE `tb_struktur` (
   `id_devisi` int(11) NOT NULL,
   `id_alumni` int(11) NOT NULL,
   `nis` int(11) NOT NULL,
-  `status_struktur` enum('Y','N') NOT NULL,
+  `status` enum('Y','N') NOT NULL,
   `id_lembaga_alumni` int(11) NOT NULL,
   `masa_bakti` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -448,7 +449,7 @@ CREATE TABLE `tb_struktur` (
 -- Dumping data untuk tabel `tb_struktur`
 --
 
-INSERT INTO `tb_struktur` (`id_struktur`, `id_jabatan`, `id_devisi`, `id_alumni`, `nis`, `status_struktur`, `id_lembaga_alumni`, `masa_bakti`) VALUES
+INSERT INTO `tb_struktur` (`id_struktur`, `id_jabatan`, `id_devisi`, `id_alumni`, `nis`, `status`, `id_lembaga_alumni`, `masa_bakti`) VALUES
 (5, 2, 2, 6, 0, 'Y', 3, '2010'),
 (6, 1, 2, 8, 0, 'Y', 1, '2018'),
 (8, 0, 0, 7, 0, 'Y', 2, ''),
@@ -621,12 +622,12 @@ ALTER TABLE `tb_desa`
 -- AUTO_INCREMENT for table `tb_devisi`
 --
 ALTER TABLE `tb_devisi`
-  MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_jawaban`
 --
@@ -636,7 +637,7 @@ ALTER TABLE `tb_jawaban`
 -- AUTO_INCREMENT for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
-  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_kegiatan`
 --
@@ -656,7 +657,7 @@ ALTER TABLE `tb_lembaga_alumni`
 -- AUTO_INCREMENT for table `tb_lembaga_nj`
 --
 ALTER TABLE `tb_lembaga_nj`
-  MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_pengurus`
 --
@@ -671,7 +672,7 @@ ALTER TABLE `tb_petugas`
 -- AUTO_INCREMENT for table `tb_promosi`
 --
 ALTER TABLE `tb_promosi`
-  MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_soal`
 --
