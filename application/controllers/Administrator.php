@@ -773,7 +773,8 @@ class Administrator extends CI_Controller
 	public function kegiatan()
 	{
 		//$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
-		$data['kegiatan'] = $this->App_model->join_dua_table_by_id('tb_kegiatan','tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_kegiatan.id_kegiatan','tb_kegiatan.id_lembaga_alumni',$this->session->userdata('id_lembaga'));
+		// $data['kegiatan'] = $this->App_model->join_dua_table_by_id('tb_kegiatan','tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_kegiatan.id_kegiatan','tb_kegiatan.id_lembaga_alumni',$this->session->userdata('id_lembaga'));
+		$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni', $this->session->userdata('id_lembaga'));
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -815,7 +816,8 @@ class Administrator extends CI_Controller
 	        		'foto_kegiatan' => $file_name['file_name'],
 	        		'status' => 'Aktif',
 	        		'id_lembaga_alumni' => $this->session->userdata('id_lembaga'),
-	        		'author' => $this->session->userdata('user')
+	        		'author' => $this->session->userdata('user'),
+	        		'tanggal_posting' => date('Y-m-d')
 	        	);
 
 	        	$query = $this->App_model->tambah_data('tb_kegiatan', $data_kegiatan);
@@ -917,7 +919,8 @@ class Administrator extends CI_Controller
 		        	'deskripsi' => $this->input->post('deskripsi'),
 		        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 		        	'status' => 'Aktif',
-		        	'id_lembaga_alumni' => $this->session->userdata('id_lembaga')
+		        	'id_lembaga_alumni' => $this->session->userdata('id_lembaga'),
+		        	'tanggal_posting' => date('Y-m-d')
 	        	);	        	
 	        } else {
 	        	$data_kegiatan = array(
@@ -926,7 +929,8 @@ class Administrator extends CI_Controller
 		        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 		        	'foto_kegiatan' => $file_name['file_name'],
 		        	'status' => 'Aktif',
-		        	'id_lembaga_alumni' => $this->session->userdata('id_lembaga')
+		        	'id_lembaga_alumni' => $this->session->userdata('id_lembaga'),
+		        	'tanggal_posting' => date('Y-m-d')
 	        	);
 	        	$unlink = $this->App_model->ambil_id_foto($id_k);
 	        	$path = 'assets/foto/kegiatan/';

@@ -28,7 +28,7 @@
     								<th>NO</th>
     								<th>Judul Kegiatan</th>
                                     <th>Jenis Kegiatan</th>
-                                    <th>Penulis</th>
+                                    <!-- <th>Penulis</th> -->
     								<th>Actions</th>
     							</tr>
     						</thead>
@@ -40,7 +40,7 @@
     									<td><?=$no?></td>
     									<td><?=$l['judul_kegiatan']?></td>
                                         <td><?=$l['jenis_kegiatan']?></td>
-                                        <td><?=$l['nama']?></td>
+                                        <!-- <td><?=$l['nama']?></td> -->
     									<td>
                                             <div class="btn-group">
                                                 <a href="<?=base_url()?>administrator/edit_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-success">Edit</a>
