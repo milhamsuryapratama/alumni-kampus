@@ -139,7 +139,7 @@
 	<?php } else { ?>
 		<div class="home">
 			<div class="home_background_container prlx_parent">
-				<div class="home_background prlx" style="background-image: url(http://localhost/project/assets/foto/logo/nuruljadid.png); transform: translate(0%, -15%) translate3d(0px, 0px, 0px); opacity: 0.7"></div>
+				<div class="home_background prlx" style="background-image: url(<?=base_url()?>assets/foto/logo/nuruljadid.png); transform: translate(0%, -15%) translate3d(0px, 0px, 0px); opacity: 0.7"></div>
 			</div>
 			<?php if ($title == 'Visi Misi - P4NJ JEMBER') { ?>
 				<div class="home_content" style="background-color: #42f46e;">

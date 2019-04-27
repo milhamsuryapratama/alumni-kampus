@@ -923,6 +923,18 @@ class Administrator extends CI_Controller
 		        	'tanggal_posting' => date('Y-m-d')
 	        	);	        	
 	        } else {
+	        	//compress images
+	        	$config['image_library'] = 'gd2';
+	        	$config['source_image'] = 'assets/foto/kegiatan/'.$file_name['file_name'];
+	        	$config['create_thumb'] = FALSE;
+	        	$config['maintain_ratio'] = FALSE;
+	        	$config['quality'] = '50%';
+	        	$config['width'] = 1280;
+	        	$config['height'] = 720;
+	        	$config['new_image'] = 'assets/foto/kegiatan/'.$file_name['file_name'];
+	        	$this->load->library('image_lib', $config);
+	        	$this->image_lib->resize();
+	        	
 	        	$data_kegiatan = array(
 		        	'judul_kegiatan' => $this->input->post('judul_kegiatan'),
 		        	'slug' => url_title($this->input->post('judul_kegiatan'), 'dash', TRUE),

@@ -59,7 +59,12 @@
 					if ($k['author'] == 0) {
 						$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
 					} else {
-						$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+						$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+						if (count($adm) > 0) {
+							$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+						} else {
+							$ad = $this->db->query("SELECT * FROM anggota_fks WHERE nis = '$k[author]'")->row_array();
+						}
 					}
 					?>
 					<!-- Popular Course Item -->
@@ -74,8 +79,14 @@
 								<div class="course_author_image">
 									<?php if ($k['author'] == 0) { ?>
 										<img src="<?=base_url()?>assets/foto/logo/logop4nj.png" alt="" width="50">
-									<?php } else { ?>
-										<img src="<?=base_url()?>assets/foto/alumni/<?=$ad['foto']?>" alt="">
+									<?php } else { 
+											if (count($adm) > 0) { ?>
+												<img src="<?=base_url()?>assets/foto/alumni/<?=$ad['foto']?>" alt="">
+											<?php } else { ?>
+												<img src="<?=base_url()?>assets/foto/logo/logofksj.png" alt="" width="45">
+											<?php }
+										?>
+										
 									<?php } ?>									
 								</div>
 								<div class="course_author_name">Oleh <?php if ($k['author'] == 0) {

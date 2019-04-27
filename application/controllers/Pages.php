@@ -23,7 +23,7 @@ class Pages extends CI_Controller
 		$data['title'] = "P4NJ NURUL JADID - PAITON PROBOLINGGO";
 		// $data['kegiatan'] = $this->App_model->ambil_data_limit('tb_kegiatan','id_kegiatan');
 		// $data['kegiatan'] = $this->Home_model->home_data_kegiatan('tb_kegiatan','tb_lembaga_alumni','tb_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.author = tb_alumni.id_alumni');
-		$data['kegiatan'] = $this->App_model->join_dua_table('tb_kegiatan','tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.id_kegiatan');
+		$data['kegiatan'] = $this->App_model->join_dua_table_limit('tb_kegiatan','tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.id_kegiatan','6');
 
 		$data['promosi'] = $this->App_model->join_empat_table_limit_where('tb_promosi','tb_alumni','tb_kecamatan','tb_desa','tb_promosi.id_alumni = tb_alumni.id_alumni','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan','tb_alumni.id_desa = tb_desa.id_desa','tb_promosi.id_promosi');
 
@@ -59,7 +59,7 @@ class Pages extends CI_Controller
 		$data['offset']=$offset;
 		$config['total_rows'] = $this->App_model->hitung_kegiatan($keyword)->num_rows();;
 		$config['base_url'] = base_url().'pages/kegiatan';
-		$config['per_page'] = 4;
+		$config['per_page'] = 3;
 		$config['full_tag_open']="<ul>";
 		$config['full_tag_close']="</ul>";
 		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";

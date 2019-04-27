@@ -38,7 +38,14 @@
 													if ($k['author'] == 0) {
 														echo $ad['username'];
 													} else {
-														echo $ad['nama'];
+														$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+														if (count($adm) > 0) {
+															$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+															echo $ad['nama'];
+														} else {
+															$ad = $this->db->query("SELECT * FROM anggota_fks WHERE nis = '$k[author]'")->row_array();
+															echo $ad['nama'];
+														}
 													}
 												?></span>
 												<span>|</span>

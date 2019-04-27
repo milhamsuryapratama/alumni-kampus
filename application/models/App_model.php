@@ -35,7 +35,6 @@ class App_model extends CI_Model
     {
         $query = $this->db->select('*')
                           ->from('tb_kegiatan')
-                          ->join('tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni')
                           ->join('tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni')
                           ->like('tb_kegiatan.judul_kegiatan', $keyword)
                           ->order_by('tb_kegiatan.id_kegiatan', 'DESC')
@@ -93,6 +92,11 @@ class App_model extends CI_Model
     public function join_dua_table($table1,$table2,$params1,$field)
     {
         return $this->db->order_by($field, 'DESC')->join($table2,$params1)->get($table1)->result_array();
+    }
+
+    public function join_dua_table_limit($table1,$table2,$params1,$field,$limit)
+    {
+        return $this->db->limit(6)->order_by($field, 'DESC')->join($table2,$params1)->get($table1)->result_array();
     }
 
     public function join_dua_table_by_id($table1,$table2,$params1,$field,$paramsWhere,$id_lembaga)

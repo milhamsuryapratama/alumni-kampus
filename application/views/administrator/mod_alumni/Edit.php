@@ -150,7 +150,7 @@
                     <div class="form-group">
                         <label for="nama_lengkap">Reset Password (bila perlu)</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
-                        <small style="color: red">Password Minimal 8 Digit</small>
+                        <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="box-footer">
                       <button type="submit" id="resetpwd" name="resetpwd" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Mereser Password ?')">Reset Passrowd</button>
@@ -205,8 +205,8 @@
         })
 
         $("#password").on('focusout', function() {
-            if ($("#password").val().length < 8) {
-                alert('Password Harus Lebih Dari 8 Digit');
+            if ($("#password").val().length < 3) {
+                alert('Password Harus Lebih Dari 3 Digit');
                 $("#submit").attr('disabled', true);
             } else {
                 $("#submit").attr('disabled', false);

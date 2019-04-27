@@ -39,7 +39,12 @@
                                     if ($l['author'] == 0) {
                                         $ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
                                     } else {
-                                        $ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$l[author]'")->row_array();
+                                        $adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$l[author]'")->row_array();
+                                        if (count($adm) > 0) {
+                                            $ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$l[author]'")->row_array();
+                                        } else {
+                                            $ad = $this->db->query("SELECT * FROM anggota_fks WHERE nis = '$l[author]'")->row_array();
+                                        }
                                     }
                                     ?>
     								<tr>

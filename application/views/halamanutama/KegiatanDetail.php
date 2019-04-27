@@ -28,8 +28,14 @@
 											$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
 											echo $ad['username'];
 										} else {
-											$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
-											echo $ad['nama'];
+											$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
+											if (count($adm) > 0) {
+												$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
+												echo $ad['nama'];
+											} else {
+												$ad = $this->db->query("SELECT * FROM anggota_fks WHERE nis = '$dt[author]'")->row_array();
+												echo $ad['nama'];
+											}
 										} ?></span>
 										<span>|</span>
 										<span class="news_post_comments">Lembaga <a href="<?=base_url()?>kegiatan/lembaga/<?=$dt['id_lembaga_alumni']?>"> <?=$dt['nama_lembaga']?></a></span>
