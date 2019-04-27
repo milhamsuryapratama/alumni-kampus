@@ -49,11 +49,11 @@ class Administrator extends CI_Controller
 	public function alumni()
 	{
 		// $data['alumni'] = $this->App_model->ambil_data('alumni', 'nim');
-		if ($this->session->userdata('username') === 'fks') {
-			echo "<script>alert('Maaf, anda tidak memiliki akses pada menu ini')</script>";
-			redirect(base_url().'administrator/dashboard');
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
 		} else {
 			$data['alumni'] = $this->App_model->join_tiga_table('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.id_desa = tb_desa.id_desa');
+			$data['bred'] = "Data Alumni";
 
 			$this->load->view('administrator/Header');
 			$this->load->view('administrator/TopHeader');
@@ -112,11 +112,15 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_alumni/Tambah', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_alumni/Tambah', $data);
+				$this->load->view('administrator/Footer');
+			}			
 		}
 	}
 
@@ -236,20 +240,28 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_alumni/Edit', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_alumni/Edit', $data);
+				$this->load->view('administrator/Footer');
+			}			
 		}
 	}
 
 	public function hapus_alumni($id)
 	{
-		$query = $this->App_model->hapus_data('tb_alumni','id_alumni',$id);
-		if ($query) {
-			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
-			redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$query = $this->App_model->hapus_data('tb_alumni','id_alumni',$id);
+			if ($query) {
+				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+				redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
 		}
 	}
 
@@ -262,9 +274,8 @@ class Administrator extends CI_Controller
 
 	public function kecamatan()
 	{
-		if ($this->session->userdata('username') === 'fks') {
-			echo "<script>alert('Maaf, anda tidak memiliki akses pada menu ini')</script>";
-			redirect(base_url().'administrator/dashboard');
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
 		} else {
 			$data['kecamatan'] = $this->App_model->ambil_data('tb_kecamatan','id_kecamatan');
 
@@ -290,11 +301,15 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/kecamatan?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_kecamatan/Tambah');
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_kecamatan/Tambah');
+				$this->load->view('administrator/Footer');
+			}
 		}
 	}
 
@@ -315,32 +330,44 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/kecamatan?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_kecamatan/Edit', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_kecamatan/Edit', $data);
+				$this->load->view('administrator/Footer');
+			}					
 		}
 	}
 
 	public function hapus_kecamatan($id)
 	{
-		$query = $this->App_model->hapus_data('tb_kecamatan','id_kecamatan',$id);
-		if ($query) {
-			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
-			redirect(base_url().'administrator/kecamatan?lembaga='.$this->session->userdata('nama_lembaga'));
-		}
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$query = $this->App_model->hapus_data('tb_kecamatan','id_kecamatan',$id);
+			if ($query) {
+				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+				redirect(base_url().'administrator/kecamatan?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
+		}			
 	}
 
 	public function desa()
 	{
 		$data['prodi'] = $this->App_model->join_dua_table('tb_kecamatan','tb_desa', 'tb_kecamatan.id_kecamatan = tb_desa.id_kecamatan', 'tb_desa.id_desa');
 
-		$this->load->view('administrator/Header');
-		$this->load->view('administrator/TopHeader');
-		$this->load->view('administrator/SideBar');
-		$this->load->view('administrator/mod_desa/Data', $data);
-		$this->load->view('administrator/Footer');
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_desa/Data', $data);
+			$this->load->view('administrator/Footer');
+		}
 	}
 
 	public function tambah_desa()
@@ -360,11 +387,15 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/desa?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_desa/Tambah', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_desa/Tambah', $data);
+				$this->load->view('administrator/Footer');
+			}				
 		}
 	}
 
@@ -388,20 +419,28 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/desa?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_desa/Edit', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_desa/Edit', $data);
+				$this->load->view('administrator/Footer');
+			}
 		}
 	}
 
 	public function hapus_desa($id)
 	{
-		$query = $this->App_model->hapus_data('tb_desa','id_desa',$id);
-		if ($query) {
-			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
-			redirect(base_url().'administrator/desa?lembaga='.$this->session->userdata('nama_lembaga'));
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$query = $this->App_model->hapus_data('tb_desa','id_desa',$id);
+			if ($query) {
+				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+				redirect(base_url().'administrator/desa?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
 		}
 	}
 
@@ -409,11 +448,15 @@ class Administrator extends CI_Controller
 	{
 		$data['lembaga'] = $this->App_model->ambil_data('tb_lembaga_alumni', 'id_lembaga_alumni');
 
-		$this->load->view('administrator/Header');
-		$this->load->view('administrator/TopHeader');
-		$this->load->view('administrator/SideBar');
-		$this->load->view('administrator/mod_lembaga/Data', $data);
-		$this->load->view('administrator/Footer');
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_lembaga/Data', $data);
+			$this->load->view('administrator/Footer');
+		}
 	}
 
 	public function tambah_lembaga()
@@ -429,11 +472,15 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_lembaga/Tambah');
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_lembaga/Tambah');
+				$this->load->view('administrator/Footer');
+			}
 		}
 	}
 
@@ -455,20 +502,28 @@ class Administrator extends CI_Controller
 				redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_lembaga/Edit', $data);
-			$this->load->view('administrator/Footer');
+			if ($this->session->userdata('id_lembaga') != 2) {
+				redirect(base_url().'administrator/error');
+			} else {
+				$this->load->view('administrator/Header');
+				$this->load->view('administrator/TopHeader');
+				$this->load->view('administrator/SideBar');
+				$this->load->view('administrator/mod_lembaga/Edit', $data);
+				$this->load->view('administrator/Footer');
+			}				
 		}
 	}
 
 	public function hapus_lembaga($id)
 	{
-		$query = $this->App_model->hapus_data('tb_lembaga_alumni','id_lembaga_alumni',$id);
-		if ($query) {
-			$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
-			redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$query = $this->App_model->hapus_data('tb_lembaga_alumni','id_lembaga_alumni',$id);
+			if ($query) {
+				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+				redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
 		}
 	}
 
@@ -543,7 +598,7 @@ class Administrator extends CI_Controller
 
 	public function nonaktif_jabatan($id)
 	{
-		$query = $this->db->query("UPDATE tb_jabatan SET status = 'N' WHERE id_jabatan = '".$id."' ");
+		$query = $this->db->query("UPDATE tb_jabatan SET status_jabatan = 'N' WHERE id_jabatan = '".$id."' ");
 		if ($query) {
 			redirect(base_url().'administrator/jabatan?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
@@ -551,7 +606,7 @@ class Administrator extends CI_Controller
 
 	public function aktifkan_jabatan($id)
 	{
-		$query = $this->db->query("UPDATE tb_jabatan SET status = 'Y' WHERE id_jabatan = '".$id."'");
+		$query = $this->db->query("UPDATE tb_jabatan SET status_jabatan = 'Y' WHERE id_jabatan = '".$id."'");
 		if ($query) {
 			redirect(base_url().'administrator/jabatan?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
@@ -628,7 +683,7 @@ class Administrator extends CI_Controller
 
 	public function nonaktif_devisi($id)
 	{
-		$query = $this->db->query("UPDATE tb_devisi SET status = 'N' WHERE id_devisi = '".$id."' ");
+		$query = $this->db->query("UPDATE tb_devisi SET status_devisi = 'N' WHERE id_devisi = '".$id."' ");
 		if ($query) {
 			redirect(base_url().'administrator/devisi?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
@@ -636,7 +691,7 @@ class Administrator extends CI_Controller
 
 	public function aktifkan_devisi($id)
 	{
-		$query = $this->db->query("UPDATE tb_devisi SET status = 'Y' WHERE id_devisi = '".$id."'");
+		$query = $this->db->query("UPDATE tb_devisi SET status_devisi = 'Y' WHERE id_devisi = '".$id."'");
 		if ($query) {
 			redirect(base_url().'administrator/devisi?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
@@ -1117,7 +1172,7 @@ class Administrator extends CI_Controller
 	public function nonaktif_struktur($id)
 	{
 		$id_l = $_GET['lembaga'];
-		$query = $this->db->query("UPDATE tb_struktur SET status_struktur = 'N' WHERE id_struktur = '".$id."' ");
+		$query = $this->db->query("UPDATE tb_struktur SET status = 'N' WHERE id_struktur = '".$id."' ");
 		if ($query) {
 			redirect(base_url().'administrator/struktur?lembaga='.$id_l);
 		}
@@ -1126,7 +1181,7 @@ class Administrator extends CI_Controller
 	public function aktifkan_struktur($id)
 	{
 		$id_l = $_GET['lembaga'];
-		$query = $this->db->query("UPDATE tb_struktur SET status_struktur = 'Y' WHERE id_struktur = '".$id."'");
+		$query = $this->db->query("UPDATE tb_struktur SET status = 'Y' WHERE id_struktur = '".$id."'");
 		if ($query) {
 			redirect(base_url().'administrator/struktur?lembaga='.$id_l);
 		}
@@ -1579,6 +1634,13 @@ class Administrator extends CI_Controller
 			$this->session->set_flashdata('resetPassword', 'Sukses Mereset Password');
 			redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
+	}
+
+	public function error()
+	{
+		$data['heading'] = "404 ERROR";
+		$data['message'] = "Anda Tidak Memiliki Akses Pada Halaman Ini";
+		$this->load->view('errors/html/error_404', $data);
 	}
 
 }

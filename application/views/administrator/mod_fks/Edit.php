@@ -1,12 +1,11 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Edit Data Anggota FKSJ
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Edit Data Anggota FKSJ</li>
       </ol>
     </section>
     <section class="content">
@@ -16,11 +15,11 @@
 
     			<div class="box box-primary">
     				<div class="box-header with-border">
-    					<h3 class="box-title">Tambah Data Anggota FKS</h3>
+    					<h3 class="box-title">Form Edit Data Anggota FKSJ</h3>
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_anggota_fks" method="post">
+    				<form action="<?=base_url()?>administrator/edit_anggota_fks/<?=$fks['nis']?>" method="post">
                         <input type="hidden" name="nis" id="nis" value="<?=$fks['nis']?>">
     					<div class="box-body">
     						<div class="form-group">
@@ -87,13 +86,5 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>

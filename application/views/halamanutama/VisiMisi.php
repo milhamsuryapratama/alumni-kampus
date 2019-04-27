@@ -1,55 +1,54 @@
-<br>
-<div class="container">	
+
+<!-- Register -->
 	<br>
 	<?php  
 	foreach ($vm as $v) { ?>
-		<div class="col-md-12 banner-grid">		
-		<h3 align="center">Lembaga</h3>	
-			<div class="banner-grid-sec">
-				<div class="grid_info">
-					<div class="blg-pic">
-						<img src="<?=base_url()?>assets/foto/logo/<?=$v['logo']?>" class="img-responsive" alt="">
+		<div class="register container">
+
+			<div class="container-fluid">
+
+				<div class="row row-eq-height">
+					<div class="col-lg-6 nopadding">
+
+						<!-- Register -->
+
+						<div class="register_section d-flex flex-column align-items-center justify-content-center" style="background-color: #42f46e">
+							<div class="register_content text-center">
+								<img src="<?=base_url()?>assets/foto/logo/<?=$v['logo']?>" width="225" height="225">
+							</div>
+						</div>
+
 					</div>
-					<div class="blg-pic-info">
-						<h4><a href="#"><?=$v['nama_lembaga']?></a></h4>
-						<p><strong>Visi : </strong></p> <p style="text-align: justify; font-size: 12px"><?=$v['visi']?></p>
-						<p><strong>Misi : </strong></p> <p style="text-align: justify; font-size: 12px"><?=$v['misi']?></p>
+
+					<div class="col-lg-6 nopadding">
+
+						<!-- Search -->
+
+						<div class="search_section d-flex flex-column align-items-center justify-content-center">
+							<div class="search_background" style="background-image:url(images/search_background.jpg);"></div>
+							<div class="search_content" >
+								<center><h1 class="search_title">Visi</h1></center>
+								<div style="margin-left: 10px; margin-right: 10px; text-align: justify;"><?=$v['visi']?></div>
+								<center><h1 class="search_title">Misi</h1></center>
+								<div style="margin-left: 10px; margin-right: 10px; text-align: justify;">
+									<?=$v['misi']?>
+
+								</div>
+
+							<!-- <form id="search_form" class="search_form" action="post">
+								<input id="search_form_name" class="input_field search_form_name" type="text" placeholder="Course Name" required="required" data-error="Course name is required.">
+								<input id="search_form_category" class="input_field search_form_category" type="text" placeholder="Category">
+								<input id="search_form_degree" class="input_field search_form_degree" type="text" placeholder="Degree">
+								<button id="search_submit_button" type="submit" class="search_submit_button trans_200" value="Submit">search course</button>
+							</form> -->
+						</div> 
 					</div>
-					<div class="clearfix"></div>
+
 				</div>
 			</div>
 		</div>
-		
-	<?php }
-	?>	
+	</div>
 
-</div>
-<br>
-
-
-<!-- <section id="team" class="pb-5">
-    <div class="container">
-        <h5 class="section-title h1">OUR TEAM</h5>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="<?=base_url()?>assets/foto/logo/logop4nj.png" alt="card image" width="300"></p>
-                                    <br>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<br> -->
-
+	<br>
+	<?php } ?>
+	

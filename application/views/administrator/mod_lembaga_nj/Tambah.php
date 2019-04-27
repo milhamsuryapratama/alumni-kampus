@@ -1,12 +1,11 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Tambah Data Lembaga Nurul Jadid
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Tambah Data Lembaga Nurul Jadid</li>
       </ol>
     </section>
     <section class="content">
@@ -16,7 +15,7 @@
 
     			<div class="box box-primary">
     				<div class="box-header with-border">
-    					<h3 class="box-title">Tambah Data Lembaga NJ</h3>
+    					<h3 class="box-title">Form Tambah Data Lembaga Nurul Jadid</h3>
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
@@ -44,13 +43,5 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>

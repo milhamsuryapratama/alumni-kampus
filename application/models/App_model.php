@@ -127,6 +127,11 @@ class App_model extends CI_Model
         return $this->db->order_by($order, 'DESC')->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get($table1)->result_array();
     }
 
+    public function join_empat_table_limit_where($table1,$table2,$table3,$table4,$params1,$params2,$params3,$order)
+    {
+        return $this->db->order_by($order, 'DESC')->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get_where($table1, array($table1.".status_promosi" => "Y"))->result_array();
+    }
+
     public function join_empat_table_by_id($table1,$table2,$table3,$table4,$params1,$params2,$params3,$paramsWhere,$id_petugas)
     {
         return $this->db->join($table2,$params1)->join($table3,$params2)->join($table4,$params3)->get_where($table1, array($paramsWhere => $id_petugas))->result_array();
@@ -184,6 +189,29 @@ class App_model extends CI_Model
         $this->db->like('nis', $title , 'both');
         $this->db->order_by('nis', 'DESC');
         return $this->db->get('anggota_fks')->result();
+    }
+
+    public function hitung_promosi()
+    {
+        $query = $this->db->select('*')
+                          ->from('tb_promosi')
+                          ->join('tb_alumni','tb_promosi.id_alumni = tb_alumni.id_alumni')
+                          ->order_by('tb_promosi.id_promosi', 'DESC')
+                          ->get('');
+        return $query;
+    }
+
+    public function promosi_with_pagination($perpage,$offset)
+    {
+        $query = $this->db->select('*')
+                          ->from('tb_promosi')
+                          ->join('tb_alumni','tb_promosi.id_alumni = tb_alumni.id_alumni')
+                          ->join('tb_kecamatan','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan')
+                          ->join('tb_desa', 'tb_alumni.id_desa = tb_desa.id_desa')
+                          ->where('tb_promosi.status_promosi', "Y")
+                          ->order_by('tb_promosi.id_promosi', 'DESC')
+                          ->get('',$perpage,$offset)->result_array();
+        return $query;
     }
 }
  ?>

@@ -1,60 +1,103 @@
-<div class="blog">
-	<div class="container">
-		<div class="blog-head banner-grid">
-			<h3>Kegiatan Kami</h3>
-		</div>		
-		<br>
-		<div class="col-md-8 blog-left" >
-			<?php  
-			foreach ($kegiatan_cari as $k) { 
-				if (count($kegiatan_cari > 0)) { ?>
-					<div class="blog-info">
-						<h3><a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a></h3>
-						<p>Ditulis Oleh <a href="#"><?=$k['nama']?></a> &nbsp;&nbsp; Lembaga : <a href="<?=base_url()?>kegiatan/lembaga/<?=$k['id_lembaga_alumni']?>"><?=$k['nama_lembaga']?></a> &nbsp;&nbsp; Pada <?=date('d F Y', strtotime($k['tanggal_posting']))?> &nbsp;&nbsp; </p>
-						<div class="blog-info-text">
-							<div class="blog-img">
-								<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"> <img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" class="img-responsive zoom-img" alt=""/></a>
-							</div>
-							<p class="snglp"><?=substr($k['deskripsi'],0,300)?></p>
-							<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>" class="btn btn-primary hvr-rectangle-in">Read More</a>
-						</div>	
-					</div>
-				<?php } else { ?>
-					<center><h3><strong>Hasil Tidak Ditemukan</strong></h3></center>
-				<?php } ?>
+<!-- News -->
+
+	<div class="news">
+		<div class="container">
+			<div class="row">
 				
-			<?php } ?>
-			<nav>
-				<?php echo $halaman; ?>
-			</nav>
-		</div>	
-		<div class="col-md-4 single-page-right">				
-			<form method="GET" action="<?=base_url()?>pages/kegiatan">
-				<input type="text" class="form-control" name="s" placeholder="Pencarian"> <button class="btn btn-primary">Cari</button>
-			</form>
-			<br>
-			<div class="recent-posts banner-grid">
-				<h3>Recent posts</h3>				
-				<br>
-				<?php  
-				foreach ($kegiatan as $k) { ?>
-					<div class="recent-posts-info">
-						<div class="posts-left sngl-img">
-							<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"> <img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" width="150" height="175" class="img-responsive zoom-img" alt=""/> </a>
-						</div>
-						<div class="posts-right">
-							<label>MARCH 5, 2015</label>
-							<h5><a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a></h5>
-							<!-- <p><?=substr($k['deskripsi'],0,50)?></p> -->
-							<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>" class="btn btn-primary hvr-rectangle-in">Read More</a>
-						</div>
-						<div class="clearfix"> </div>
+				<!-- News Column -->
+
+				<div class="col-lg-8">
+					
+					<div class="news_posts">
+						<!-- News Post -->
+						<?php  
+						foreach ($kegiatan_cari as $k) { 
+							if (count($kegiatan_cari) > 0) { ?>
+								<div class="news_post">
+									<div class="news_post_image">
+										<img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" alt="">
+									</div>
+									<div class="news_post_top d-flex flex-column flex-sm-row">
+										<div class="news_post_date_container">
+											<div class="news_post_date d-flex flex-column align-items-center justify-content-center" style="background-color: #42f46e">
+												<div><?=substr($k['tanggal_posting'],8,2)?></div>
+												<div><?=substr(date('F', strtotime($k['tanggal_posting'])),0 ,3)?></div>
+											</div>
+										</div>
+										<div class="news_post_title_container">
+											<div class="news_post_title">
+												<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a>
+											</div>
+											<div class="news_post_meta">
+												<span class="news_post_author">Oleh <?=$k['nama']?></span>
+												<span>|</span>
+												<span class="news_post_comments">Lembaga : <a href="<?=base_url()?>kegiatan/Lembaga/<?=$k['id_lembaga_alumni']?>"><?=$k['nama_lembaga']?></a></span>
+												<span>|</span>
+												<span class="news_post_author">Pada <?=date('d F Y', strtotime($k['tanggal_posting']))?></span>
+												<span>|</span>
+											</div>
+										</div>
+									</div>
+									<div class="news_post_text" style="text-align: justify;">
+										<p><?=substr($k['deskripsi'],0,300). '. . .'?></p>
+									</div>
+									<div class="news_post_button text-center trans_200" style="background-color: #42f46e">
+										<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>">Read More</a>
+									</div>
+								</div>
+							<?php } else { ?>
+									<center><h2>Hasil Tidak Ditemukan</h2></center>
+							<?php } ?>
+
+						<?php } ?>
+
 					</div>
-				<?php } ?>				
-				<div class="clearfix"> </div>
-			</div>				
+
+					<!-- Page Nav -->					
+
+					<div class="news_page_nav">
+						<?php echo $halaman; ?>
+					</div>
+
+				</div>
+
+				<!-- Sidebar Column -->
+
+				<div class="col-lg-4">
+					<div class="sidebar">
+
+						<!-- Latest Posts -->
+
+						<div class="sidebar_section">
+							<div class="sidebar_section_title">
+								<h3>Latest posts</h3>
+							</div>
+							
+							<div class="latest_posts">
+								
+								<?php  
+								foreach ($kegiatan as $k) { ?>
+									<!-- Latest Post -->
+									<div class="latest_post">
+										<div class="latest_post_image">
+											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" alt="">
+										</div>
+										<div class="latest_post_title"><a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a></div>
+										<!-- <div class="latest_post_meta">
+											<span class="latest_post_author"><a href="#">Pleh <?=$k['nama']?></a></span>
+											<span>|</span>
+											<span class="latest_post_comments"><a href="#"><?=$k['nama_lembaga']?></a></span>
+										</div> -->
+									</div>
+								<?php } ?>
+								
+							</div>
+								
+						</div>
+
+
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="clearfix"> </div>		
-	</div>	
-</div>	
-	<!--//blog-->
+	</div>

@@ -1,12 +1,11 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Edit Data Korcam
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Edit Data Korcam</li>
       </ol>
     </section>
     <section class="content">
@@ -16,11 +15,11 @@
 
     			<div class="box box-primary">
     				<div class="box-header with-border">
-    					<h3 class="box-title">Edit Data Korcam</h3>
+    					<h3 class="box-title">Form Edit Data Korcam</h3>
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_korcam" method="post">
+    				<form action="<?=base_url()?>administrator/edit_korcam/<?=$k['id_korcam']?>" method="post">
                         <?php 
                         $alm = $this->App_model->ambil_data_by_id('tb_alumni','id_alumni',$k['id_alumni']);
                         ?>
@@ -79,14 +78,6 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?=base_url()?>assets/js/jquery-ui.js"></script>

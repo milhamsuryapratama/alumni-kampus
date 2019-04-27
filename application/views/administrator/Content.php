@@ -1,12 +1,30 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Dashboard Admin
+        <?php 
+              if ($this->session->userdata('id_lembaga') == 1) {
+                   echo "FKSJ";
+              } elseif ($this->session->userdata('id_lembaga') == 2) {
+                  echo "P4NJ";
+              } else {
+                  echo "NJIC";
+              }
+          ?>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Dashboard Admin 
+          <?php 
+              if ($this->session->userdata('id_lembaga') == 1) {
+                   echo "FKSJ";
+              } elseif ($this->session->userdata('id_lembaga') == 2) {
+                  echo "P4NJ";
+              } else {
+                  echo "NJIC";
+              }
+          ?>
+        </li>
       </ol>
     </section>
     <section class="content">
@@ -59,14 +77,6 @@
     		
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <?php if ($title == "Dashboard") {
     foreach($kecamatan as $data){

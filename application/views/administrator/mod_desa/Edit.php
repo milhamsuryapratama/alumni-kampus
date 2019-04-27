@@ -1,12 +1,11 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Edit Data Desa
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Edit Data Desa</li>
       </ol>
     </section>
     <section class="content">
@@ -15,12 +14,11 @@
     			
 
     			<div class="box box-primary">
-    				<div class="box-header with-border">
-    					<h3 class="box-title">Tambah Data Prodi</h3>
-    				</div>
-    				<!-- /.box-header -->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Form Edit Data Desa</h3>
+                    </div>
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_desa" method="post">
+    				<form action="<?=base_url()?>administrator/edit_desa/<?=$p['id_desa']?>" method="post">
     					<div class="box-body">
                             <input type="hidden" name="id_desa" value="<?=$p['id_desa']?>">
                             <div class="form-group">
@@ -55,13 +53,5 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>

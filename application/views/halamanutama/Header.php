@@ -1,186 +1,175 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title><?=$title?></title>
-<link rel="icon" href="<?=base_url()?>assets/foto/logo/5cc25ceca1902.64px.ico" type="image/gif"> 
-<link href="<?=base_url()?>assets/homepages/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary JavaScript plugins) -->
-<script src="<?=base_url()?>assets/homepages/js/bootstrap.js"></script>
-<!-- Custom Theme files -->
-<link href="<?=base_url()?>assets/homepages/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<!--//theme-style-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Course Project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="University Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="<?=base_url()?>assets/homepages/js/jquery.min.js"></script>
- <script src="<?=base_url()?>assets/homepages/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/bootstrap4/bootstrap.min.css">
+<link href="<?=base_url()?>assets/homeassets/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/plugins/OwlCarousel2-2.2.1/animate.css">
+
+
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/elements_styles.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/elements_responsive.css">
+
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/news_post_styles.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/news_post_responsive.css">
+
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/main_styles.css">
+
+
+<?php if ($title == 'Visi Misi - P4NJ JEMBER' OR $title == 'Kegiatan - P4NJ JEMBER' OR $title == 'Promosi - P4NJ JEMBER') { ?>
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/news_styles.css">	
+<?php } ?>
+
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/homeassets/styles/responsive.css">
+
 
 </head>
 <body>
-<!-- banner -->
-<script src="<?=base_url()?>assets/homepages/js/responsiveslides.min.js"></script>
-<script>  
-    $(function () {
-      $("#slider").responsiveSlides({
-      	auto: true,
-      	nav: true,
-      	speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
-    });
-  </script>  
 
-<?php if ($title == 'P4NJ NURUL JADID - PAITON PROBOLINGGO') { ?>
-	<div class="banner" style="background-image: url(https://1.bp.blogspot.com/-VqalcalN6K0/WOiWJywFhFI/AAAAAAAABDE/QwVJlztTKSEIPBAGmVE2vAzq-s2sZ8s8QCLcB/s1600/jadi2.png); ">	  
-	 <div class="header">
-			 <div class="logo">
-				 <a href="<?=base_url()?>"><img src="<?=base_url()?>assets/foto/logo/p4nj.jpg" width="200" alt=""/></a>
-			 </div>
-			 <div class="top-menu">
-				 <span class="menu"></span>
-				 <ul class="navig">
-					 <li class="active"><a href="<?=base_url()?>">Home</a></li>
-					 <li><a href="<?=base_url()?>pages/visi_misi">Visi Misi</a></li>
-					 <li><a href="<?=base_url()?>pages/kegiatan">Kegiatan</a></li>
-					 <li><a href="<?=base_url()?>pages/promosi">Promosi</a></li>
-					 <!-- <li><a href="contact.html">Contact</a></li> -->
-				 </ul>
-			 </div>
-			  <!-- script-for-menu -->
-		 <script>
-				$("span.menu").click(function(){
-					$("ul.navig").slideToggle("slow" , function(){
-					});
-				});
-		 </script>
-		 <!-- script-for-menu -->
+<div class="super_container">
 
-			 <div class="clearfix"></div>
-	 </div>
-	 <div class="slider">
-		 <div class="caption">
-			 <div class="container">
-				  <div class="callbacks_container">
-					  <ul class="rslides" id="slider">
-						    <li>
-						    	<img src="https://www.nuruljadid.net/wp-content/uploads/2015/05/20170129_biografi-kh.-zaini-mun-im.png" width="200">
-						    	<h2 style="color: black; font-weight: bold;">"Orang yang hidup di Indonesia kemudian tidak melakukan perjuangan, dia telah berbuat maksiat. Orang yang memikirkan masalah pendidikannya sendiri, maka orang itu telah berbuat maksiat."</h2>
-						    	<h2 style="color: black; font-weight: bold;">KH. ZAINI MUN`IM</h2>
-						    </li>
-							<li>
-								<img src="https://www.nuruljadid.net/wp-content/uploads/2015/05/20170129_biografi-kh.-hasyim-zaini.png" width="200">
-								<h2 style="color: black; font-weight: bold;">"Jadilah orang yang berguna tanpa harus menonjolkan diri."</h2>
-								<h2 style="color: black; font-weight: bold;">KH. MOH. HASYIM ZAINI</h2>
-							</li>									
-					  </ul>	
-						<div class="clearfix"></div>
-				  </div>
-			  </div>
-		  </div>
-	  </div>
-	  <!-- <div class="banner-grids">
-		  <div class="container">
-			 <div class="col-md-4 banner-grid">
-				 <h3>Blog Feed</h3>
-				 <div class="banner-grid-sec">
-					 <div class="grid_info">
-						 <div class="blg-pic">
-							 <img src="<?=base_url()?>assets/homepages/images/m1.jpg" class="img-responsive" alt="">
-						 </div>
-						 <div class="blg-pic-info">
-							 <h4><a href="#">Vivamus tempus ligula</a></h4>
-							 <p>Aliquam sem velit, rhoncus sed arcu at curabitur et erat eu viverra.</p>
-						 </div>
-						 <div class="clearfix"></div>
-					 </div>
-					 <div class="grid_info">
-						 <div class="blg-pic">
-							 <img src="<?=base_url()?>assets/homepages/images/m2.jpg" class="img-responsive" alt="">
-						 </div>
-						 <div class="blg-pic-info">
-							 <h4><a href="#">Vivamus tempus ligula</a></h4>
-							 <p>Aliquam sem velit, rhoncus sed arcu at curabitur et erat eu viverra.</p>
-						 </div>
-						 <div class="clearfix"></div>
-					 </div>
-					 <div class="more">
-						 <a href="blog.html">See more from the Blog ></a>
-					 </div>
-				 </div>
-			 </div>
-			 <div class="col-md-4 banner-grid">
-				 <h3>News Feed</h3>
-				 <div class="banner-grid-sec">
-					 <div class="news-grid">
-						 <h4><a href="#">Vivamus tempus ligula</a></h4>
-						 <p>Aliquam sem velit, rhoncus sed arcu eu viverra.</p>
-					 </div>
-					 <div class="news-grid">
-						 <h4><a href="#">Vivamus tempus ligula</a></h4>
-						 <p>Aliquam sem velit, rhoncus sed arcu eu viverra.</p>
-					 </div>
-					 <div class="news-grid">
-						 <h4><a href="#">Vivamus tempus ligula</a></h4>
-						 <p>Aliquam sem velit, rhoncus sed arcu eu viverra.</p>
-					 </div>
-					 <div class="news-grid">
-						 <h4><a href="#">Vivamus tempus ligula</a></h4>
-						 <p>Aliquam sem velit, rhoncus sed arcu eu viverra.</p>
-					 </div>
-				 </div>
-			 </div>
-			 <div class="col-md-4 banner-grid">
-				 <h3>News Letter</h3>
-				 <div class="banner-grid-sec news_sec">
-					 <div class="news-ltr">
-						 <h4><a href="#">Pellentesque sed arcu lacinia</a></h4>
-						 <p>Aliquam sem velit, rhoncus sed arcu eu viverra. Suspendisse lacus posuere ultricies turpis.</p>
-					 </div>
-					 <form>
-						 <input type="text" placeholder="Email Address*" required="">
-						 <input type="submit" value="SEND">
-					 </form>
-				 </div>
-			 </div>
-			 <div class="clearfix"></div>
-		  </div>
-	  </div> -->
-</div>
-<?php } else { ?>
-	<div class="banner2">	  
-		<div class="header">
-			<div class="logo">
-				 <a href="<?=base_url()?>"><img src="<?=base_url()?>assets/foto/logo/p4nj.jpg" width="200" alt=""/></a>
-			 </div>
-			 <div class="top-menu">
-				 <span class="menu"></span>
-				 <ul class="navig">
-					 <li class="active"><a href="<?=base_url()?>">Home</a></li>
-					 <li><a href="<?=base_url()?>pages/visi_misi">Visi Misi</a></li>
-					 <li><a href="<?=base_url()?>pages/kegiatan">Kegiatan</a></li>
-					 <li><a href="<?=base_url()?>pages/promosi">Promosi</a></li>
-					 <!-- <li><a href="contact.html">Contact</a></li> -->
-				 </ul>
-			 </div>
-			<!-- script-for-menu -->
-			<script>
-				$("span.menu").click(function(){
-					$("ul.navig").slideToggle("slow" , function(){
-					});
-				});
-			</script>
-			<!-- script-for-menu -->
-			<div class="clearfix"></div>
-		</div>	  
+	<!-- Header -->
+
+	<header class="header d-flex flex-row">
+		<div class="header_content d-flex flex-row align-items-center">
+			<!-- Logo -->
+			<div class="logo_container">
+				<div class="logo">
+					<a href="<?=base_url()?>"><img src="<?=base_url()?>assets/foto/logo/logop4nj.png" alt="" style="width: 80px"></a>
+					<span>P4NJ JEMBER</span>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav_container">
+				<div class="main_nav">
+					<ul class="main_nav_list">
+						<li class="main_nav_item"><a href="<?=base_url()?>">Home</a></li>
+						<li class="main_nav_item"><a href="<?=base_url()?>pages/visi_misi">Visi Misi</a></li>
+						<li class="main_nav_item"><a href="<?=base_url()?>pages/kegiatan">Kegiatan</a></li>
+						<li class="main_nav_item"><a href="<?=base_url()?>pages/promosi">Promosi</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center" style="background-color: #42f46e">
+			<img src="<?=base_url()?>assets/homeassets/images/phone-call.svg" alt="">
+			<span>0888-307-8899</span>
+		</div>
+
+		<!-- Hamburger -->
+		<div class="hamburger_container">
+			<i class="fas fa-bars trans_200"></i>
+		</div>
+
+	</header>
+
+	<!-- Menu -->
+	<div class="menu_container menu_mm">
+
+		<!-- Menu Close Button -->
+		<div class="menu_close_container">
+			<div class="menu_close"></div>
+		</div>
+
+		<!-- Menu Items -->
+		<div class="menu_inner menu_mm">
+			<div class="menu menu_mm">
+				<ul class="menu_list menu_mm">
+					<li class="menu_item menu_mm"><a href="<?=base_url()?>">Home</a></li>
+					<li class="menu_item menu_mm"><a href="<?=base_url()?>pages/visi_misi">Visi Misi</a></li>
+					<li class="menu_item menu_mm"><a href="<?=base_url()?>pages/kegiatan">Kegiatan</a></li>
+					<li class="menu_item menu_mm"><a href="<?=base_url()?>pages/promosi">Promosi</a></li>
+				</ul>
+
+				<!-- Menu Social -->
+				
+				<!-- <div class="menu_social_container menu_mm">
+					<ul class="menu_social menu_mm">
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div> -->
+
+				<div class="menu_copyright menu_mm">Colorlib All rights reserved</div>
+			</div>
+
+		</div>
+
 	</div>
-<?php } ?>
+	
+	<!-- Home -->
+
+	<?php if ($title == 'P4NJ NURUL JADID - PAITON PROBOLINGGO') { ?>
+		<div class="home">
+
+			<!-- Hero Slider -->
+			<div class="hero_slider_container">
+				<div class="hero_slider owl-carousel">
+
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/04c7d0c5f1403f4d134bdf8896d9dec5.JPG)"></div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+							</div>
+						</div>
+					</div>
+
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/bbd616dd162ae4257bc7a5fe694001e7.JPG)"></div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+							</div>
+						</div>
+					</div>
+
+					<!-- Hero Slide -->
+					<div class="hero_slide">
+						<div class="hero_slide_background" style="background-image:url(http://localhost/project/assets/foto/kegiatan/c9aad70829d98320ae11b8b8ea6ecc22.JPG)"></div>
+						<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+							<div class="hero_slide_content text-center">
+								<!-- <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Get your <span>Education</span> today!</h1> -->
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
+				<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+			</div>
+
+		</div>
+	<?php } else { ?>
+		<div class="home">
+			<div class="home_background_container prlx_parent">
+				<div class="home_background prlx" style="background-image: url(http://localhost/project/assets/foto/logo/nuruljadid.png); transform: translate(0%, -15%) translate3d(0px, 0px, 0px); opacity: 0.7"></div>
+			</div>
+			<div class="home_content" style="background-color: #42f46e;">
+				<h1 style="color: black">					 
+					<?php if ($title == 'Visi Misi - P4NJ JEMBER') {
+						echo "Visi Misi";
+					} elseif ($title == 'Kegiatan - P4NJ JEMBER') {
+						echo "Kegiatan";
+					} elseif ($title == 'Promosi - P4NJ JEMBER') {
+						echo "Promosi";
+					} ?>
+				</h1>
+			</div>
+		</div>
+	<?php } ?>
+
+	

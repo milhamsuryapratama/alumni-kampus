@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
+        Data Pengurus
         <small>Version 2.0</small>
       </h1>
       <ol class="breadcrumb">
@@ -64,13 +64,6 @@
     </section>
 </div>
 
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script>
   $(function () {

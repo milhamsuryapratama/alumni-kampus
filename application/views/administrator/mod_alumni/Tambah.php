@@ -1,23 +1,21 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Tambah Data Alumni
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Tambah Data Alumni</li>
       </ol>
     </section>
     <section class="content">
     	<div class="row">
     		<div class="col-md-6">    			
 
-    			<div class="box box-primary">
-    				<div class="box-header with-border">
-    					<h3 class="box-title">Tambah Data Alumni</h3>
-    				</div>
-    				<!-- /.box-header -->
+    			<div class="box box-primary"> 
+            <div class="box-header with-border">
+              <h3 class="box-title">Form Tambah Alumni</h3>
+            </div>
     				<!-- form start -->
     				<form action="<?=base_url()?>administrator/tambah_alumni" method="post" enctype="multipart/form-data">
     					<div class="box-body">
@@ -92,17 +90,17 @@
                             <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Pekerjaan" required>
                         </div>
                         <div class="form-group">
-                            <label for="nama_lengkap">Bidang Usaha *</label>
-                            <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha" required>
+                            <label for="nama_lengkap">Bidang Usaha</label>
+                            <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha">
                         </div>
                         <div class="form-group">
-                            <label for="foto_alumni">Foto Usaha *</label>
-                            <input type="file" name="foto_usaha" class="form-control" id="foto_usaha" required>
+                            <label for="foto_alumni">Foto Usaha</label>
+                            <input type="file" name="foto_usaha" class="form-control" id="foto_usaha">
                         </div>
                         <div class="form-group">
                             <label for="nama_lengkap">Akun Facebook</label>
                             <input type="text" name="akun_fb" class="form-control" id="akun_fb" placeholder="Enter Nama Akun Facebook">
-                    </div>
+                        </div>
                     </div>
                 </div>                
             </div>
@@ -113,11 +111,12 @@
                        <div class="form-group">
                         <label for="nama_lengkap">Username * </label>
                         <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" required>
+                        <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="form-group">
                         <label for="nama_lengkap">Password *</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
-                        <small style="color: red">Password Minimal 8 Digit</small>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required> <input type="checkbox" name="lihatpwd" id="lihatpwd"> Lihat Password | 
+                        <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="form-group">
                         <label for="foto_alumni">Foto Diri *</label>
@@ -132,14 +131,6 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script>
@@ -158,13 +149,30 @@ reserved.</strong>
 			})
 		})
 
-        $("#password").on('focusout', function() {
-            if ($("#password").val().length < 8) {
-                alert('Password Harus Lebih Dari 8 Digit');
+        $("#username").on('focusout', function() {
+            if ($("#username").val().length < 3) {
+                alert('username Harus Lebih Dari 3 Digit');
                 $("#submit").attr('disabled', true);
             } else {
                 $("#submit").attr('disabled', false);
             }
+        })
+
+        $("#password").on('focusout', function() {
+            if ($("#password").val().length < 3) {
+                alert('Password Harus Lebih Dari 3 Digit');
+                $("#submit").attr('disabled', true);
+            } else {
+                $("#submit").attr('disabled', false);
+            }
+        })
+
+        $("#lihatpwd").on('click', function() {
+          if ($("#password").type === "password") {
+            $('#password').attr('type','text');
+          } else {
+            $('#password').attr('type','password');
+          }
         })
 
 	})

@@ -4,8 +4,8 @@
         Data Jabatan
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Administrator</a></li>
+        <li class="active">Data Jabatan</li>
       </ol>
     </section>
 
@@ -33,7 +33,7 @@
                 <?php } ?>
     			<div class="box box-primary">
     				<div class="box-header">
-    					<h3 class="box-title">Data Table With Full Features</h3>
+    					<h3 class="box-title">Tabel Data Jabatan</h3>
     				</div>
     				<div class="box-body">
     					<table id="example1" class="table table-bordered table-striped">
@@ -58,7 +58,7 @@
     									<td><?=$no?></td>
     									<td><?=$l['nama_jabatan']?></td>
                                         <td>
-                                            <?php if ($l['status'] == "Y") {
+                                            <?php if ($l['status_jabatan'] == "Y") {
                                                 echo "Aktif";
                                             } else {
                                                 echo "Tidak Aktif";
@@ -75,7 +75,7 @@
                                                 <button type="button" class="btn btn-default" disabled=""><i class="fa fa-align-center"></i></button>
 
                                                 <?php 
-                                                    if ($l['status'] == "Y") { ?>
+                                                    if ($l['status_jabatan'] == "Y") { ?>
                                                         <a href="<?=base_url()?>administrator/nonaktif_jabatan/<?=$l['id_jabatan']?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menonaktifkan Data Ini ?')">Nonaktifkan</a>
                                                     <?php } else { ?>
                                                         <a href="<?=base_url()?>administrator/aktifkan_jabatan/<?=$l['id_jabatan']?>" class="btn btn-success" onclick="return confirm('Anda Yakin Ingin Mengaktifkan Data Ini ?')">Aktifkan</a>
@@ -93,13 +93,6 @@
     </section>
 </div>
 
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script>
   $(function () {

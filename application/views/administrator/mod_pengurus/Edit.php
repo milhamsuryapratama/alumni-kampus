@@ -20,7 +20,7 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/edit_pengurus" method="post">
+    				<form action="<?=base_url()?>administrator/edit_pengurus/<?=$p['id_pengurus']?>" method="post">
                         <input type="hidden" name="id_pengurus" value="<?=$p['id_pengurus']?>">
     					<div class="box-body">
     						<div class="col-sm-6">
@@ -71,14 +71,6 @@
     	</div>
     </section>
 </div>
-
-<footer class="main-footer">
-	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.4.0
-	</div>
-	<strong>Copyright © 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-reserved.</strong>
-</footer>
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?=base_url()?>assets/js/jquery-ui.js"></script>
