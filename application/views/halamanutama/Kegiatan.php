@@ -11,9 +11,14 @@
 					<div class="news_posts">
 						<!-- News Post -->
 						<?php  
-						foreach ($kegiatan_cari as $k) { 
-							if (count($kegiatan_cari) > 0) { ?>
-								<div class="news_post">
+						foreach ($kegiatan_cari as $k) {  
+								if ($k['author'] == 0) {
+									$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
+								} else {
+									$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+								}
+							?>
+							<div class="news_post">
 									<div class="news_post_image">
 										<img src="<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>" alt="">
 									</div>
@@ -29,12 +34,17 @@
 												<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>"><?=$k['judul_kegiatan']?></a>
 											</div>
 											<div class="news_post_meta">
-												<span class="news_post_author">Oleh <?=$k['nama']?></span>
+												<span class="news_post_author">Oleh <?php 
+													if ($k['author'] == 0) {
+														echo $ad['username'];
+													} else {
+														echo $ad['nama'];
+													}
+												?></span>
 												<span>|</span>
-												<span class="news_post_comments">Lembaga : <a href="<?=base_url()?>kegiatan/Lembaga/<?=$k['id_lembaga_alumni']?>"><?=$k['nama_lembaga']?></a></span>
+												<span class="news_post_comments">Lembaga : <a href="<?=base_url()?>kegiatan/lembaga/<?=$k['id_lembaga_alumni']?>"><?=$k['nama_lembaga']?></a></span>
 												<span>|</span>
 												<span class="news_post_author">Pada <?=date('d F Y', strtotime($k['tanggal_posting']))?></span>
-												<span>|</span>
 											</div>
 										</div>
 									</div>
@@ -45,12 +55,13 @@
 										<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>">Read More</a>
 									</div>
 								</div>
-							<?php } else { ?>
-									<center><h2>Hasil Tidak Ditemukan</h2></center>
-							<?php } ?>
 
 						<?php } ?>
 
+							<?php  
+							if (count($kegiatan_cari) == 0) { ?>
+								<center><h2>Hasil Tidak Ditemukan</h2></center>
+							<?php } ?>
 					</div>
 
 					<!-- Page Nav -->					

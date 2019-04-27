@@ -268,7 +268,7 @@ class Administrator extends CI_Controller
 	public function get_desa()
 	{
 		$id = $this->input->post('id');
-		$desa = $this->App_model->ambil_data_by_id_result('tb_desa', 'id_kecamatan', $id);
+		$desa = $this->App_model->ambil_data_by_id_result('tb_desa', 'id_kecamatan', $id,'id_desa');
 		$this->output->set_content_type('application/json')->set_output(json_encode($desa));
 	}
 
@@ -773,8 +773,8 @@ class Administrator extends CI_Controller
 	public function kegiatan()
 	{
 		//$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni',$this->session->userdata('id_petugas'));
-		$data['kegiatan'] = $this->App_model->join_dua_table_by_id('tb_kegiatan','tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_kegiatan.id_kegiatan','tb_kegiatan.id_lembaga_alumni',$this->session->userdata('id_lembaga'));
-		// $data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni', $this->session->userdata('id_lembaga'));
+		// $data['kegiatan'] = $this->App_model->join_dua_table_by_id('tb_kegiatan','tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_kegiatan.id_kegiatan','tb_kegiatan.id_lembaga_alumni',$this->session->userdata('id_lembaga'));
+		$data['kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan', 'id_lembaga_alumni', $this->session->userdata('id_lembaga'),'tb_kegiatan.id_kegiatan');
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -802,8 +802,8 @@ class Administrator extends CI_Controller
 	        	$config['create_thumb'] = FALSE;
 	        	$config['maintain_ratio'] = FALSE;
 	        	$config['quality'] = '50%';
-	        	$config['width'] = 1600;
-	        	$config['height'] = 681;
+	        	$config['width'] = 1280;
+	        	$config['height'] = 720;
 	        	$config['new_image'] = 'assets/foto/kegiatan/'.$file_name['file_name'];
 	        	$this->load->library('image_lib', $config);
 	        	$this->image_lib->resize();
@@ -925,6 +925,7 @@ class Administrator extends CI_Controller
 	        } else {
 	        	$data_kegiatan = array(
 		        	'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+		        	'slug' => url_title($this->input->post('judul_kegiatan'), 'dash', TRUE),
 		        	'deskripsi' => $this->input->post('deskripsi'),
 		        	'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
 		        	'foto_kegiatan' => $file_name['file_name'],

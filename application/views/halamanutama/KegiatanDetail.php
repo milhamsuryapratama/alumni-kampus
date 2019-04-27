@@ -24,11 +24,17 @@
 										<h1 style="color: black"><?=$dt['judul_kegiatan']?></h1>
 									</div>
 									<div class="news_post_meta">
-										<span class="news_post_author"><a href="#">Oleh <?=$dt['nama']?></a></span>
+										<span class="news_post_author">Oleh <?php if ($dt['author'] == 0) {
+											$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
+											echo $ad['username'];
+										} else {
+											$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
+											echo $ad['nama'];
+										} ?></span>
 										<span>|</span>
-										<span class="news_post_comments"><a href="#">Lembaga <?=$dt['nama_lembaga']?></a></span>
+										<span class="news_post_comments">Lembaga <a href="<?=base_url()?>kegiatan/lembaga/<?=$dt['id_lembaga_alumni']?>"> <?=$dt['nama_lembaga']?></a></span>
 										<span>|</span>
-										<span class="news_post_comments"><a href="#">Pada <?=date('d F Y', strtotime($dt['tanggal_posting']))?></a></span>
+										<span class="news_post_comments">Pada <?=date('d F Y', strtotime($dt['tanggal_posting']))?></span>
 									</div>
 								</div>
 							</div>

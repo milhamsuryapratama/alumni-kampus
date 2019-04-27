@@ -8,7 +8,10 @@ class Kegiatan extends CI_Controller
 	public function detail($slug)
 	{		
 		$data['kegiatan'] = $this->App_model->ambil_data_limit_recent('tb_kegiatan','id_kegiatan');
-		$data['dt'] = $this->App_model->join_lima_table_by_id_row('tb_kegiatan','tb_alumni','tb_kecamatan','tb_desa','tb_lembaga_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan','tb_alumni.id_desa = tb_desa.id_desa','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.slug',$slug);		
+		// $data['dt'] = $this->App_model->join_lima_table_by_id_row('tb_kegiatan','tb_alumni','tb_kecamatan','tb_desa','tb_lembaga_alumni','tb_kegiatan.author = tb_alumni.id_alumni','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan','tb_alumni.id_desa = tb_desa.id_desa','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.slug',$slug);				
+
+		$data['dt'] = $this->App_model->join_dua_table_by_id_row('tb_kegiatan','tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.slug',$slug);
+
 		$data['title'] = $data['dt']['judul_kegiatan']." - P4NJ JEMBER";
 
 		$this->load->view('halamanutama/Header', $data);
@@ -20,7 +23,7 @@ class Kegiatan extends CI_Controller
 	{
 		$data['title'] = "Kegiatan - P4NJ JEMBER";
 		// $data['kegiatan'] = $this->App_model->ambil_data_limit_recent('tb_kegiatan','id_kegiatan');
-		$data['jml_kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan','id_lembaga_alumni',$id);
+		$data['jml_kegiatan'] = $this->App_model->ambil_data_by_id_result('tb_kegiatan','id_lembaga_alumni',$id,'id_kegiatan');
 		$jml = count($data['jml_kegiatan']);
 
 		$data['offset']=$offset;

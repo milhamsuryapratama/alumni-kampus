@@ -47,7 +47,6 @@ class App_model extends CI_Model
     {
         $query = $this->db->select('*')
                           ->from('tb_kegiatan')
-                          ->join('tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni')
                           ->join('tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni')
                           ->like('tb_kegiatan.judul_kegiatan', $keyword)
                           ->order_by('tb_kegiatan.id_kegiatan', 'DESC')
@@ -59,7 +58,6 @@ class App_model extends CI_Model
     {
         $query = $this->db->select('*')
                           ->from('tb_kegiatan')
-                          ->join('tb_alumni','tb_kegiatan.author = tb_alumni.id_alumni')
                           ->join('tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni')
                           ->where('tb_kegiatan.id_lembaga_alumni', $id)
                           ->order_by('id_kegiatan', 'DESC')
@@ -82,9 +80,9 @@ class App_model extends CI_Model
     	return $this->db->get_where($table, array($field => $id))->row_array();
     }
 
-    public function ambil_data_by_id_result($table, $field, $id)
+    public function ambil_data_by_id_result($table, $field, $id, $order)
     {
-    	return $this->db->get_where($table, array($field => $id))->result_array();
+    	return $this->db->order_by($order, 'DESC')->get_where($table, array($field => $id))->result_array();
     }
 
     public function hapus_data($table,$field,$params)

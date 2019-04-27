@@ -55,7 +55,13 @@
 			<div class="row course_boxes">
 
 				<?php  
-				foreach ($kegiatan as $k) { ?>
+				foreach ($kegiatan as $k) { 
+					if ($k['author'] == 0) {
+						$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
+					} else {
+						$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
+					}
+					?>
 					<!-- Popular Course Item -->
 					<div class="col-lg-4 course_box">
 						<div class="card">
@@ -66,9 +72,15 @@
 							</div>
 							<div class="price_box d-flex flex-row align-items-center">
 								<div class="course_author_image">
-									<img src="<?=base_url()?>assets/foto/alumni/<?=$k['foto']?>" alt="">
+									<?php if ($k['author'] == 0) { ?>
+										<img src="<?=base_url()?>assets/foto/logo/logop4nj.png" alt="" width="50">
+									<?php } else { ?>
+										<img src="<?=base_url()?>assets/foto/alumni/<?=$ad['foto']?>" alt="">
+									<?php } ?>									
 								</div>
-								<div class="course_author_name">Ditulis Oleh <?=$k['nama']?>, <span>Pengurus <?=$k['nama_lembaga']?></span></div>
+								<div class="course_author_name">Oleh <?php if ($k['author'] == 0) {
+									echo $ad['username'];
+								} else { echo $ad['nama']; } ?>, <span>Pengurus <?=$k['nama_lembaga']?></span></div>
 								<!-- <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>Baca</span></div> -->
 							</div>
 						</div>

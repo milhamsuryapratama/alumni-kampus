@@ -35,12 +35,18 @@
     						<tbody>
     							<?php 
     							$no = 1 ;
-    							foreach ($kegiatan as $l) { ?>
+    							foreach ($kegiatan as $l) { 
+                                    if ($l['author'] == 0) {
+                                        $ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
+                                    } else {
+                                        $ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$l[author]'")->row_array();
+                                    }
+                                    ?>
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$l['judul_kegiatan']?></td>
                                         <td><?=$l['jenis_kegiatan']?></td>
-                                        <td><?=$l['nama']?></td>
+                                        <td><?=$l['author'] == 0 ? $ad['username'] : $ad['nama']?></td>
     									<td>
                                             <div class="btn-group">
                                                 <a href="<?=base_url()?>administrator/edit_kegiatan/<?=$l['id_kegiatan']?>?lembaga=<?=$this->session->userdata('nama_lembaga')?>" class="btn btn-success">Edit</a>

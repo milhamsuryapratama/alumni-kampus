@@ -131,8 +131,8 @@
 
 				</div>
 
-				<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
-				<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+				<div class="hero_slider_left hero_slider_nav trans_200" style="background-color: #42f46e"><span class="trans_200">prev</span></div>
+				<div class="hero_slider_right hero_slider_nav trans_200" style="background-color: #42f46e"><span class="trans_200">next</span></div>
 			</div>
 
 		</div>
