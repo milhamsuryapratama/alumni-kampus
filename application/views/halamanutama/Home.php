@@ -59,8 +59,8 @@
 					if ($k['author'] == 0) {
 						$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
 					} else {
-						$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
-						if (count($adm) > 0) {
+						$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'");
+						if ($adm->num_rows() > 0) {
 							$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$k[author]'")->row_array();
 						} else {
 							$ad = $this->db->query("SELECT * FROM anggota_fks WHERE nis = '$k[author]'")->row_array();
@@ -80,7 +80,7 @@
 									<?php if ($k['author'] == 0) { ?>
 										<img src="<?=base_url()?>assets/foto/logo/logop4nj.png" alt="" width="50">
 									<?php } else { 
-											if (count($adm) > 0) { ?>
+											if ($adm->num_rows() > 0) { ?>
 												<img src="<?=base_url()?>assets/foto/alumni/<?=$ad['foto']?>" alt="">
 											<?php } else { ?>
 												<img src="<?=base_url()?>assets/foto/logo/logofksj.png" alt="" width="45">

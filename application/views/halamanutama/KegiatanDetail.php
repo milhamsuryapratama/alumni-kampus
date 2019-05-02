@@ -28,8 +28,8 @@
 											$ad = $this->db->query("SELECT * FROM administrator WHERE id = '1'")->row_array();
 											echo $ad['username'];
 										} else {
-											$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
-											if (count($adm) > 0) {
+											$adm = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'");
+											if ($adm->num_rows() > 0) {
 												$ad = $this->db->query("SELECT * FROM tb_alumni WHERE id_alumni = '$dt[author]'")->row_array();
 												echo $ad['nama'];
 											} else {
