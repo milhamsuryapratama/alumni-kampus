@@ -86,8 +86,12 @@
                 <div class="box box-primary">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="no_hp">Pekerjaan *</label>
+                            <label for="pekerjaan">Pekerjaan *</label>
                             <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Pekerjaan" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="nama_usaha">Nama Usaha</label>
+                          <input type="text" name="nama_usaha" class="form-control" id="nama_usaha" placeholder="Enter Nama Usaha">
                         </div>
                         <div class="form-group">
                             <label for="nama_lengkap">Bidang Usaha</label>

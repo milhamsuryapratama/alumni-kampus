@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Apr 2019 pada 18.13
+-- Generation Time: 02 Mei 2019 pada 07.04
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -85,6 +85,7 @@ CREATE TABLE `tb_alumni` (
   `thn_mondok` char(4) NOT NULL,
   `thn_keluar` char(4) NOT NULL,
   `pekerjaan` varchar(20) NOT NULL,
+  `nama_usaha` varchar(100) NOT NULL,
   `bidang_usaha` varchar(20) NOT NULL,
   `akun_fb` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -98,18 +99,22 @@ CREATE TABLE `tb_alumni` (
 -- Dumping data untuk tabel `tb_alumni`
 --
 
-INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`) VALUES
-(2, '1212', 'User Alumni', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni', '12345', '', ''),
-(3, '1212', 'User Alumni korcam', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni2', '12345', '', ''),
-(4, '1212', 'User Alumni Pengurus', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni3', '111111', '', ''),
-(5, '3513172111980001', 'Luthfi Nurul H', 4, 6, 'skldjfgdhbk', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'luthfi', 'blogsayailham@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', '4fd488116cc3a1db3615587b4dd1faee.jpg', '2b5e4a7001459ad762aba634f3567436.jpg'),
-(6, '3513172111980005', 'Junaidi', 6, 9, 'Maron Wetan', '085337665221', '2005', '2010', 'Pengusaha', 'Pengusaha', 'junaidi', 'junaidi@gmail.com', 'junaidi', 'a708cb9bebf84a140d408a8251450091', 'a154f06b7e7275a572a4c531aef8c508.jpg', ''),
-(7, '3513172111980008', 'kokola', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'koko', 'kokoba@gmail.com', 'koko', '37f525e2b6fc3cb4abd882f708ab80eb', 'f777d789e4d08d75aca9f1e2595c6702.jpg', ''),
-(8, '3513172111980009', 'yoyo', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', 'Pengusaha', 'yoyo', 'yoyo@gmail.com', 'yoyo', '48dc8d29308eb256edc76f25def07251', 'cdb7cfcf39ba7a6c76245f47865455a7.png', ''),
-(9, '555', 'fffffffff', 4, 6, 'klhdfkhdgkjhfkjgh', '111222333444', '2016', '2020', 'Pengusaha', 'Pengusaha', 'kjdfdfdf', 'dfg@gmail.com', 'oo', 'e47ca7a09cf6781e29634502345930a7', 'a8a33ad58e60beaeecd3fece00f02008.jpg', ''),
-(10, '11111', 'bbb', 6, 9, 'bbb', '085337665221', '2007', '2018', 'Pengusaha', 'Pengusaha', 'bbb', 'bbb@gmail.com', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', '', ''),
-(11, '565656', 'ttto', 6, 10, 'ttt', '085337665221', '2009', '2018', 'Pengusaha', 'Pengusaha', 'ttt', 'ttt@gmail.com', 'ttt', '9990775155c3518a0d7917f7780b24aa', '', ''),
-(12, '3513170512980001', 'Aldo Rivaldo', 6, 9, 'Dusun Krajan II RT 01 RW 003', '085233876551', '2003', '2010', 'Wiraswasta', 'Konveksi', 'Aldo Rivaldo', 'aldorivaldo21@gmail.com', 'aldo', '980549e2439b09286008085ea0285b59', '73d8a53332beff12d23e914115da67f5.jpg', 'ab99697c392960c1d18b3f4fb128aa60.jpg');
+INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `nama_usaha`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`) VALUES
+(2, '1212', 'User Alumni', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', '', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni', '12345', '', ''),
+(3, '1212', 'User Alumni korcam', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', '', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni2', '12345', '', ''),
+(4, '1212', 'User Alumni Pengurus', 1, 1, 'Tongas', '082336181538', '2012', '2022', 'mengabdi', '', 'marketing', 'sholeh argas', 'sholeh@gmail.com', 'alumni3', '111111', '', ''),
+(5, '3513172111980001', 'Luthfi Nurul H', 4, 6, 'skldjfgdhbk', '085337665221', '2016', '2020', 'Pengusaha', '', 'Pengusaha', 'luthfi', 'blogsayailham@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', '4fd488116cc3a1db3615587b4dd1faee.jpg', '2b5e4a7001459ad762aba634f3567436.jpg'),
+(6, '3513172111980005', 'Junaidi', 6, 9, 'Maron Wetan', '085337665221', '2005', '2010', 'Pengusaha', '', 'Pengusaha', 'junaidi', 'junaidi@gmail.com', 'junaidi', 'a708cb9bebf84a140d408a8251450091', 'a154f06b7e7275a572a4c531aef8c508.jpg', ''),
+(7, '3513172111980008', 'kokola', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', '', 'Pengusaha', 'koko', 'kokoba@gmail.com', 'koko', '37f525e2b6fc3cb4abd882f708ab80eb', 'f777d789e4d08d75aca9f1e2595c6702.jpg', ''),
+(8, '3513172111980009', 'yoyo', 2, 3, 'Maron', '085337665221', '2016', '2020', 'Pengusaha', '', 'Pengusaha', 'yoyo', 'yoyo@gmail.com', 'yoyo', '48dc8d29308eb256edc76f25def07251', 'cdb7cfcf39ba7a6c76245f47865455a7.png', ''),
+(9, '555', 'fffffffff', 4, 6, 'klhdfkhdgkjhfkjgh', '111222333444', '2016', '2020', 'Pengusaha', '', 'Pengusaha', 'kjdfdfdf', 'dfg@gmail.com', 'oo', 'e47ca7a09cf6781e29634502345930a7', 'a8a33ad58e60beaeecd3fece00f02008.jpg', ''),
+(10, '11111', 'bbb', 6, 9, 'bbb', '085337665221', '2007', '2018', 'Pengusaha', '', 'Pengusaha', 'bbb', 'bbb@gmail.com', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', '', ''),
+(11, '565656', 'ttto', 6, 10, 'ttt', '085337665221', '2009', '2018', 'Pengusaha', '', 'Pengusaha', 'ttt', 'ttt@gmail.com', 'ttt', '9990775155c3518a0d7917f7780b24aa', '', ''),
+(12, '3513170512980001', 'Aldo Rivaldo', 6, 10, 'Dusun Krajan II RT 01 RW 003', '085233876551', '2003', '2010', 'Wiraswasta', 'Rumah Baju', 'Konveksi', 'Aldo Rivaldo', 'aldorivaldo21@gmail.com', 'aldo', '980549e2439b09286008085ea0285b59', '73d8a53332beff12d23e914115da67f5.jpg', 'ab99697c392960c1d18b3f4fb128aa60.jpg'),
+(13, '3513170512980021', 'Indra Irawanto', 4, 7, 'Dusun Krajan RT 003 RW 001', '085337665222', '2005', '2010', 'Wiraswasta', 'Indra Cell', 'Jual Pulsa', '', 'indrairawanto@gmail.com', 'indra', 'e24f6e3ce19ee0728ff1c443e4ff488d', '8bee631818f71c11b8b7504c18bd283e.jpg', '2af035058b9890986392250f06a87cc5.jpg'),
+(14, '3513170512980025', 'Komarudin', 6, 10, 'Dusun Krajan II RT 011 RW 003', '085337665225', '2005', '2019', 'Wiraswasta', 'Warung Padang', 'Kuliner', '', 'komarudin@gmail.com', 'komarudin', 'cf9a49b6e819aec9fef10c1226e22557', 'bef027810528c3ca4a1ae8f835f67942.jpg', 'd9508995ca347e5ce929f0af78fa6ed4.jpg'),
+(15, '3513170512980027', 'Maman Manjos', 2, 4, 'Dusun Manja RT 001 RW 003', '085337665212', '2005', '2018', 'Wiraswasta', 'Warung Nasi Ayam', 'Kuliner', '', 'mamanmanjos@gmail.com', 'manjos', '1185cd45377c56ca42a8e324eea8cab5', 'ayam1.jpg', 'nasi_ayam1.jpg'),
+(16, '35131721119800234', 'Edi Suharianto', 1, 2, 'Dusun Krajan III RT 009 RW 001', '085337665333', '2005', '2010', 'Wiraswasta', 'Rental PS', 'Playstation', '', 'edi.suharianto@gmail.com', 'edisuhar', 'c55b66c5eabaae551d4224ac5cfc3e0e', 'e90127f2920caf2f2bb62debdc0eb3d4.jpg', '32f39d8be01ea5e04b3236f1073817ef.jpg');
 
 -- --------------------------------------------------------
 
@@ -304,17 +309,20 @@ CREATE TABLE `tb_lembaga_alumni` (
   `id_lembaga_alumni` int(11) NOT NULL,
   `nama_lembaga` varchar(50) NOT NULL,
   `status` enum('Y','N') NOT NULL,
-  `logo` varchar(100) NOT NULL
+  `logo` varchar(100) NOT NULL,
+  `alamat_lembaga` text NOT NULL,
+  `telepon_lembaga` char(12) NOT NULL,
+  `email_lembaga` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_lembaga_alumni`
 --
 
-INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`, `logo`) VALUES
-(1, 'FKSJ', 'Y', 'logofksj.png'),
-(2, 'P4NJ', 'Y', 'logop4nj.png'),
-(3, 'NJIC', 'Y', 'logonjic.png');
+INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`, `logo`, `alamat_lembaga`, `telepon_lembaga`, `email_lembaga`) VALUES
+(1, 'FKSJ', 'Y', 'logofksj.png', '', '', ''),
+(2, 'P4NJ', 'Y', 'logop4nj.png', 'Jember', '00099988777', 'p4nj@gmail.com'),
+(3, 'NJIC', 'Y', 'logonjic.png', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -617,7 +625,7 @@ ALTER TABLE `anggota_fks`
 -- AUTO_INCREMENT for table `tb_alumni`
 --
 ALTER TABLE `tb_alumni`
-  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tb_desa`
 --

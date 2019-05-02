@@ -106,13 +106,17 @@
                             <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Enter Nomor Handphone" value="<?=$a['pekerjaan']?>" required>
                         </div>
                         <div class="form-group">
+                          <label for="nama_usaha">Nama Usaha</label>
+                          <input type="text" name="nama_usaha" class="form-control" id="nama_usaha" placeholder="Enter Nama Usaha">
+                        </div>
+                        <div class="form-group">
                             <label for="bidang_usaha">Bidang Usaha</label>
                             <input type="text" name="bidang_usaha" class="form-control" id="bidang_usaha" placeholder="Enter Bidang Usaha" value="<?=$a['bidang_usaha']?>">
                         </div>
                         <div class="form-group">
                             <label for="bidang_usaha">Ganti Foto Usaha (bila perlu)</label>
                             <input type="file" name="foto_usaha" class="form-control" id="foto_alumni">
-                            <small>Foto Usaha Lihat <a href="<?=base_url()?>assets/foto/alumni/<?=$a['foto_usaha']?>" target="blank">disini</a></small>
+                            <small>Foto Usaha Lihat <a href="<?=base_url()?>assets/foto/foto_usaha/<?=$a['foto_usaha']?>" target="blank">disini</a></small>
                         </div>
                         <div class="form-group">
                             <label for="akun_fb">Akun Facebook</label>

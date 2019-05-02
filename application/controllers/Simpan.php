@@ -1,5 +1,6 @@
 <?php 
 class Simpan extends CI_Controller{
+	
 	function __construct(){
 		parent::__construct();
 	}
@@ -55,13 +56,12 @@ class Simpan extends CI_Controller{
    		 $username = $this->input->post('username');
 		 $password =$this->input->post('password');
 		  $passwordx = md5($password);
-		 $foto = $this->input->post('foto');
-
+		
 
 		 	// $data['Hasil'] = $this->db->query("INSERT INTO tb_alumni (no_ktp,nama,id_kecamatan,id_desa,alamat,telepon,thn_mondok,thn_keluar,pekerjaan,bidang_usaha,akun_fb,email,username,password,foto) VALUES ('$no_ktp','$nama','$id_kecamatan','$id_desa','$alamat','$telepon','$thn_mondok','$thn_keluar','$pekerjaan','$bidang_usaha','$akun_fb','$email','$username','$password','$foto')");
 
 
-		 	$data['Hasil'] = $this->db->query("UPDATE tb_alumni SET no_ktp = '$no_ktp',  nama = '$nama' ,  id_kecamatan='$id_kecamatan',id_desa='$id_desa', alamat='$alamat', telepon='$telepon', thn_mondok ='$thn_mondok', thn_keluar ='$thn_keluar', pekerjaan='$pekerjaan', bidang_usaha='$bidang_usaha',  akun_fb='$akun_fb', email='$email', username = '$username', password='$passwordx', foto='$foto' WHERE id_alumni = '$id_alumni'");
+		 	$data['Hasil'] = $this->db->query("UPDATE tb_alumni SET no_ktp = '$no_ktp',  nama = '$nama' ,  id_kecamatan='$id_kecamatan',id_desa='$id_desa', alamat='$alamat', telepon='$telepon', thn_mondok ='$thn_mondok', thn_keluar ='$thn_keluar', pekerjaan='$pekerjaan', bidang_usaha='$bidang_usaha',  akun_fb='$akun_fb', email='$email', username = '$username', password='$passwordx' WHERE id_alumni = '$id_alumni'");
 
 		$data['success'] = 1;
 

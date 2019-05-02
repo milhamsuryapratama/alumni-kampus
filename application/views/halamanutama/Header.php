@@ -59,9 +59,12 @@
 				</div>
 			</nav>
 		</div>
+		<?php  
+		$dl = $this->db->query("SELECT * FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '2' ")->row_array();
+		?>
 		<div class="header_side d-flex flex-row justify-content-center align-items-center" style="background-color: #42f46e">
 			<img src="<?=base_url()?>assets/homeassets/images/phone-call.svg" alt="">
-			<span>0888-307-8899</span>
+			<span><?=$dl['telepon_lembaga']?></span>
 		</div>
 
 		<!-- Hamburger -->

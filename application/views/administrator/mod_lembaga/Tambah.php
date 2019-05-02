@@ -19,12 +19,28 @@
     				</div>
     				<!-- /.box-header -->
     				<!-- form start -->
-    				<form action="<?=base_url()?>administrator/tambah_lembaga" method="post">
+    				<form action="<?=base_url()?>administrator/tambah_lembaga" method="post" enctype="multipart/form-data">
     					<div class="box-body">
     						<div class="form-group">
     							<label for="nama_lembaga">Nama Lembaga</label>
     							<input type="text" name="nama_lembaga" class="form-control" id="nama_lembaga" placeholder="Enter Nama Lembaga">
     						</div>
+                            <div class="form-group">
+                                <label for="alamat_lembaga">Alamat Lembaga</label>
+                                <textarea name="alamat_lembaga" id="alamat_lembaga" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email_lembaga">Email</label>
+                                <input type="email" name="email_lembaga" id="email_lembaga" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="telepon_lembaga">Telepon</label>
+                                <input type="text" name="telepon_lembaga" id="telepon_lembaga" class="form-control">
+                            </div> 
+                            <div class="form-group">
+                                <label for="logo_lembaga">Logo</label>
+                                <input type="file" name="logo_lembaga" id="logo_lembaga" class="form-control">
+                            </div>
     					</div>
     					<!-- /.box-body -->
 

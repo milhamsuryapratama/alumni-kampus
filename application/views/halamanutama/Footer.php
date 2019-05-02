@@ -91,16 +91,19 @@
 									</div>
 									Blvd Libertad, 34 m05200 Arévalo
 								</li> -->
+								<?php  
+								$dl = $this->db->query("SELECT * FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '2' ")->row_array();
+								?>
 								<li class="footer_contact_item" style="color: black">
 									<div class="footer_contact_icon">
-										<img src="<?=base_url()?>assets/homeassets/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+										<img src="<?=base_url()?>assets/homeassets/images/smartphone.svg" >
 									</div>
-									0888-307-8899
+									<?=$dl['telepon_lembaga']?>
 								</li>
 								<li class="footer_contact_item" style="color: black">
 									<div class="footer_contact_icon">
-										<img src="<?=base_url()?>assets/homeassets/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div>sekretariat.nj@gmail.com
+										<img src="<?=base_url()?>assets/homeassets/images/envelope.svg" >
+									</div> <?=$dl['email_lembaga']?>
 								</li>
 							</ul>
 						</div>

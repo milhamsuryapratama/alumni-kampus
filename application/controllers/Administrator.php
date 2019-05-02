@@ -70,47 +70,72 @@ class Administrator extends CI_Controller
 
 		if (isset($_POST['submit'])) {
 
-			$config['upload_path'] = 'assets/foto/alumni';
-	        $config['allowed_types'] = '*';
-	        $config['encrypt_name'] = TRUE;
+			//upload foto diri
+			$config = array();
+		    $config['upload_path'] = 'assets/foto/alumni';
+		    $config['allowed_types'] = 'jpg|png|';	
+		    $config['encrypt_name'] = TRUE;	    
+		    $this->load->library('upload', $config, 'upload_foto_diri');
+ 		    $this->upload_foto_diri->initialize($config);
+		    $diri = $this->upload_foto_diri->do_upload('foto_alumni');
 
-	        $this->load->library('upload', $config);
-	        $this->upload->do_upload('foto_alumni');
-	        $file_name = $this->upload->data();
+		    //upload foto usaha
+		    $config = array();
+		    $config['upload_path'] = 'assets/foto/foto_usaha';
+		    $config['allowed_types'] = 'jpg|png|';		
+		    $config['encrypt_name'] = TRUE;    
+		    $this->load->library('upload', $config, 'upload_foto_usaha');
+ 		    $this->upload_foto_usaha->initialize($config);
+		    $usaha_foto = $this->upload_foto_usaha->do_upload('foto_usaha');
 
-	        $config['upload_path'] = 'assets/foto/foto_usaha';
-	        $config['allowed_types'] = '*';
-	        $config['encrypt_name'] = TRUE;
+			// $config['upload_path'] = 'assets/foto/alumni';
+	  //       $config['allowed_types'] = '*';
+	  //       $config['encrypt_name'] = TRUE;
 
-	        $this->load->library('upload', $config);
-	        $this->upload->do_upload('foto_usaha');
-	        $ush = $this->upload->data();
+	  //       $this->load->library('upload', $config);
+	  //       $this->upload->do_upload('foto_alumni');
+	  //       $file_name = $this->upload->data();
 
-			$data_alumni = array(
-				'no_ktp' => $this->input->post('no_ktp'),
-				'nama' => $this->input->post('nama_lengkap'),
-				'email' => $this->input->post('email'),
-				'alamat' => $this->input->post('alamat'),
-				'id_kecamatan' => $this->input->post('kecamatan'),
-				'id_desa' => $this->input->post('desa'),
-				'thn_mondok' => $this->input->post('tahun_masuk'),
-				'thn_keluar' => $this->input->post('tahun_lulus'),
-				'telepon' => $this->input->post('telepon'),
-				'pekerjaan' => $this->input->post('pekerjaan'),
-				'bidang_usaha' => $this->input->post('bidang_usaha'),
-				'akun_fb' => $this->input->post('akun_fb'),
-				'username' => $this->input->post('username'),
-				'password' => md5($this->input->post('password')),
-				'foto' => $file_name['file_name'],
-				'foto_usaha' => $ush['file_name']
-			);
+	        // $config['upload_path'] = 'assets/foto/foto_usaha';
+	        // $config['allowed_types'] = '*';
+	        // $config['encrypt_name'] = TRUE;
 
-			$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
+	        // $this->load->library('upload', $config);
+	        // $this->upload->do_upload('foto_usaha');
+	        // $ush = $this->upload->data();
 
-			if ($query) {
-				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
-				redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
-			}
+	        if ($diri && $usaha_foto) {
+	        	$file_name = $this->upload_foto_diri->data();
+	        	$ush = $this->upload_foto_usaha->data();
+
+	        	$data_alumni = array(
+	        		'no_ktp' => $this->input->post('no_ktp'),
+	        		'nama' => $this->input->post('nama_lengkap'),
+	        		'email' => $this->input->post('email'),
+	        		'alamat' => $this->input->post('alamat'),
+	        		'id_kecamatan' => $this->input->post('kecamatan'),
+	        		'id_desa' => $this->input->post('desa'),
+	        		'thn_mondok' => $this->input->post('tahun_masuk'),
+	        		'thn_keluar' => $this->input->post('tahun_lulus'),
+	        		'telepon' => $this->input->post('telepon'),
+	        		'pekerjaan' => $this->input->post('pekerjaan'),
+	        		'nama_usaha' => $this->input->post('nama_usaha'),
+	        		'bidang_usaha' => $this->input->post('bidang_usaha'),
+	        		'akun_fb' => $this->input->post('akun_fb'),
+	        		'username' => $this->input->post('username'),
+	        		'password' => md5($this->input->post('password')),
+	        		'foto' => $file_name['file_name'],
+	        		'foto_usaha' => $ush['file_name']
+	        	);
+
+	        	$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
+
+	        	if ($query) {
+	        		$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+	        		redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+	        	}
+	        }			
+			
 		} else {
 			if ($this->session->userdata('id_lembaga') != 2) {
 				redirect(base_url().'administrator/error');
@@ -137,17 +162,35 @@ class Administrator extends CI_Controller
 			$foto_diri = $_FILES['foto_alumni']['name'];
 			$foto_usaha = $_FILES['foto_usaha']['name'];
 
-			$config['upload_path'] = 'assets/foto/alumni';
-	        $config['allowed_types'] = '*';
-	        $config['encrypt_name'] = TRUE;
+			//upload foto diri
+			$config = array();
+		    $config['upload_path'] = 'assets/foto/alumni';
+		    $config['allowed_types'] = 'jpg|png|';	
+		    $config['encrypt_name'] = TRUE;	    
+		    $this->load->library('upload', $config, 'upload_foto_diri');
+ 		    $this->upload_foto_diri->initialize($config);
+		    $diri = $this->upload_foto_diri->do_upload('foto_alumni');
 
-	        $this->load->library('upload', $config);
+		    //upload foto usaha
+		    $config = array();
+		    $config['upload_path'] = 'assets/foto/foto_usaha';
+		    $config['allowed_types'] = 'jpg|png|';		
+		    $config['encrypt_name'] = TRUE;    
+		    $this->load->library('upload', $config, 'upload_foto_usaha');
+ 		    $this->upload_foto_usaha->initialize($config);
+		    $usaha_foto = $this->upload_foto_usaha->do_upload('foto_usaha');
 
-	        $this->upload->do_upload('foto_alumni');
-	        $file_name = $this->upload->data();
+			// $config['upload_path'] = 'assets/foto/alumni';
+	  //       $config['allowed_types'] = '*';
+	  //       $config['encrypt_name'] = TRUE;
 
-	        $this->upload->do_upload('foto_usaha');
-	        $ush = $this->upload->data();
+	  //       $this->load->library('upload', $config);
+
+	  //       $this->upload->do_upload('foto_alumni');
+	  //       $file_name = $this->upload->data();
+
+	  //       $this->upload->do_upload('foto_usaha');
+	  //       $ush = $this->upload->data();
 
 			if (empty($foto_diri) AND empty($foto_usaha)) {
 				$data_alumni = array(
@@ -161,12 +204,15 @@ class Administrator extends CI_Controller
 					'thn_keluar' => $this->input->post('tahun_lulus'),
 					'telepon' => $this->input->post('telepon'),
 					'pekerjaan' => $this->input->post('pekerjaan'),
+					'nama_usaha' => $this->input->post('nama_usaha'),
 					'bidang_usaha' => $this->input->post('bidang_usaha'),
 					'akun_fb' => $this->input->post('akun_fb'),
 					// 'username' => $this->input->post('username'),
 					// 'password' => md5($this->input->post('password'))
 				);
 			} elseif (empty($foto_diri) AND !empty($foto_usaha)) {
+				//$file_name = $this->upload_foto_diri->data();
+	        	$ush = $this->upload_foto_usaha->data();
 				$data_alumni = array(
 						'no_ktp' => $this->input->post('no_ktp'),
 						'nama' => $this->input->post('nama_lengkap'),
@@ -186,8 +232,11 @@ class Administrator extends CI_Controller
 					);
 					$unlink = $this->App_model->ambil_id_foto_alumni($n);
 					$path = 'assets/foto/alumni/';
-					@unlink($path.$unlink->foto_usaha);
+					$path_ush = 'assets/foto/foto_usaha/';
+					@unlink($path_ush.$unlink->foto_usaha);
 			} elseif (empty($foto_usaha) AND !empty($foto_diri)) {
+				$file_name = $this->upload_foto_diri->data();
+	        	//$ush = $this->upload_foto_usaha->data();
 				$data_alumni = array(
 						'no_ktp' => $this->input->post('no_ktp'),
 						'nama' => $this->input->post('nama_lengkap'),
@@ -207,8 +256,11 @@ class Administrator extends CI_Controller
 					);
 					$unlink = $this->App_model->ambil_id_foto_alumni($n);
 					$path = 'assets/foto/alumni/';
+					$path_ush = 'assets/foto/foto_usaha/';
 					@unlink($path.$unlink->foto);
 			} else {
+				$file_name = $this->upload_foto_diri->data();
+	        	$ush = $this->upload_foto_usaha->data();
 				$data_alumni = array(
 						'no_ktp' => $this->input->post('no_ktp'),
 						'nama' => $this->input->post('nama_lengkap'),
@@ -229,8 +281,9 @@ class Administrator extends CI_Controller
 					);
 					$unlink = $this->App_model->ambil_id_foto_alumni($n);
 					$path = 'assets/foto/alumni/';
+					$path_ush = 'assets/foto/foto_usaha/';
 					@unlink($path.$unlink->foto);
-					@unlink($path.$unlink->foto_usaha);
+					@unlink($path_ush.$unlink->foto_usaha);
 			}       
 			
 			$query = $this->App_model->edit_data('tb_alumni','id_alumni',$n,$data_alumni);
@@ -462,15 +515,43 @@ class Administrator extends CI_Controller
 	public function tambah_lembaga()
 	{
 		if (isset($_POST['submit'])) {
-			$data_lembaga = array(
-				'nama_lembaga' => $this->input->post('nama_lembaga')
-			);
 
-			$query = $this->App_model->tambah_data('tb_lembaga_alumni', $data_lembaga);
-			if ($query) {
-				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
-				redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
-			}
+			$config['upload_path'] = 'assets/foto/logo';
+	        $config['allowed_types'] = 'jpg|png';
+	        $config['encrypt_name'] = TRUE;
+
+	        $this->load->library('upload', $config);
+
+	        if ($this->upload->do_upload('logo_lembaga')) {
+	        	$logo_name = $this->upload->data();
+
+	        	//compress images
+	        	$config['image_library'] = 'gd2';
+	        	$config['source_image'] = 'assets/foto/logo/'.$logo_name['file_name'];
+	        	$config['create_thumb'] = FALSE;
+	        	$config['maintain_ratio'] = FALSE;
+	        	$config['quality'] = '50%';
+	        	$config['width'] = 225;
+	        	$config['height'] = 225;
+	        	$config['new_image'] = 'assets/foto/foto/'.$logo_name['file_name'];
+	        	$this->load->library('image_lib', $config);
+	        	$this->image_lib->resize();
+
+	        	$data_lembaga = array(
+	        		'nama_lembaga' => $this->input->post('nama_lembaga'),
+	        		'alamat_lembaga' => $this->input->post('alamat_lembaga'),
+	        		'telepon_lembaga' => $this->input->post('telepon_lembaga'),
+	        		'email_lembaga' => $this->input->post('email_lembaga'),
+	        		'logo' => $logo_name['file_name']
+	        	);
+
+	        	$query = $this->App_model->tambah_data('tb_lembaga_alumni', $data_lembaga);
+	        	if ($query) {
+	        		$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+	        		redirect(base_url().'administrator/lembaga?lembaga='.$this->session->userdata('nama_lembaga'));
+	        	}
+	        }
+	        	        
 		} else {
 			if ($this->session->userdata('id_lembaga') != 2) {
 				redirect(base_url().'administrator/error');
@@ -491,9 +572,47 @@ class Administrator extends CI_Controller
 		if (isset($_POST['update'])) {
 			$id_l = $this->input->post('id_lembaga');
 
-			$data_lembaga = array(
-				'nama_lembaga' => $this->input->post('nama_lembaga')
-			);
+			$config['upload_path'] = 'assets/foto/logo';
+	        $config['allowed_types'] = '*';
+	        $config['encrypt_name'] = TRUE;
+
+	        $this->load->library('upload', $config);
+	        $this->upload->do_upload('logo_lembaga');
+	        $logo_name = $this->upload->data();
+
+	        if (empty($logo_name['file_name'])) {
+	        	$data_lembaga = array(
+					'nama_lembaga' => $this->input->post('nama_lembaga'),
+					'alamat_lembaga' => $this->input->post('alamat_lembaga'),
+					'telepon_lembaga' => $this->input->post('telepon_lembaga'),
+					'email_lembaga' => $this->input->post('email_lembaga')
+				);
+	        } else {
+
+	        	//compress images
+	        	$config['image_library'] = 'gd2';
+	        	$config['source_image'] = 'assets/foto/logo/'.$logo_name['file_name'];
+	        	$config['create_thumb'] = FALSE;
+	        	$config['maintain_ratio'] = FALSE;
+	        	$config['quality'] = '50%';
+	        	$config['width'] = 225;
+	        	$config['height'] = 225;
+	        	$config['new_image'] = 'assets/foto/foto/'.$logo_name['file_name'];
+	        	$this->load->library('image_lib', $config);
+	        	$this->image_lib->resize();
+
+	        	$data_lembaga = array(
+					'nama_lembaga' => $this->input->post('nama_lembaga'),
+					'alamat_lembaga' => $this->input->post('alamat_lembaga'),
+					'telepon_lembaga' => $this->input->post('telepon_lembaga'),
+					'email_lembaga' => $this->input->post('email_lembaga'),
+					'logo' => $logo_name['file_name']
+				);
+
+				$unlink = $this->App_model->ambil_id_logo($id_l);
+	        	$path = 'assets/foto/logo/';
+    			@unlink($path.$unlink->logo); 
+	        }
 
 			$query = $this->App_model->edit_data('tb_lembaga_alumni','id_lembaga_alumni',$id_l,$data_lembaga);
 
@@ -519,6 +638,9 @@ class Administrator extends CI_Controller
 		if ($this->session->userdata('id_lembaga') != 2) {
 			redirect(base_url().'administrator/error');
 		} else {
+			$unlink = $this->App_model->ambil_id_logo($id);
+	        $path = 'assets/foto/logo/';
+    		@unlink($path.$unlink->logo);
 			$query = $this->App_model->hapus_data('tb_lembaga_alumni','id_lembaga_alumni',$id);
 			if ($query) {
 				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
@@ -1658,6 +1780,32 @@ class Administrator extends CI_Controller
 		$data['heading'] = "404 ERROR";
 		$data['message'] = "Anda Tidak Memiliki Akses Pada Halaman Ini";
 		$this->load->view('errors/html/error_404', $data);
+	}
+
+	public function summer_upload()
+	{
+		if(isset($_FILES["upload"]["name"])){
+			$config['upload_path'] = 'assets/foto/content_kegiatan';
+			$config['allowed_types'] = 'jpg|jpeg|png';
+			$this->upload->initialize($config);
+			$data = $this->upload->data();
+
+		    //Compress Image
+			// $config['image_library']='gd2';
+			// $config['source_image']='assets/foto/content_kegiatan/'.$data['file_name'];
+			// $config['create_thumb']= FALSE;
+			// $config['maintain_ratio']= TRUE;
+			// $config['quality']= '60%';
+			// $config['width']= 800;
+			// $config['height']= 800;
+			// $config['new_image']= 'assets/foto/content_kegiatan/'.$data['file_name'];
+			// $this->load->library('image_lib', $config);
+			// $this->image_lib->resize();
+
+			$url = 'assets/foto/content_kegiatan/'.$_FILES["upload"]["name"];
+			$message = '';
+			echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$config[new_image]','$message')</script>";
+		}
 	}
 
 }

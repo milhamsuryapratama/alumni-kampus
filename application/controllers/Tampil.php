@@ -50,6 +50,12 @@ class Tampil extends CI_Controller{
 		$data['success'] = 1;
 		echo json_encode($data);
 	}
+	public function tampil_viewakun(){
+		$user = $this->input->post('id_alumni');
+		$data['Hasil'] []= $this->db->query("SELECT * FROM tb_alumni join tb_kecamatan on tb_kecamatan.id_kecamatan= tb_alumni.id_kecamatan join tb_desa on tb_desa.id_desa= tb_alumni.id_desa where id_alumni = '$user'   ")->row_array();
+		$data['success'] = 1;
+		echo json_encode($data);
+	}
 
 
 
@@ -96,14 +102,14 @@ class Tampil extends CI_Controller{
 	public function item_berita(){
 	 	$id_lembaga_alumni =  $this->input->post('id_lembaga_alumni');
 		$jenis_kegiatan = $this->input->post('jenis_kegiatan');
-		$data['Hasil']= $this->db->query("SELECT id_kegiatan, judul_kegiatan, id_lembaga_alumni, foto_kegiatan, jenis_kegiatan FROM tb_kegiatan WHERE id_lembaga_alumni= '$id_lembaga_alumni' AND jenis_kegiatan ='$jenis_kegiatan' AND status='Y' ")->result_array();
+		$data['Hasil']= $this->db->query("SELECT id_kegiatan, judul_kegiatan, status, id_lembaga_alumni, foto_kegiatan, jenis_kegiatan, tanggal_posting FROM tb_kegiatan WHERE id_lembaga_alumni= '$id_lembaga_alumni' AND jenis_kegiatan ='$jenis_kegiatan' AND status='Aktif' ")->result_array();
 		$data['success'] = 1;
 		echo json_encode($data);
 	}
 
 	public function isi_berita(){
 		$id_kegiatan =  $this->input->post('id_kegiatan');
-	 	$id_lembaga_alumni = $this->input->post('id_lembaga_alumni');
+	 	$id_lembaga_alumni =$this->input->post('id_lembaga_alumni');
 		
 		$data['Hasil']= $this->db->query("SELECT tb_alumni.nama, tb_kegiatan.id_kegiatan, tb_kegiatan.judul_kegiatan, tb_kegiatan.deskripsi, tb_kegiatan.id_lembaga_alumni, tb_kegiatan.foto_kegiatan, tb_kegiatan.jenis_kegiatan, tb_struktur.id_alumni FROM tb_kegiatan INNER JOIN tb_struktur ON tb_kegiatan.author=tb_struktur.id_struktur JOIN tb_alumni on tb_alumni.id_alumni=tb_struktur.id_alumni WHERE id_kegiatan ='$id_kegiatan' AND tb_kegiatan.id_lembaga_alumni= '$id_lembaga_alumni' ")->result_array();
 
@@ -112,8 +118,15 @@ class Tampil extends CI_Controller{
 		echo json_encode($data);
 	}
 
-
-
+	public function tampil_slide(){
+		$id_lembaga_alumni= $this->input->post('id_lembaga_alumni');
+		// $jenis_kegiatan= "aksi sosial";//$this->input->post('id_lembaga_alumni');
+		// $data1['Hasil'] = $this->db->query("SELECT  tb_kegiatan.judul_kegiatan, tb_kegiatan.foto_kegiatan FROM tb_kegiatan  where id_lembaga_alumni = '$id_lembaga_alumni' AND jenis_kegiatan = '$jenis_kegiatan' ORDER BY tanggal DESC LIMIT 1")->result_array();
+		$data['Hasil'] = $this->db->query("SELECT tb_kegiatan.id_kegiatan, tb_kegiatan.judul_kegiatan, tb_kegiatan.foto_kegiatan FROM tb_kegiatan WHERE id_lembaga_alumni ='$id_lembaga_alumni'  ORDER BY tanggal_posting DESC LIMIT 3")->result_array();
+	
+		//$data['success'] = 1;
+		echo json_encode($data);
+	}
 
 }
  ?>

@@ -11,75 +11,49 @@ class Auth extends CI_Controller
 	}
 
 	public function login_mobile(){
-// post : android
-// get : web
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		
-
-		$cek = $this->db->query("SELECT * FROM tb_alumni WHERE username = '$username' AND password = '$password' ")->row_array();
+		// post : android
+		// get : web
+		$username =$this->input->post('username');
+		$password =md5($this->input->post('password'));
+	
+    	$cek = $this->db->query("SELECT * FROM tb_alumni WHERE username = '$username' AND password = '$password' ")->row_array();
 		$data["Hasil"] = array();		
 
-		if (count($cek) > 0) {
+		if ($cek != null) {
 			
 			$cek1 = $this->db->query("SELECT id_alumni, status FROM tb_korcam WHERE id_alumni = '".$cek['id_alumni']."' ")->row_array();
-			if (count($cek1) > 0) {
+			if ($cek1 != null) {
+			    $cek["status"] = "korcam";
 				array_push($data["Hasil"], $cek1);
 				$data["success"] = 1;
-				$data["status"] = "korcam";
+		     	$data["status"] = "korcam";
 				echo json_encode($data);
+			
 			} else {
-				$cek1 = $this->db->query("SELECT id_alumni, status FROM tb_pengurus WHERE id_alumni = '".$cek['id_alumni']."' ")->row_array();
-				if (count($cek1) > 0) {
+				$cek1 = $this->db->query("SELECT id_alumni,  status FROM tb_struktur WHERE id_alumni = '".$cek['id_alumni']."' ")->row_array();
+				
+				if ($cek1 != null) {
+				    $cek["status"] = "pengurus";
 					array_push($data["Hasil"], $cek1);
 					$data["success"] = 1;
-					$data["status"] = "pengurus";
+		     		$data["status"] = "pengurus";
 					echo json_encode($data);
 				} else {
-					$cek["status"] = "alumni";
+				    $cek["status"] = "alumni";
 					array_push($data["Hasil"], $cek);
 					$dat["status"] = "alumni";					
 					$data["success"] = 1;
-					$data["status"] = "alumni";
+		     		$data["status"] = "alumni";
 					echo json_encode($data);
 				}
 			}
 		} else {
 			$data["error"] = 0;
-			$data["status"] = "gagal";
-			$dat["status"] = "gagal";
-			array_push($data["Hasil"], $dat);
+		     $data["status"] = "gagal";
+		     $dat["status"] = "gagal";
+		     array_push($data["Hasil"], $dat);
 			echo json_encode($data);
-		}
-
-		// $username = 'alumni';//$this->input->get('username');
-		// $password = '12345';//$this->input->get('password');
-
-		// $data['Hasil'] = $this->db->query("SELECT * FROM tb_korcam join tb_alumni on tb_alumni.id_alumni = tb_korcam.id_alumni WHERE username = '$username' AND password='$password' and tb_korcam.status = 'aktif'")->row_array();
-
-		// if ($data["Hasil"] == null) {
-		// 	$data['Hasil'] = $this->db->query("SELECT * FROM tb_pengurus join tb_alumni on tb_alumni.id_alumni = tb_pengurus.id_alumni WHERE username = '$username' AND password='$password' and tb_pengurus.status = 'aktif' ")->row_array();
-		// 	if($data["Hasil"] == null){
-		// 		$data['Hasil'] = $this->db->query("SELECT * FROM tb_alumni WHERE username = '$username' AND password='$password' ")->result_array();
-		// 		if($data["Hasil"] == null){
-		// 			$data["success"] = 0;
-		//     		$data["status"] = "gagal";
-		//     		echo json_encode($data);		
-		// 		}else{
-		// 			$data["success"] = 1;
-		//     		$data["status"] = "alumni";
-		//     		echo json_encode($data);	
-		// 		}
-		// 	}else{
-		// 		$data["success"] = 1;
-	 //    		$data["status"] = "pengurus";
-	 //    		echo json_encode($data);	
-		// 	}    		
-  //   	} else {
-  //   		$data["success"] = 1;
-  //   		$data["status"] = "korcam";
-  //   		echo json_encode($data);
-  //   	}		
+		}	
 	}
 
 	public function register() 

@@ -62,11 +62,42 @@
 
 <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
 <script src="<?=base_url()?>assets/js/ckeditor/ckeditor.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/summernote/summernote-bs4.js"></script> -->
 
 <script>
     $(function () {
 
-        CKEDITOR.replace('editor1');
+        // $('#editor1').summernote({
+        //     height: "500px",
+        //     callbacks: {
+        //         onImageUpload: function(image) {
+        //             uploadImage(image[0]);
+        //         }
+        //     }
+        // });
+
+        // function uploadImage(image) {
+        //     var data = new FormData();
+        //     data.append("image", image);
+        //     $.ajax({
+        //         url: "<?=base_url()?>administrator/summer_upload",
+        //         cache: false,
+        //         contentType: false,
+        //         processData: false,
+        //         data: data,
+        //         type: "POST",
+        //         success: function(url) {
+        //             $('#editor1').summernote("insertImage", url);
+        //         },
+        //         error: function(data) {
+        //             console.log(data);
+        //         }
+        //     });
+        // }
+
+        CKEDITOR.replace('editor1', {
+            height: '500px'
+        });
 
         $("#foto_kegiatan").on('change', function() {
             var total_file = document.getElementById('foto_kegiatan').files.length;

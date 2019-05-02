@@ -179,6 +179,16 @@ class App_model extends CI_Model
         }
     }
 
+    public function ambil_id_logo($id)
+    {
+        $this->db->from('tb_lembaga_alumni');
+        $this->db->where('id_lembaga_alumni', $id);
+        $result = $this->db->get('');
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        }
+    }
+
     public function auto_complete($title)
     {
         $this->db->like('id_alumni', $title , 'both');
