@@ -21,6 +21,7 @@ class Administrator extends CI_Controller
 	public function dashboard() 
 	{
 		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();	
+		$data['desa'] = $this->db->query("SELECT * FROM tb_desa")->result();
 		$data['jml'] = $this->db->query("SELECT COUNT(id_kecamatan) as count FROM tb_alumni GROUP BY id_kecamatan")->result();
 		$data['title'] = "Dashboard";
 
@@ -33,8 +34,29 @@ class Administrator extends CI_Controller
 
 	public function jml_alumni_per_kecamatan()
 	{
-		$jml = $this->db->query("SELECT COUNT(id_kecamatan) as count FROM tb_alumni GROUP BY id_kecamatan")->result();
-		$this->output->set_content_type('application/json')->set_output(json_encode($jml));
+		$id = $_POST['id'];
+		$count = array();
+		foreach ($id as $i) {
+			$jml = $this->db->query("SELECT id_kecamatan FROM tb_alumni WHERE id_kecamatan = '$i' ")->num_rows();
+			array_push($count, $jml);
+		}		
+		
+		$arr_jml_kec = json_encode($count);
+		$this->output->set_content_type('application/json')->set_output($arr_jml_kec);
+		
+	}
+
+	public function jml_alumni_per_desa()
+	{
+		$id = $_POST['id'];
+		$count = array();
+		foreach ($id as $i) {
+			$jml = $this->db->query("SELECT id_desa FROM tb_alumni WHERE id_desa = '$i' ")->num_rows();
+			array_push($count, $jml);
+		}		
+		
+		$arr_jml_des = json_encode($count);
+		$this->output->set_content_type('application/json')->set_output($arr_jml_des);
 	}
 
 	public function form()
@@ -70,6 +92,9 @@ class Administrator extends CI_Controller
 
 		if (isset($_POST['submit'])) {
 
+			$foto_diri = $_FILES['foto_alumni']['name'];
+			$foto_usaha = $_FILES['foto_usaha']['name'];
+
 			//upload foto diri
 			$config = array();
 		    $config['upload_path'] = 'assets/foto/alumni';
@@ -88,53 +113,125 @@ class Administrator extends CI_Controller
  		    $this->upload_foto_usaha->initialize($config);
 		    $usaha_foto = $this->upload_foto_usaha->do_upload('foto_usaha');
 
-			// $config['upload_path'] = 'assets/foto/alumni';
-	  //       $config['allowed_types'] = '*';
-	  //       $config['encrypt_name'] = TRUE;
-
-	  //       $this->load->library('upload', $config);
-	  //       $this->upload->do_upload('foto_alumni');
-	  //       $file_name = $this->upload->data();
-
-	        // $config['upload_path'] = 'assets/foto/foto_usaha';
-	        // $config['allowed_types'] = '*';
-	        // $config['encrypt_name'] = TRUE;
-
-	        // $this->load->library('upload', $config);
-	        // $this->upload->do_upload('foto_usaha');
-	        // $ush = $this->upload->data();
-
-	        if ($diri && $usaha_foto) {
-	        	$file_name = $this->upload_foto_diri->data();
+			if (empty($foto_diri) AND empty($foto_usaha)) {
+				$data_alumni = array(
+					'no_ktp' => $this->input->post('no_ktp'),
+					'nama' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'alamat' => $this->input->post('alamat'),
+					'id_kecamatan' => $this->input->post('kecamatan'),
+					'id_desa' => $this->input->post('desa'),
+					'thn_mondok' => $this->input->post('tahun_masuk'),
+					'thn_keluar' => $this->input->post('tahun_lulus'),
+					'telepon' => $this->input->post('telepon'),
+					'pekerjaan' => $this->input->post('pekerjaan'),
+					'nama_usaha' => $this->input->post('nama_usaha'),
+					'bidang_usaha' => $this->input->post('bidang_usaha'),
+					'akun_fb' => $this->input->post('akun_fb'),
+					'username' => $this->input->post('username'),
+					'password' => md5($this->input->post('password'))
+				);
+			} elseif (empty($foto_diri) AND !empty($foto_usaha)) {
+				//$file_name = $this->upload_foto_diri->data();
 	        	$ush = $this->upload_foto_usaha->data();
+				$data_alumni = array(
+						'no_ktp' => $this->input->post('no_ktp'),
+						'nama' => $this->input->post('nama_lengkap'),
+						'email' => $this->input->post('email'),
+						'alamat' => $this->input->post('alamat'),
+						'id_kecamatan' => $this->input->post('kecamatan'),
+						'id_desa' => $this->input->post('desa'),
+						'thn_mondok' => $this->input->post('tahun_masuk'),
+						'thn_keluar' => $this->input->post('tahun_lulus'),
+						'telepon' => $this->input->post('telepon'),
+						'pekerjaan' => $this->input->post('pekerjaan'),
+						'bidang_usaha' => $this->input->post('bidang_usaha'),
+						'akun_fb' => $this->input->post('akun_fb'),
+						'username' => $this->input->post('username'),
+						'password' => md5($this->input->post('password')),
+						'foto_usaha' => $ush['file_name']
+					);
+			} elseif (empty($foto_usaha) AND !empty($foto_diri)) {
+				$file_name = $this->upload_foto_diri->data();
+	        	//$ush = $this->upload_foto_usaha->data();
+				$data_alumni = array(
+						'no_ktp' => $this->input->post('no_ktp'),
+						'nama' => $this->input->post('nama_lengkap'),
+						'email' => $this->input->post('email'),
+						'alamat' => $this->input->post('alamat'),
+						'id_kecamatan' => $this->input->post('kecamatan'),
+						'id_desa' => $this->input->post('desa'),
+						'thn_mondok' => $this->input->post('tahun_masuk'),
+						'thn_keluar' => $this->input->post('tahun_lulus'),
+						'telepon' => $this->input->post('telepon'),
+						'pekerjaan' => $this->input->post('pekerjaan'),
+						'bidang_usaha' => $this->input->post('bidang_usaha'),
+						'akun_fb' => $this->input->post('akun_fb'),
+						'username' => $this->input->post('username'),
+						'password' => md5($this->input->post('password')),
+						'foto' => $file_name['file_name']
+					);
+			} else {
+				$file_name = $this->upload_foto_diri->data();
+	        	$ush = $this->upload_foto_usaha->data();
+				$data_alumni = array(
+						'no_ktp' => $this->input->post('no_ktp'),
+						'nama' => $this->input->post('nama_lengkap'),
+						'email' => $this->input->post('email'),
+						'alamat' => $this->input->post('alamat'),
+						'id_kecamatan' => $this->input->post('kecamatan'),
+						'id_desa' => $this->input->post('desa'),
+						'thn_mondok' => $this->input->post('tahun_masuk'),
+						'thn_keluar' => $this->input->post('tahun_lulus'),
+						'telepon' => $this->input->post('telepon'),
+						'pekerjaan' => $this->input->post('pekerjaan'),
+						'bidang_usaha' => $this->input->post('bidang_usaha'),
+						'akun_fb' => $this->input->post('akun_fb'),
+						'username' => $this->input->post('username'),
+						'password' => md5($this->input->post('password')),
+						'foto' => $file_name['file_name'],
+						'foto_usaha' => $ush['file_name']
+					);
+			}
 
-	        	$data_alumni = array(
-	        		'no_ktp' => $this->input->post('no_ktp'),
-	        		'nama' => $this->input->post('nama_lengkap'),
-	        		'email' => $this->input->post('email'),
-	        		'alamat' => $this->input->post('alamat'),
-	        		'id_kecamatan' => $this->input->post('kecamatan'),
-	        		'id_desa' => $this->input->post('desa'),
-	        		'thn_mondok' => $this->input->post('tahun_masuk'),
-	        		'thn_keluar' => $this->input->post('tahun_lulus'),
-	        		'telepon' => $this->input->post('telepon'),
-	        		'pekerjaan' => $this->input->post('pekerjaan'),
-	        		'nama_usaha' => $this->input->post('nama_usaha'),
-	        		'bidang_usaha' => $this->input->post('bidang_usaha'),
-	        		'akun_fb' => $this->input->post('akun_fb'),
-	        		'username' => $this->input->post('username'),
-	        		'password' => md5($this->input->post('password')),
-	        		'foto' => $file_name['file_name'],
-	        		'foto_usaha' => $ush['file_name']
-	        	);
+			$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
 
-	        	$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
+			if ($query) {
+				$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+				redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
 
-	        	if ($query) {
-	        		$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
-	        		redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
-	        	}
-	        }			
+	        // if ($diri OR $usaha_foto) {
+	        // 	$file_name = $this->upload_foto_diri->data();
+	        // 	$ush = $this->upload_foto_usaha->data();
+
+	        // 	$data_alumni = array(
+	        // 		'no_ktp' => $this->input->post('no_ktp'),
+	        // 		'nama' => $this->input->post('nama_lengkap'),
+	        // 		'email' => $this->input->post('email'),
+	        // 		'alamat' => $this->input->post('alamat'),
+	        // 		'id_kecamatan' => $this->input->post('kecamatan'),
+	        // 		'id_desa' => $this->input->post('desa'),
+	        // 		'thn_mondok' => $this->input->post('tahun_masuk'),
+	        // 		'thn_keluar' => $this->input->post('tahun_lulus'),
+	        // 		'telepon' => $this->input->post('telepon'),
+	        // 		'pekerjaan' => $this->input->post('pekerjaan'),
+	        // 		'nama_usaha' => $this->input->post('nama_usaha'),
+	        // 		'bidang_usaha' => $this->input->post('bidang_usaha'),
+	        // 		'akun_fb' => $this->input->post('akun_fb'),
+	        // 		'username' => $this->input->post('username'),
+	        // 		'password' => md5($this->input->post('password')),
+	        // 		'foto' => $file_name['file_name'],
+	        // 		'foto_usaha' => $ush['file_name']
+	        // 	);
+
+	        // 	$query = $this->App_model->tambah_data('tb_alumni', $data_alumni);
+
+	        // 	if ($query) {
+	        // 		$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+	        // 		redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+	        // 	}
+	        // }			
 			
 		} else {
 			if ($this->session->userdata('id_lembaga') != 2) {
@@ -1223,7 +1320,7 @@ class Administrator extends CI_Controller
 					'id_devisi' => $this->input->post('devisi'),
 					'id_lembaga_alumni' => $this->input->post('id_lembaga_alumni'),
 					'masa_bakti' => $this->input->post('masa_bakti'),
-					'status_struktur' => 'Y'
+					'status' => 'Y'
 				);
 
 				$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
@@ -1238,7 +1335,7 @@ class Administrator extends CI_Controller
 					'id_devisi' => $this->input->post('devisi'),
 					'id_lembaga_alumni' => $this->input->post('id_lembaga_alumni'),
 					'masa_bakti' => $this->input->post('masa_bakti'),
-					'status_struktur' => 'Y'
+					'status' => 'Y'
 				);
 
 				$query = $this->App_model->tambah_data('tb_struktur', $data_struktur);
@@ -1282,7 +1379,7 @@ class Administrator extends CI_Controller
 				'id_devisi' => $this->input->post('devisi'),
 				'id_lembaga_alumni' => $id_l,
 				'masa_bakti' => $this->input->post('masa_bakti'),
-				'status_struktur' => 'Y'
+				'status' => 'Y'
 			);
 
 			$query = $this->App_model->edit_data('tb_struktur','id_struktur',$id_s,$data_struktur);
@@ -1645,9 +1742,7 @@ class Administrator extends CI_Controller
 				'kecamatan' => $this->input->post('kecamatan'),
 				'gang_wilayah' => $this->input->post('gang_wilayah'),
 				'pendidikan' => $this->input->post('pendidikan'),
-				'telepon' => $this->input->post('telepon'),
-				'username' => $this->input->post('username'),
-				'password' => md5($this->input->post('password')),
+				'telepon' => $this->input->post('telepon')
 			);
 
 			$query = $this->App_model->edit_data('anggota_fks','nis',$nis,$data_fks);
@@ -1772,6 +1867,17 @@ class Administrator extends CI_Controller
 		if ($query) {
 			$this->session->set_flashdata('resetPassword', 'Sukses Mereset Password');
 			redirect(base_url().'administrator/alumni?lembaga='.$this->session->userdata('nama_lembaga'));
+		}
+	}
+
+	public function reset_password_fks()
+	{
+		$nis = $this->input->post('nis');
+		$pwd = md5($this->input->post('password'));
+		$query = $this->db->query("UPDATE anggota_fks SET password = '$pwd' WHERE nis = '".$nis."'");
+		if ($query) {
+			$this->session->set_flashdata('resetPassword', 'Sukses Mereset Password');
+			redirect(base_url().'administrator/data_anggota_fks?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
 	}
 

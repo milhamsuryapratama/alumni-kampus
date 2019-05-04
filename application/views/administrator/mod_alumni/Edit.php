@@ -67,7 +67,7 @@
     							</select>
     						</div>
     						<div class="form-group">
-    							<label>Desa *</label> <input type="hidden" id="desa_id">
+    							<label>Desa *</label> <input type="hidden" id="desa_id" value="<?=$a['id_desa']?>">
     							<select class="form-control" id="desa" name="desa" required>
                                     
     							</select>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="form-group">
                             <label for="bidang_usaha">Ganti Foto Usaha (bila perlu)</label>
-                            <input type="file" name="foto_usaha" class="form-control" id="foto_alumni">
+                            <input type="file" name="foto_usaha" class="form-control" id="foto_usaha">
                             <small>Foto Usaha Lihat <a href="<?=base_url()?>assets/foto/foto_usaha/<?=$a['foto_usaha']?>" target="blank">disini</a></small>
                         </div>
                         <div class="form-group">
@@ -153,7 +153,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nama_lengkap">Reset Password (bila perlu)</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required> <input type="checkbox" name="lihatpwd" id="lihatpwd" onclick="seepwd()"> Lihat Password |
                         <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="box-footer">
@@ -177,7 +177,7 @@
 
         $.post('<?=base_url()?>administrator/get_desa', {id: kecamatan_id}, (result) => {
             console.log(result);
-            $("#desa").find("option").remove();
+            // $("#desa").find("option").remove();
             $.map(result, function(val, i) {
                 if (val.id_desa == desa_id) {
                   $('#desa').append(
@@ -218,4 +218,15 @@
         })
 
 	})
+
+    function seepwd()
+    {
+        var temp = document.getElementById("password"); 
+        if (temp.type === "password") { 
+          temp.type = "text"; 
+        } 
+        else { 
+          temp.type = "password"; 
+        } 
+    }
 </script>

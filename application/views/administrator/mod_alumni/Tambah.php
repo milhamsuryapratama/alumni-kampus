@@ -113,13 +113,13 @@
                 <div class="box box-primary">
                     <div class="box-body">
                        <div class="form-group">
-                        <label for="nama_lengkap">Username * </label>
+                        <label for="username">Username * </label>
                         <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" required>
                         <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="form-group">
-                        <label for="nama_lengkap">Password *</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required> <input type="checkbox" name="lihatpwd" id="lihatpwd"> Lihat Password | 
+                        <label for="password">Password *</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required> <input type="checkbox" name="lihatpwd" id="lihatpwd" onclick="seepwd()"> Lihat Password | 
                         <small style="color: red">Password Minimal 3 Digit</small>
                     </div>
                     <div class="form-group">
@@ -153,31 +153,34 @@
 			})
 		})
 
-        $("#username").on('focusout', function() {
-            if ($("#username").val().length < 3) {
-                alert('username Harus Lebih Dari 3 Digit');
-                $("#submit").attr('disabled', true);
-            } else {
-                $("#submit").attr('disabled', false);
-            }
-        })
+    $("#username").on('focusout', function() {
+      if ($("#username").val().length < 3) {
+        alert('username Harus Lebih Dari 3 Digit');
+        $("#submit").attr('disabled', true);
+      } else {
+        $("#submit").attr('disabled', false);
+      }
+    })
 
-        $("#password").on('focusout', function() {
-            if ($("#password").val().length < 3) {
-                alert('Password Harus Lebih Dari 3 Digit');
-                $("#submit").attr('disabled', true);
-            } else {
-                $("#submit").attr('disabled', false);
-            }
-        })
-
-        $("#lihatpwd").on('click', function() {
-          if ($("#password").type === "password") {
-            $('#password').attr('type','text');
-          } else {
-            $('#password').attr('type','password');
-          }
-        })
+    $("#password").on('focusout', function() {
+      if ($("#password").val().length < 3) {
+        alert('Password Harus Lebih Dari 3 Digit');
+        $("#submit").attr('disabled', true);
+      } else {
+        $("#submit").attr('disabled', false);
+      }
+    })
 
 	})
+
+  function seepwd()
+  {
+    var temp = document.getElementById("password"); 
+    if (temp.type === "password") { 
+      temp.type = "text"; 
+    } 
+    else { 
+      temp.type = "password"; 
+    } 
+  }
 </script>

@@ -29,15 +29,15 @@
 
 								<div class="col-lg-6 order-lg-2 order-3">
 									<div class="event_content">
-										<div class="event_name"><a class="trans_200" href="#">Student Festival</a></div>
+										<div class="event_name"><a class="trans_200" href="#"><?=$p['nama_usaha']?></a></div>
 										<div class="event_location">Milik <?=$p['nama']?></div>
-										<p>PT .... adalah usaha milik <?=$p['nama']?> yang bergerak dibidang <?=$p['bidang_usaha']?></p>
+										<p><?=$p['nama_usaha']?> adalah usaha milik <?=$p['nama']?> yang bergerak dibidang <?=$p['bidang_usaha']?>  </p>
 									</div>
 								</div>
 
 								<div class="col-lg-4 order-lg-3 order-1">
 									<div class="event_image">
-										<img src="<?=base_url()?>assets/foto/alumni/<?=$p['foto_usaha']?>" alt="">
+										<img src="<?=base_url()?>assets/foto/foto_usaha/<?=$p['foto_usaha']?>" alt="">
 									</div>
 								</div>
 

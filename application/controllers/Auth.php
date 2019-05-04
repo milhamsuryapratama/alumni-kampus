@@ -48,11 +48,33 @@ class Auth extends CI_Controller
 				}
 			}
 		} else {
-			$data["error"] = 0;
-		     $data["status"] = "gagal";
-		     $dat["status"] = "gagal";
-		     array_push($data["Hasil"], $dat);
-			echo json_encode($data);
+			$cekfks = $this->db->query("SELECT * FROM anggota_fks WHERE username = '$username' AND password = '$password' ")->row_array();
+			
+			if ($cekfks != null) {
+			    
+			    $cekfks_struktur = $this->db->query("SELECT * FROM tb_struktur WHERE nis = '".$cekfks['nis']."' ")->row_array();
+			    
+			    if ($cekfks_struktur != null) {
+			        $cek["status"] = "pengurus";
+    				array_push($data["Hasil"], $cek1);
+    				$data["success"] = 1;
+    		     	$data["status"] = "pengurus";
+    				echo json_encode($data);
+			    } else {
+			        $data["error"] = 0;
+    		        $data["status"] = "gagal";
+    		        $dat["status"] = "gagal";
+    		        array_push($data["Hasil"], $dat);
+    			    echo json_encode($data);
+			    }
+			    
+			} else {
+			    $data["error"] = 0;
+		        $data["status"] = "gagal";
+		        $dat["status"] = "gagal";
+		        array_push($data["Hasil"], $dat);
+			    echo json_encode($data);
+			}
 		}	
 	}
 

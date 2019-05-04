@@ -1,17 +1,24 @@
-Akses Login
+p4nj
 
-Login Admin
-	username : admin
-	password : admin
+username : ilhamsurya
+password : ilham21
 
-Lembaga P4NJ
-	username : luthfi
-	password : luthfi
+NJIC
 
-Lembaga FKS
-	username : lkj	
-	password : lkj
+username : solehudin
+password : solehudin00
 
-Lembaga NJIC
-	username : junaidi
-	password : junaidi
+FKSJ
+
+username : haisbatara
+password : haisbatara
+
+KORCAM
+
+username : luthfi
+password : luthfi
+
+ALUMNI
+
+username : giovani
+password : giovani
