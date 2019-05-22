@@ -72,7 +72,7 @@ class Pages extends CI_Controller
 		$config['first_tag_close']="</li>";
 		$config['last_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['last_tag_close']="</li>";
-		$config['cur_tag_open']="<li class='active text-center trans_200' style='background-color: #004727'><a href='#'>";
+		$config['cur_tag_open']="<li class='active text-center trans_200' style='background-color: #568a4d'><a href='#'>";
 		$config['cur_tag_close']="</a></li>";
 
 		$this->pagination->initialize($config);
