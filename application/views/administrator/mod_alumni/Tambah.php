@@ -128,6 +128,7 @@
                     </div>
                     <div class="box-footer">
                       <button type="submit" id="submit" name="submit" class="btn btn-primary" onclick="return confirm('Anda Yakin Ingin Menyimpan Data Ini ?')">Submit</button> <button type="button" id="cancle" name="cancle" class="btn btn-primary" onclick="self.history.back()">Batal</button>
+                    </div>
                   </div>  
                 </div>                
             </div>

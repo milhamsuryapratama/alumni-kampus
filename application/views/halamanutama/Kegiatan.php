@@ -24,7 +24,7 @@
 									</div>
 									<div class="news_post_top d-flex flex-column flex-sm-row">
 										<div class="news_post_date_container">
-											<div class="news_post_date d-flex flex-column align-items-center justify-content-center" style="background-color: #42f46e">
+											<div class="news_post_date d-flex flex-column align-items-center justify-content-center" style="background-color: #004727">
 												<div><?=substr($k['tanggal_posting'],8,2)?></div>
 												<div><?=substr(date('F', strtotime($k['tanggal_posting'])),0 ,3)?></div>
 											</div>
@@ -58,7 +58,7 @@
 									<div class="news_post_text" style="text-align: justify;">
 										<p><?=substr($k['deskripsi'],0,300). '. . .'?></p>
 									</div>
-									<div class="news_post_button text-center trans_200" style="background-color: #42f46e">
+									<div class="news_post_button text-center trans_200" style="background-color: #004727">
 										<a href="<?=base_url()?>kegiatan/detail/<?=$k['slug']?>">Read More</a>
 									</div>
 								</div>

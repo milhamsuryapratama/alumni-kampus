@@ -1914,5 +1914,182 @@ class Administrator extends CI_Controller
 		}
 	}
 
+	public function soal()
+	{		
+		$data['soal'] = $this->App_model->ambil_data('tb_soal','id_soal');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_soal_jawaban/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function tambah_soal()
+	{
+		if (isset($_POST['submit'])) {
+			$soal = $this->input->post('soal');
+			$data_soal = array(
+				'pertanyaan' => $soal,
+				'aktif' => 'y'
+			);
+			$query = $this->App_model->tambah_data('tb_soal', $data_soal);
+			if ($query) {
+				$max_soal_id = $this->db->query("SELECT max(id_soal) as max_id FROM tb_soal")->row_array();
+				$jwb = $this->input->post('jawaban');
+				$jwb_benar = $this->input->post('benar');
+				$data_jwb = array();
+				for ($i=0; $i < count($jwb); $i++) { 
+					if ($i + 1 == $jwb_benar) {
+						array_push($data_jwb, array(
+							'id_soal' => $max_soal_id['max_id'],
+							'jawaban' => $jwb[$i],
+							'status' => 'b',
+							'aktif' => 'y'
+						));
+					} else {
+						array_push($data_jwb, array(
+							'id_soal' => $max_soal_id['max_id'],
+							'jawaban' => $jwb[$i],
+							'status' => 's',
+							'aktif' => 'y'
+						));
+					}
+				}
+
+				$query2 = $this->db->insert_batch('tb_jawaban', $data_jwb);
+
+				if ($query2) {
+					$this->session->set_flashdata('tambahDataSukses', 'Sukses Menambahkan Data');
+					redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+				}
+			}
+			
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_soal_jawaban/Tambah');
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function hapus_soal($id)
+	{
+		$query = $this->App_model->hapus_data('tb_soal','id_soal',$id);
+		if ($query) {
+			$query2 = $this->App_model->hapus_data('tb_jawaban','id_soal',$id);
+			if ($query2) {
+				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+				redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
+		}
+	}
+
+	public function edit_soal($id)
+	{
+		$data['s'] = $this->App_model->ambil_data_by_id('tb_soal', 'id_soal', $id);
+		$data['j'] = $this->App_model->ambil_data_by_id_result('tb_jawaban','id_soal',$id, 'id_soal');
+
+		if (isset($_POST['update'])) {
+			$soal = $this->input->post('soal');
+			$data_soal = array(
+				'pertanyaan' => $soal,
+				'aktif' => 'y'
+			);
+			
+			$query = $this->App_model->edit_data('tb_soal', 'id_soal',$id, $data_soal);
+			if ($query) {				
+				$jwb = $this->input->post('jawaban');
+				$jwb_benar = $this->input->post('benar');
+				$id_jawaban = $this->input->post('id_jawaban');
+				// $data_jwb = array();
+				
+				$id_jwb = $this->App_model->ambil_data_by_id_result('tb_jawaban', 'id_soal', $id, 'id_soal');
+
+				for ($i=0; $i < count($jwb); $i++) { 
+					if ($i + 1 == $jwb_benar) {
+						$data_jwb = array(
+							'jawaban' => $jwb[$i],
+							'status' => 'b',
+							'aktif' => 'y'
+						);
+					} else {
+						$data_jwb = array(
+							'jawaban' => $jwb[$i],
+							'status' => 's',
+							'aktif' => 'y'
+						);
+					}					
+
+					$query2 = $this->App_model->edit_data('tb_jawaban','id_jawaban',$id_jawaban[$i],$data_jwb);
+				}
+
+				if ($query2) {
+					$this->session->set_flashdata('updateDataSukses', 'Sukses Memperbarui Data');
+					redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+				}
+			}
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_soal_jawaban/Edit', $data);
+			$this->load->view('administrator/Footer');
+		}
+	}
+
+	public function nonaktifkan_soal($id)
+	{
+		$query = $this->db->query("UPDATE tb_soal SET aktif = 't' WHERE id_soal = $id ");
+		if ($query) {
+			redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+		}
+	}
+
+	public function aktifkan_soal($id)
+	{
+		$query = $this->db->query("UPDATE tb_soal SET aktif = 'y' WHERE id_soal = $id ");
+		if ($query) {
+			redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+		}
+	}
+
+	public function reset_password_admin()
+	{
+		$data['admin'] = $this->App_model->ambil_data_by_id('administrator','id', '1');
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_super_admin/Edit', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function edit_super_admin()
+	{
+		if (isset($_POST['update'])) {
+			$id = $this->input->post('id_super_admin');
+			$pwd_lama = $this->input->post('password_lama');
+			$pwd_baru = $this->input->post('password_baru');
+
+			$admin = $this->App_model->ambil_data_by_id('administrator','id', '1');
+			if ($admin['password'] != md5($pwd_lama)) {
+				$this->session->set_flashdata('pwdLamaSalah', 'Password Lama Salah. Silahkan Periksa Kembali.');
+				redirect(base_url().'administrator/reset_password_admin??lembaga='.$this->session->userdata('nama_lembaga'));
+			} else {
+				$pwd_baru = array(
+					'password' => md5($pwd_baru)
+				);
+
+				$query = $this->App_model->edit_data('administrator', 'id', $id, $pwd_baru);
+				if ($query) {
+					$this->session->set_flashdata('resetPwdAdminSukses', 'Anda Baru Saja Mereset Password Admin. Silahkan Login Kembali Menggunakan Password Baru.');
+					redirect(base_url().'auth/logout');
+				}
+			}
+		}
+	}
+
 }
 ?>

@@ -122,6 +122,14 @@
               </a>
             </li>
 
+            <li>
+              <a href="<?=base_url()?>administrator/soal?lembaga=<?=$this->session->userdata('nama_lembaga')?>">
+                <i class="fa fa-calendar"></i> <span>Soal & Jawaban</span>
+                <span class="pull-right-container">
+                </span>
+              </a>
+            </li>
+
             <!-- <li>
               <a href="<?=base_url()?>administrator/kegiatan?lembaga=<?=$this->session->userdata('username')?>">
                 <i class="fa fa-calendar"></i> <span>Kegiatan</span>
@@ -196,6 +204,16 @@
             <li><a href="<?=base_url()?>administrator/korcam"><i class="fa fa-circle-o"></i> Korcam</a></li>
           </ul>
         </li>
+
+        <?php if ($this->session->userdata('loggedAs') === 'admin') { ?>
+          <li>
+            <a href="<?=base_url()?>administrator/reset_password_admin?lembaga=<?=$this->session->userdata('nama_lembaga')?>">
+              <i class="fa fa-calendar"></i> <span>Admin Area</span>
+              <span class="pull-right-container">
+              </span>
+            </a>
+          </li>
+        <?php } ?>
 
         <li>
           <a href="<?=base_url()?>auth/logout">

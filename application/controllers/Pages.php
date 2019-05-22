@@ -62,17 +62,17 @@ class Pages extends CI_Controller
 		$config['per_page'] = 3;
 		$config['full_tag_open']="<ul>";
 		$config['full_tag_close']="</ul>";
-		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['num_tag_close']="</li>";
-		$config['next_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['next_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['next_tag_close']="</li>";
-		$config['prev_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['prev_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['prev_tag_close']="</li>";
-		$config['first_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['first_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['first_tag_close']="</li>";
-		$config['last_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['last_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['last_tag_close']="</li>";
-		$config['cur_tag_open']="<li class='active text-center trans_200' style='background-color: #7af442'><a href='#'>";
+		$config['cur_tag_open']="<li class='active text-center trans_200' style='background-color: #004727'><a href='#'>";
 		$config['cur_tag_close']="</a></li>";
 
 		$this->pagination->initialize($config);

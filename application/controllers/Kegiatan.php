@@ -32,17 +32,17 @@ class Kegiatan extends CI_Controller
 		$config['per_page'] = 4;
 		$config['full_tag_open']="<ul>";
 		$config['full_tag_close']="</ul>";
-		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['num_tag_close']="</li>";
-		$config['next_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['next_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['next_tag_close']="</li>";
-		$config['prev_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['prev_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
 		$config['prev_tag_close']="</li>";
-		$config['first_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['first_tag_close']="</li class='text-center trans_200' style='background-color: #42f46e'>";
+		$config['first_tag_open']="<li class='text-center trans_200' style='background-color: #004727'>";
+		$config['first_tag_close']="</li class='text-center trans_200' style='background-color: #004727'>";
 		$config['last_tag_open']="<li>";
-		$config['last_tag_close']="</li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['cur_tag_open']="<li class='text-center trans_200' style='background-color: #7af442'><a href='#'>";
+		$config['last_tag_close']="</li class='text-center trans_200' style='background-color: #004727'>";
+		$config['cur_tag_open']="<li class='text-center trans_200' style='background-color: #004727'><a href='#'>";
 		$config['cur_tag_close']="</a></li>";
 
 		$this->pagination->initialize($config);

@@ -21,9 +21,9 @@
 							<div class="row d-flex flex-row align-items-end">
 
 								<div class="col-lg-2 order-lg-1 order-2">
-									<div class="event_date d-flex flex-column align-items-center justify-content-center" style="border-color: #42f46e">
-										<div class="event_day" style="color: #42f46e"><?=substr($p['tgl_mulai'],8,2)?></div>
-										<div class="event_month" style="color: #42f46e"><?=date('F', strtotime($p['tgl_mulai']))?> <?=substr($p['tgl_mulai'],0,4)?></div>
+									<div class="event_date d-flex flex-column align-items-center justify-content-center" style="border-color: #004727">
+										<div class="event_day" style="color: #004727"><?=substr($p['tgl_mulai'],8,2)?></div>
+										<div class="event_month" style="color: #004727"><?=date('F', strtotime($p['tgl_mulai']))?> <?=substr($p['tgl_mulai'],0,4)?></div>
 									</div>
 								</div>
 

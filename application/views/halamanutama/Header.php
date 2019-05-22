@@ -62,7 +62,7 @@
 		<?php  
 		$dl = $this->db->query("SELECT * FROM tb_lembaga_alumni WHERE id_lembaga_alumni = '2' ")->row_array();
 		?>
-		<div class="header_side d-flex flex-row justify-content-center align-items-center" style="background-color: #42f46e">
+		<div class="header_side d-flex flex-row justify-content-center align-items-center" style="background-color: #004727">
 			<img src="<?=base_url()?>assets/homeassets/images/phone-call.svg" alt="">
 			<span><?=$dl['telepon_lembaga']?></span>
 		</div>
@@ -126,7 +126,7 @@
 							<div class="hero_slide_background" style="background-image:url(<?=base_url()?>assets/foto/kegiatan/<?=$k['foto_kegiatan']?>)"></div>
 							<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 								<div class="hero_slide_content text-center">
-									<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut" style="color: #42f46e; font-weight: bold;"><?=$k['judul_kegiatan']?></h1>
+									<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut" style="color: white; background-color: #004727; font-weight: bold; font-size: 28px"><?=$k['judul_kegiatan']?></h1>
 								</div>
 							</div>
 						</div>
@@ -134,8 +134,8 @@
 
 				</div>
 
-				<div class="hero_slider_left hero_slider_nav trans_200" style="background-color: #42f46e"><span class="trans_200">prev</span></div>
-				<div class="hero_slider_right hero_slider_nav trans_200" style="background-color: #42f46e"><span class="trans_200">next</span></div>
+				<div class="hero_slider_left hero_slider_nav trans_200" style="background-color: #004727"><span class="trans_200" style="color: white">prev</span></div>
+				<div class="hero_slider_right hero_slider_nav trans_200" style="background-color: #004727;"><span class="trans_200" style="color: white">next</span></div>
 			</div>
 
 		</div>
@@ -145,26 +145,26 @@
 				<div class="home_background prlx" style="background-image: url(<?=base_url()?>assets/foto/logo/nuruljadid.png); transform: translate(0%, -15%) translate3d(0px, 0px, 0px); opacity: 0.7"></div>
 			</div>
 			<?php if ($title == 'Visi Misi - P4NJ JEMBER') { ?>
-				<div class="home_content" style="background-color: #42f46e;">
-					<h1 style="color: black">					 
+				<div class="home_content" style="background-color: #004727;">
+					<h1 style="color: white">					 
 						Visi Misi
 					</h1>
 				</div>
 			<?php } elseif ($title == 'Kegiatan - P4NJ JEMBER') { ?>
-				<div class="home_content" style="background-color: #42f46e;">
-					<h1 style="color: black">					 
+				<div class="home_content" style="background-color: #004727;">
+					<h1 style="color: white">					 
 						Kegiatan
 					</h1>
 				</div>
 			<?php } elseif ($title == 'Promosi - P4NJ JEMBER') { ?>
-				<div class="home_content" style="background-color: #42f46e;">
-					<h1 style="color: black">					 
+				<div class="home_content" style="background-color: #004727;">
+					<h1 style="color: white">					 
 						Promosi
 					</h1>
 				</div>
 			<?php } else { ?>
-				<div class="home_content" style="background-color: #42f46e;">
-					<h1 style="color: black">					 
+				<div class="home_content" style="background-color: #004727;">
+					<h1 style="color: white">					 
 						Detail Kegiatan
 					</h1>
 				</div>

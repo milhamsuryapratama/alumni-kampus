@@ -203,14 +203,13 @@ class Auth extends CI_Controller
 	public function logout()
 	{
 		$this->session->sess_destroy();
+		$this->session->set_flashdata('resetPwdAdminSukses', 'Anda Baru Saja Mereset Password Admin. Silahkan Login Kembali Menggunakan Password Baru.');
         redirect(base_url().'auth/login');
 	}
 
 	public function hash()
 	{
-		$data['k'] = $this->App_model->join_tiga_table('tb_korcam','tb_kecamatan','tb_alumni','tb_korcam.id_kecamatan = tb_kecamatan.id_kecamatan','tb_korcam.id_alumni = tb_alumni.id_alumni','tb_korcam.id_korcam','5');
-
-		print_r($data);
+		echo md5('ilham');
 	}
 }
  ?>

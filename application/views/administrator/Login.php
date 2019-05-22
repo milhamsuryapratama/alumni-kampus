@@ -23,13 +23,19 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-    <?php if ($this->session->flashdata('loginError')): ?>
+    <?php if ($this->session->flashdata('resetPwdAdminSukses')) { ?>
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+        <?php echo $this->session->flashdata('resetPwdAdminSukses'); ?>
+      </div>
+    <?php } elseif ($this->session->flashdata('loginError')) { ?>
       <div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-warning"></i> Alert!</h4>
         <?=$this->session->flashdata('loginError')?>
       </div>
-    <?php endif ?>
+    <?php } ?>
     <form action="<?=base_url()?>auth/adminLogin" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="Username">

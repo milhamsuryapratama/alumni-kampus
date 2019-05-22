@@ -1,6 +1,6 @@
 <!-- Footer -->
 
-	<footer class="footer" style="background-color: #42f46e;">
+	<footer class="footer" style="background-color: #568a4d;">
 		<div class="container">
 			
 			<!-- Newsletter -->
@@ -20,7 +20,7 @@
 							<form action="post">
 								<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-center">
 									<input id="newsletter_email" class="newsletter_email" type="email" placeholder="Email Address" required="required" data-error="Valid email is required.">
-									<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Subscribe</button>
+									<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit" style="background-color: #004727">Subscribe</button>
 								</div>
 							</form>
 						</div>
@@ -114,7 +114,7 @@
 
 			<!-- Footer Copyright -->
 
-			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center" style="color: black">
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center" style="color: black;">
 				<div class="footer_copyright">
 					<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | FROM <i class="fa fa-heart" aria-hidden="true"></i> <a href="<?=base_url()?>">P4NJ JEMBER</a>

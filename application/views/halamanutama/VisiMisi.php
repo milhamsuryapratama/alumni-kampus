@@ -12,7 +12,7 @@
 
 						<!-- Register -->
 
-						<div class="register_section d-flex flex-column align-items-center justify-content-center" style="background-color: #42f46e">
+						<div class="register_section d-flex flex-column align-items-center justify-content-center" style="background-color: #004727">
 							<div class="register_content text-center">
 								<img src="<?=base_url()?>assets/foto/logo/<?=$v['logo']?>" width="225" height="225">
 							</div>
