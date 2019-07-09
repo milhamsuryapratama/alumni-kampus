@@ -29,9 +29,24 @@
     </section>
     <section class="content">
       <div class="row">
+        <div class="col-md-3">
+          <p style="margin-top: 10px">Filter Data Berdasarkan Kecamatan</p>
+        </div>
+        <div class="col-md-6">
+          <input type="hidden" name="filter_id_kec" id="filter_id_kec">
+          <select class="form-control" id="filterKec" name="filterKec">
+            <option selected>Pilih Kecamatan</option>
+            <?php foreach ($kecamatan_filter as $k) { ?>              
+                <option value="<?=$k->id_kecamatan?>"><?=$k->nama_kecamatan?></option>
+            <?php } ?>
+          </select>          
+        </div>
+      </div>
+      <br>
+      <div class="row">        
         <div class="col-md-6">
 
-          <div class="box box-success">
+          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Data Alumni Per Kecamatan</h3>
 
@@ -43,8 +58,11 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                <canvas id="barChart" style="height:230px"></canvas>
+                <canvas id="barChart" height="40vh" width="80vw"></canvas>
               </div>
+            </div>
+            <div class="box-header with-border">
+              <h3 class="box-title" style="color: red; font-style: italic;">Note: Jumlah Alumni Terbanyak di 10 Kecamatan</h3>
             </div>
             
           </div>
@@ -54,7 +72,7 @@
         <div class="col-md-6">
           
           <!-- DONUT CHART -->
-          <div class="box box-danger">
+          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Data Alumni Per Desa</h3>
 
@@ -68,6 +86,9 @@
               <canvas id="barChart2" style="height:230px"></canvas>
             </div>
             <!-- /.box-body -->
+            <div class="box-header with-border">
+              <h3 class="box-title" style="color: red; font-style: italic;">Note: Jumlah Alumni Terbanyak di 10 Desa</h3>
+            </div>
           </div>
           <!-- /.box -->
 
@@ -79,14 +100,17 @@
 </div>
 
 <?php if ($title == "Dashboard") {
-    foreach($kecamatan as $data){
-      $nama_kec[] = $data->nama_kecamatan;   
-      $id_kec[] = $data->id_kecamatan;
-    }
+    // foreach($kecamatan as $data){
+    //   $nama_kec[] = $data->nama_kecamatan;   
+    //   $id_kec[] = $data->id_kecamatan;
+    // }
 
     foreach ($desa as $d) {
-      $nama_d[] = $d->nama_desa;
-      $id_des[] = $d->id_desa;
+      $data_desa[] = $d;
+    }
+
+    foreach ($kecamatan as $k) {
+      $data_kecamatan[] = $k;
     }
     
 } ?>
@@ -95,35 +119,81 @@
 <script src="<?=base_url()?>assets/js/chart.js/Chart.js"></script>
 
 <script>
-    $(function() {
 
-    var kecamatan = [];
-    var desa = [];
-    var id_kecamatan = <?php echo json_encode($id_kec); ?>;
-    var nama_kecamatan = <?php echo json_encode($nama_kec);?>;
+    $(function() {    
 
-    var id_desa = <?php echo json_encode($id_des); ?>;
-    var nama_desa = <?php echo json_encode($nama_d);?>;    
+    var id_kecamatan = [];
+    var nama_kecamatan = [];
+
+    var id_desa = [];
+    var nama_desa = [];
 
     var count_kecamatan = [];
     var count_desa = [];
 
-    // console.log(id_kecamatan);
+    var nm = <?php echo json_encode($data_kecamatan); ?>;
+    var ds = <?php echo json_encode($data_desa); ?>
+
+    nm.sort(function(a,b) {
+      if (a.jml > b.jml) {
+        return -1;
+      }
+
+      if (a.jml < b.jml) {
+        return 1;
+      }
+
+      return 0;
+    })
+
+    ds.sort(function(a,b) {
+      if (a.jml > b.jml) {
+        return -1;
+      }
+
+      if (a.jml < b.jml) {
+        return 1;
+      }
+
+      return 0;
+    })
+
+    //console.log(ds);
+    nm.map(a => {
+      //console.log(a.id_kecamatan);  
+      id_kecamatan.push(a.id_kecamatan)     ;
+    })
+
+    ds.map(b => {
+      id_desa.push(b.id_desa);
+    })
 
     $.post("<?=base_url()?>administrator/jml_alumni_per_kecamatan", {id: id_kecamatan}, (result) => {
-      // console.log(result);
-      result.map(res => {
-        count_kecamatan.push(res);  
-      })        
+      //console.log(result);
+      for (var i = 0; i < 10; i++) {
+        count_kecamatan.push(result[i].jml);  
+        nama_kecamatan.push(result[i].nama_kecamatan);
+      } 
 
-    }) 
+    })
+
+    //console.log(id_kecamatan);    
 
     $.post("<?=base_url()?>administrator/jml_alumni_per_desa", {id: id_desa}, (result) => {
-        result.map(res => {
-          count_desa.push(res);
-        })
+      //console.log(result);
+      for (var i = 0; i < 10; i++) {
+        count_desa.push(result[i].jml);
+        nama_desa.push(result[i].nama_desa);
+      } 
 
     })  
+
+    $("#filterKec").change(function() {
+      let filterKec = $("#filterKec").val();
+      $("#filter_id_kec").val(filterKec);
+
+      window.location.href = `<?=base_url()?>administrator/filter_kec/${filterKec}`;
+    })   
 
     var interval = setInterval(displayChart, 800);
       
@@ -237,8 +307,8 @@
 
       clearInterval(interval);
 
-      }
+      }   
 
-    })
+    })    
 
 </script>

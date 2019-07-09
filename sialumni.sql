@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Waktu pembuatan: 22 Bulan Mei 2019 pada 17.58
--- Versi server: 10.3.15-MariaDB
--- Versi PHP: 7.2.7
+-- Host: 127.0.0.1
+-- Generation Time: 07 Jul 2019 pada 14.18
+-- Versi Server: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rpperoxu_new_p4nj`
+-- Database: `sialumni`
 --
 
 -- --------------------------------------------------------
@@ -101,12 +99,13 @@ CREATE TABLE `tb_alumni` (
 --
 
 INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `nama_usaha`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`, `token_device`) VALUES
-(1, '3513172111980002', 'M. Ilham Surya Pratama', 4, 7, 'Dusun Paleran RT 011 RW 003', '085330150827', '2010', '2019', 'Wiraswasta', '', 'Kuliner', '', 'ilhamsurya26@gmail.com', 'ilhamsurya', '690896bc12592620f7371419d7bb8600', '8500fce2a72491afaca0708ba59699ac.jpg', 'c5a2cba2bd640af585a613b69341fb43.jpg', ''),
-(2, '3513172305980001', 'M Solehuddin', 1, 1, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', 'Bengkel Motor Soleh', 'Otomotif', '', 'solehudin@gmail.com', 'solehudin', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
-(3, '3513170305960002', 'Luthfi Nurul Huda', 6, 9, 'Dusun Karang RT 007 RW 003', '08574587213', '2004', '2010', 'Pengusaha', 'Bengkel Mobil Luthfi', 'Otomotif', '', 'luthfirobit@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', 'd84758412b1a7eb8ec0c43b267dc02f0.jpg', 'b4d2861c1f156e0fba174c902e69cf92.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
-(4, '3513172111980005', 'Giovani Rusandi', 4, 7, 'Dusun Krajan IV Rt 005 RW 002', '085337665221', '2009', '2014', 'Wiraswasta', '', '', '', 'giovanirusandi@gmail.com', 'giovani', 'f1b6d941a97ababa0c81b92841b3189f', '8bbf04034f09981dd59b2d41e7a270f5.jpg', '', 'flFMAZWhz2k:APA91bHbhL4IdUkzMjRZUSJmpiyJ3hkuZ4AHAt20okn0xN8A3POm24_ovsNrqICggcZUzvQY0Eg1oPCIZxW6LhZnRDbHfkSeU7kwIX3mx19Ya3LF6Y3zDVWjx5Sw0EdRcmko63aUw1Qc'),
-(5, '3513172111980007', 'Ario Setiawan', 6, 9, 'Dusun Makmur RT 11 Rw 05', '085337665221', '2018', '2019', 'Wiraswasta', '', '', '', 'ariosetiawan@gmail.com', 'ario', '713136f194f4b40b26ca140b940f6f05', 'a384bf909620bec58a4963104f49530a.jpg', '', ''),
-(6, '3513172305980001', 'M Solehuddin', 1, 1, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', 'Bengkel Motor Soleh', 'Otomotif', '', 'solehudin@gmail.com', 'soleh', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y');
+(1, '3513172111980002', 'M. Ilham Surya Pratama', 1, 4, 'Dusun Paleran RT 011 RW 003', '085330150827', '2010', '2019', 'Wiraswasta', '', 'Kuliner', '', 'ilhamsurya26@gmail.com', 'ilhamsurya', '690896bc12592620f7371419d7bb8600', '8500fce2a72491afaca0708ba59699ac.jpg', 'c5a2cba2bd640af585a613b69341fb43.jpg', ''),
+(2, '3513172305980001', 'M Solehuddin', 2, 13, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'solehudin', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(3, '3513170305960002', 'Luthfi Nurul Huda', 4, 18, 'Dusun Karang RT 007 RW 003', '08574587213', '2004', '2010', 'Pengusaha', 'Bengkel Mobil Luthfi', 'Otomotif', '', 'luthfirobit@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', 'd84758412b1a7eb8ec0c43b267dc02f0.jpg', 'b4d2861c1f156e0fba174c902e69cf92.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(4, '3513172111980005', 'Giovani Rusandi', 1, 4, 'Dusun Krajan IV Rt 005 RW 002', '085337665221', '2009', '2014', 'Wiraswasta', '', '', '', 'giovanirusandi@gmail.com', 'giovani', 'f1b6d941a97ababa0c81b92841b3189f', '8bbf04034f09981dd59b2d41e7a270f5.jpg', '', 'flFMAZWhz2k:APA91bHbhL4IdUkzMjRZUSJmpiyJ3hkuZ4AHAt20okn0xN8A3POm24_ovsNrqICggcZUzvQY0Eg1oPCIZxW6LhZnRDbHfkSeU7kwIX3mx19Ya3LF6Y3zDVWjx5Sw0EdRcmko63aUw1Qc'),
+(5, '3513172111980007', 'Ario Setiawan', 4, 21, 'Dusun Makmur RT 11 Rw 05', '085337665221', '2018', '2019', 'Wiraswasta', '', '', '', 'ariosetiawan@gmail.com', 'ario', '713136f194f4b40b26ca140b940f6f05', 'a384bf909620bec58a4963104f49530a.jpg', '', ''),
+(6, '3513172305980001', 'M Solehuddin', 1, 5, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'soleh', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(7, '3513172111980007', 'Ibad Zimani', 2, 13, 'Dusun Kambuh RT 002 RW 004', '085337665201', '2013', '2016', 'Wiraswasta', '', 'Pertanian', '', 'ibadzimani@gmail.com', 'ibad', 'f275aed3c532126cf1e0174f1c9770e0', '879e82fce0d89403652187e0958d571c.jpg', 'a0a93defeefee7e11a39e02aa4ac4971.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -125,14 +124,32 @@ CREATE TABLE `tb_desa` (
 --
 
 INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`) VALUES
-(1, 'Tongas Wetan', 1),
-(2, 'Klampok', 1),
-(3, 'Purut', 2),
-(4, 'Mada Karipura', 2),
-(6, 'Maron Wetan', 4),
-(7, 'Wonorejo', 4),
-(9, 'Karanggeger', 6),
-(10, 'Karangbong', 6);
+(1, 'Ajung', 1),
+(2, 'Klompangan', 1),
+(3, 'Mangaran', 1),
+(4, 'Pancakarya', 1),
+(5, 'Rowoindah', 1),
+(6, 'Sukamakmur', 1),
+(7, 'Wirowongso', 1),
+(8, 'Ambulu', 2),
+(9, 'Andongsari', 2),
+(10, 'Karang Anyar', 2),
+(11, 'Pontang', 2),
+(12, 'Sabrang', 2),
+(13, 'Sumberejo', 2),
+(14, 'Tegalsari', 2),
+(15, 'Badean', 4),
+(16, 'Bangsalsari', 4),
+(17, 'Banjarsari', 4),
+(18, 'Curahkalong', 4),
+(19, 'Gambirono', 4),
+(20, 'Karangsono', 4),
+(21, 'Langkap', 4),
+(22, 'Petung', 4),
+(23, 'Sukorejo', 4),
+(24, 'Tisnogambar', 4),
+(25, 'Tugusari', 4),
+(26, 'Balung 1', 5);
 
 -- --------------------------------------------------------
 
@@ -193,7 +210,7 @@ CREATE TABLE `tb_jawaban` (
 --
 
 INSERT INTO `tb_jawaban` (`id_jawaban`, `id_soal`, `jawaban`, `status`, `aktif`) VALUES
-(1, 1, 'KH ZAINI MUN\'IM', 'b', 'y'),
+(1, 1, 'KH ZAINI MUN''IM', 'b', 'y'),
 (2, 1, 'KH HASYIM ZAINI', 's', 'y'),
 (3, 1, 'KH WAHID ZAINI', 's', 'y'),
 (4, 1, 'KH ZUHRI ZAINI', 's', 'y'),
@@ -226,10 +243,17 @@ CREATE TABLE `tb_kecamatan` (
 --
 
 INSERT INTO `tb_kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
-(1, 'Tongas'),
-(2, 'Lumbang'),
-(4, 'Maron'),
-(6, 'Pajarakan');
+(1, 'Ajung'),
+(2, 'Ambulu'),
+(3, 'Arjasa'),
+(4, 'Bangsalsari'),
+(5, 'Balung'),
+(6, 'Gumukmas'),
+(7, 'Jelbuk'),
+(8, 'Jenggawah'),
+(9, 'Jombang'),
+(10, 'Kalisat'),
+(11, 'Kaliwates');
 
 -- --------------------------------------------------------
 
@@ -420,7 +444,7 @@ CREATE TABLE `tb_soal` (
 
 INSERT INTO `tb_soal` (`id_soal`, `pertanyaan`, `aktif`) VALUES
 (1, 'Siapa pendiri pertama pondok pesantren nurul jadid ?', 'y'),
-(2, 'Ada 2 nama yang di sodorkan kepada KH ZAINI MUN\'IM untuk nama pesantren, apa sajakah itu?', 'y'),
+(2, 'Ada 2 nama yang di sodorkan kepada KH ZAINI MUN''IM untuk nama pesantren, apa sajakah itu?', 'y'),
 (3, 'Pondok Pesantren Nurul Jadid didirikan pada tahun', 'y'),
 (4, 'Pendiri Pertama mendirikan pondok pesantren nurul jadid mendapatkan restu dan perintah dari ?', 'y');
 
@@ -478,226 +502,207 @@ INSERT INTO `tb_visi_misi` (`id_visi_misi`, `visi`, `misi`, `id_lembaga_alumni`)
 --
 
 --
--- Indeks untuk tabel `administrator`
+-- Indexes for table `administrator`
 --
 ALTER TABLE `administrator`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `anggota_fks`
+-- Indexes for table `anggota_fks`
 --
 ALTER TABLE `anggota_fks`
   ADD PRIMARY KEY (`nis`);
 
 --
--- Indeks untuk tabel `tb_alumni`
+-- Indexes for table `tb_alumni`
 --
 ALTER TABLE `tb_alumni`
   ADD PRIMARY KEY (`id_alumni`) USING BTREE;
 
 --
--- Indeks untuk tabel `tb_desa`
+-- Indexes for table `tb_desa`
 --
 ALTER TABLE `tb_desa`
   ADD PRIMARY KEY (`id_desa`);
 
 --
--- Indeks untuk tabel `tb_devisi`
+-- Indexes for table `tb_devisi`
 --
 ALTER TABLE `tb_devisi`
   ADD PRIMARY KEY (`id_devisi`);
 
 --
--- Indeks untuk tabel `tb_jabatan`
+-- Indexes for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
 
 --
--- Indeks untuk tabel `tb_jawaban`
+-- Indexes for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD PRIMARY KEY (`id_jawaban`);
 
 --
--- Indeks untuk tabel `tb_kecamatan`
+-- Indexes for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`);
 
 --
--- Indeks untuk tabel `tb_kegiatan`
+-- Indexes for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
   ADD PRIMARY KEY (`id_kegiatan`);
 
 --
--- Indeks untuk tabel `tb_korcam`
+-- Indexes for table `tb_korcam`
 --
 ALTER TABLE `tb_korcam`
   ADD PRIMARY KEY (`id_korcam`);
 
 --
--- Indeks untuk tabel `tb_lembaga_alumni`
+-- Indexes for table `tb_lembaga_alumni`
 --
 ALTER TABLE `tb_lembaga_alumni`
   ADD PRIMARY KEY (`id_lembaga_alumni`);
 
 --
--- Indeks untuk tabel `tb_lembaga_nj`
+-- Indexes for table `tb_lembaga_nj`
 --
 ALTER TABLE `tb_lembaga_nj`
   ADD PRIMARY KEY (`id_lembaga`);
 
 --
--- Indeks untuk tabel `tb_pengurus`
+-- Indexes for table `tb_pengurus`
 --
 ALTER TABLE `tb_pengurus`
   ADD PRIMARY KEY (`id_pengurus`);
 
 --
--- Indeks untuk tabel `tb_petugas`
+-- Indexes for table `tb_petugas`
 --
 ALTER TABLE `tb_petugas`
   ADD PRIMARY KEY (`id_petugas`);
 
 --
--- Indeks untuk tabel `tb_promosi`
+-- Indexes for table `tb_promosi`
 --
 ALTER TABLE `tb_promosi`
   ADD PRIMARY KEY (`id_promosi`);
 
 --
--- Indeks untuk tabel `tb_soal`
+-- Indexes for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
   ADD PRIMARY KEY (`id_soal`);
 
 --
--- Indeks untuk tabel `tb_struktur`
+-- Indexes for table `tb_struktur`
 --
 ALTER TABLE `tb_struktur`
   ADD PRIMARY KEY (`id_struktur`);
 
 --
--- Indeks untuk tabel `tb_visi_misi`
+-- Indexes for table `tb_visi_misi`
 --
 ALTER TABLE `tb_visi_misi`
   ADD PRIMARY KEY (`id_visi_misi`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `administrator`
+-- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT untuk tabel `anggota_fks`
+-- AUTO_INCREMENT for table `anggota_fks`
 --
 ALTER TABLE `anggota_fks`
   MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2166;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_alumni`
+-- AUTO_INCREMENT for table `tb_alumni`
 --
 ALTER TABLE `tb_alumni`
-  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT untuk tabel `tb_desa`
+-- AUTO_INCREMENT for table `tb_desa`
 --
 ALTER TABLE `tb_desa`
-  MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
--- AUTO_INCREMENT untuk tabel `tb_devisi`
+-- AUTO_INCREMENT for table `tb_devisi`
 --
 ALTER TABLE `tb_devisi`
   MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_jabatan`
+-- AUTO_INCREMENT for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_jawaban`
+-- AUTO_INCREMENT for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_kecamatan`
+-- AUTO_INCREMENT for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
-  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT untuk tabel `tb_kegiatan`
+-- AUTO_INCREMENT for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
   MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_korcam`
+-- AUTO_INCREMENT for table `tb_korcam`
 --
 ALTER TABLE `tb_korcam`
   MODIFY `id_korcam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_lembaga_alumni`
+-- AUTO_INCREMENT for table `tb_lembaga_alumni`
 --
 ALTER TABLE `tb_lembaga_alumni`
   MODIFY `id_lembaga_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_lembaga_nj`
+-- AUTO_INCREMENT for table `tb_lembaga_nj`
 --
 ALTER TABLE `tb_lembaga_nj`
   MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_pengurus`
+-- AUTO_INCREMENT for table `tb_pengurus`
 --
 ALTER TABLE `tb_pengurus`
   MODIFY `id_pengurus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_petugas`
+-- AUTO_INCREMENT for table `tb_petugas`
 --
 ALTER TABLE `tb_petugas`
   MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_promosi`
+-- AUTO_INCREMENT for table `tb_promosi`
 --
 ALTER TABLE `tb_promosi`
   MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_soal`
+-- AUTO_INCREMENT for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
   MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_struktur`
+-- AUTO_INCREMENT for table `tb_struktur`
 --
 ALTER TABLE `tb_struktur`
   MODIFY `id_struktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT untuk tabel `tb_visi_misi`
+-- AUTO_INCREMENT for table `tb_visi_misi`
 --
 ALTER TABLE `tb_visi_misi`
   MODIFY `id_visi_misi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

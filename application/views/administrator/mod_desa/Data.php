@@ -32,6 +32,27 @@
                     </div>
                 <?php } ?>
     			<div class="box box-primary">
+                    <div class="box-header">
+                        <div class="col-md-4">
+                            <h3 class="box-title">Tabel Data Desa</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="kecamatan" name="kecamatan" required>
+                                <option>-- Pilih Kecamatan --</option>
+                                <?php 
+                                foreach ($kecamatan as $k) { 
+                                    if ($k['id_kecamatan'] == $current_kecamatan) { ?>
+                                        <option value="<?=$k['id_kecamatan']?>" selected><?=$k['nama_kecamatan']?></option>
+                                    <?php } else { ?>
+                                        <option value="<?=$k['id_kecamatan']?>"><?=$k['nama_kecamatan']?></option>
+                                    <?php } ?>                                    
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary" id="filter_desa">Filter</button>
+                        </div>
+                    </div>
     				<div class="box-body">
     					<table id="example1" class="table table-bordered table-striped">
     						<thead>
@@ -50,7 +71,7 @@
     						<tbody>
     							<?php 
     							$no = 1;
-    							foreach ($prodi as $p) { ?>
+    							foreach ($desa as $p) { ?>
     								<tr>
     									<td><?=$no?></td>
     									<td><?=$p['nama_desa']?></td>
@@ -79,5 +100,11 @@
 <script>
   $(function () {
     $('#example1').DataTable();
+
+    $("#filter_desa").click(function() {
+        let kecamatan = $("#kecamatan").val();
+
+        window.location.href = `<?=base_url()?>administrator/filter_desa?kecamatan=${kecamatan}`;
+    })
   })
 </script>

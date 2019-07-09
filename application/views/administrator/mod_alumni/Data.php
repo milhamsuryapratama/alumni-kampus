@@ -39,7 +39,31 @@
                 <?php } ?>
     			<div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Tabel Data Alumni</h3>
+                        <div class="col-md-3">
+                            <h3 class="box-title">Tabel Data Alumni</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="kecamatan" name="kecamatan" required>
+                                <option>-- Pilih Kecamatan --</option>
+                                <?php 
+                                foreach ($kecamatan as $k) { 
+                                    if ($k['id_kecamatan'] == $current_kecamatan) { ?>
+                                        <option value="<?=$k['id_kecamatan']?>" selected><?=$k['nama_kecamatan']?></option>
+                                    <?php } else { ?>
+                                        <option value="<?=$k['id_kecamatan']?>"><?=$k['nama_kecamatan']?></option>
+                                    <?php } ?>                                    
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="desa" name="desa" required style="display: none;">
+                                
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" id="filter_alumni">Filter</button>
+                            <button class="btn btn-success" id="export_excel">Export Excel</button>
+                        </div>
                     </div>
     				<div class="box-body">
     					<table id="example1" class="table table-bordered table-striped">
@@ -96,5 +120,89 @@
 <script>
   $(function () {
     $('#example1').DataTable();
+
+    var kecamatan = $("#kecamatan").val();
+    var desa = $("#desa").val();
+    
+
+    var pageUrl = window.location.search.substring(1);
+    var sUrlVariables = pageUrl.split('&');
+
+    for (var i = 0; i < sUrlVariables.length; i++) {
+        var sParametersName = sUrlVariables[i].split('=');
+        if (sParametersName[0] == 'desa') {
+            desa = sParametersName[1];            
+        } else {
+            desa = null;
+        }
+    }
+
+    if (desa != null) {
+        $("#desa").removeAttr("style");       
+        $("#filter_alumni").attr('disabled', false); 
+    } else {
+        $("#filter_alumni").attr('disabled', true);
+    }
+
+    $.post('<?=base_url()?>administrator/get_desa', {id: kecamatan}, (result) => {
+        // console.log(result);
+            // $("#desa").find("option").remove();
+            if (desa == 'all') {                                   
+                $('#desa').append(
+                    `
+                    <option value='all' selected>Semua</option>
+                    `  
+                )
+            } else {                             
+                $('#desa').append(
+                    `
+                    <option value='all'>Semua</option>
+                    `  
+                )
+            }
+
+            $.map(result, function(val, i) {
+                if (val.id_desa == desa) {
+                    $('#desa').append(
+                    `
+                    <option value='${val.id_desa}' selected>${val.nama_desa}</option>
+                    `  
+                    )  
+              } else {
+                    $('#desa').append(
+                        `
+                        <option value='${val.id_desa}'>${val.nama_desa}</option>
+                        `  
+                    )
+            }
+        })
+    })
+
+    $("#kecamatan").on('change', function() {
+        $("#desa").find("option").remove();
+        $("#desa").removeAttr("style");
+        $("#desa").append("<option value='all' selected>Semua</option>");
+        $("#filter_alumni").removeAttr('disabled');
+        $.post('<?=base_url()?>administrator/get_desa', {id: this.value}, (result) => {            
+            $.map(result, function(val, i) {
+                $('#desa').append(
+                    `
+                    <option value='${val.id_desa}'>${val.nama_desa}</option>
+                    `
+                    )
+            })
+        })
+    })
+
+    $("#filter_alumni").click(function() {   
+        var kecamatan = $("#kecamatan").val();
+        var desa = $("#desa").val();            
+        window.location.href = `<?=base_url()?>administrator/filter_alumni?kecamatan=${kecamatan}&desa=${desa}`;
+    })
+
+    $("#export_excel").click(function() {
+       window.location.href = "<?=base_url()?>administrator/export";
+    })
+
   })
 </script>

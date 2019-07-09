@@ -2,6 +2,9 @@
 /**
  * 
  */
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Administrator extends CI_Controller
 {
 	
@@ -20,8 +23,31 @@ class Administrator extends CI_Controller
 
 	public function dashboard() 
 	{
-		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();	
-		$data['desa'] = $this->db->query("SELECT * FROM tb_desa")->result();
+		$data['kecamatan_filter'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();
+
+		$kec = $this->db->query("SELECT id_kecamatan FROM tb_kecamatan")->result_array();
+		$des = $this->db->query("SELECT id_desa FROM tb_desa")->result_array();
+
+		$data['kecamatan'] = array();
+		$data['desa'] = array();
+
+		foreach ($kec as $k) {
+			$j = $this->db->query("SELECT id_kecamatan FROM tb_alumni WHERE id_kecamatan = $k[id_kecamatan]")->num_rows();
+			array_push($data['kecamatan'], array(
+				'id_kecamatan' => $k['id_kecamatan'],
+				'jml' => $j
+			));
+		}
+
+		foreach ($des as $d) {
+			$k = $this->db->query("SELECT id_desa FROM tb_alumni WHERE id_desa = $d[id_desa]")->num_rows();
+			array_push($data['desa'], array(
+				'id_desa' => $d['id_desa'],
+				'jml' => $k
+			));
+		}
+
+		// $data['desa'] = $this->db->query("SELECT * FROM tb_desa ORDER BY RAND() LIMIT 10")->result();
 		$data['jml'] = $this->db->query("SELECT COUNT(id_kecamatan) as count FROM tb_alumni GROUP BY id_kecamatan")->result();
 		$data['title'] = "Dashboard";
 
@@ -38,7 +64,11 @@ class Administrator extends CI_Controller
 		$count = array();
 		foreach ($id as $i) {
 			$jml = $this->db->query("SELECT id_kecamatan FROM tb_alumni WHERE id_kecamatan = '$i' ")->num_rows();
-			array_push($count, $jml);
+			$nama_kecamatan = $this->db->query("SELECT nama_kecamatan FROM tb_kecamatan WHERE id_kecamatan = '$i' ")->row_array();
+			array_push($count, array(
+				'jml' => $jml,
+				'nama_kecamatan' => $nama_kecamatan['nama_kecamatan']
+			));
 		}		
 		
 		$arr_jml_kec = json_encode($count);
@@ -52,12 +82,81 @@ class Administrator extends CI_Controller
 		$count = array();
 		foreach ($id as $i) {
 			$jml = $this->db->query("SELECT id_desa FROM tb_alumni WHERE id_desa = '$i' ")->num_rows();
-			array_push($count, $jml);
+			$nama_desa = $this->db->query("SELECT nama_desa FROM tb_desa WHERE id_desa = '$i' ")->row_array();
+			array_push($count, array(
+				'jml' => $jml,
+				'nama_desa' => $nama_desa['nama_desa']
+			));
 		}		
 		
 		$arr_jml_des = json_encode($count);
 		$this->output->set_content_type('application/json')->set_output($arr_jml_des);
 	}
+
+	public function filter_alumni()
+	{
+		$kecamatan = $_GET['kecamatan'];
+		$desa = $_GET['desa'];
+
+		$data['kecamatan'] = $this->App_model->ambil_data('tb_kecamatan', 'id_kecamatan');
+		$data['bred'] = "Data Alumni";
+
+		$data['current_kecamatan'] = $kecamatan;
+		$data['current_desa'] = $desa;
+
+		if ($desa == "all") {
+			$data['alumni'] = $this->App_model->join_tiga_table_by_id_result('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.id_desa = tb_desa.id_desa', 'tb_alumni.id_kecamatan', $kecamatan);
+		} else {
+			$data['alumni'] = $this->db->query("SELECT * FROM tb_alumni JOIN tb_kecamatan ON tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan JOIN tb_desa ON tb_alumni.id_desa = tb_desa.id_desa WHERE tb_alumni.id_kecamatan = '$kecamatan' AND tb_alumni.id_desa = '$desa' ")->result_array();
+		}
+
+		$this->load->view('administrator/Header');
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/mod_alumni/Data', $data);
+		$this->load->view('administrator/Footer');
+	}
+
+	public function filter_desa()
+	{
+		$kecamatan = $_GET['kecamatan'];
+
+		$data['current_kecamatan'] = $kecamatan;
+
+		$data['desa'] = $this->App_model->join_dua_table_by_id('tb_desa','tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_desa.id_kecamatan', 'tb_desa.id_desa', 'tb_desa.id_kecamatan', $kecamatan);
+		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan LIMIT 10")->result_array();
+
+		if ($this->session->userdata('id_lembaga') != 2) {
+			redirect(base_url().'administrator/error');
+		} else {
+			$this->load->view('administrator/Header');
+			$this->load->view('administrator/TopHeader');
+			$this->load->view('administrator/SideBar');
+			$this->load->view('administrator/mod_desa/Data', $data);
+			$this->load->view('administrator/Footer');
+		}
+
+	}
+
+	public function filter_kec($id)
+	{
+		//$id = $_POST['id'];
+		$data['current_id'] = $id;
+		$data['title'] = "Dashboard";
+		$count = array();
+		$id_d = $this->db->query("SELECT id_desa FROM tb_desa WHERE id_kecamatan = $id ")->result_array();
+		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan")->result();	
+		$data['desa'] = $this->db->query("SELECT * FROM tb_desa WHERE id_kecamatan = $id")->result();
+		foreach ($id_d as $d) {
+			$k = $this->db->query("SELECT id_desa FROM tb_alumni WHERE id_desa = $d[id_desa]")->num_rows();
+			array_push($count, $k);
+		}
+		$this->load->view('administrator/Header', $data);
+		$this->load->view('administrator/TopHeader');
+		$this->load->view('administrator/SideBar');
+		$this->load->view('administrator/Filter_kec', $data);
+		$this->load->view('administrator/Footer');
+	}	
 
 	public function form()
 	{
@@ -75,6 +174,7 @@ class Administrator extends CI_Controller
 			redirect(base_url().'administrator/error');
 		} else {
 			$data['alumni'] = $this->App_model->join_tiga_table('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.id_desa = tb_desa.id_desa');
+			$data['kecamatan'] = $this->App_model->ambil_data('tb_kecamatan', 'id_kecamatan');
 			$data['bred'] = "Data Alumni";
 
 			$this->load->view('administrator/Header');
@@ -507,7 +607,8 @@ class Administrator extends CI_Controller
 
 	public function desa()
 	{
-		$data['prodi'] = $this->App_model->join_dua_table('tb_kecamatan','tb_desa', 'tb_kecamatan.id_kecamatan = tb_desa.id_kecamatan', 'tb_desa.id_desa');
+		$data['desa'] = $this->App_model->join_dua_table('tb_kecamatan','tb_desa', 'tb_kecamatan.id_kecamatan = tb_desa.id_kecamatan', 'tb_desa.id_desa');
+		$data['kecamatan'] = $this->db->query("SELECT * FROM tb_kecamatan LIMIT 10")->result_array();
 
 		if ($this->session->userdata('id_lembaga') != 2) {
 			redirect(base_url().'administrator/error');
@@ -1916,13 +2017,14 @@ class Administrator extends CI_Controller
 
 	public function soal()
 	{		
-		$data['soal'] = $this->App_model->ambil_data('tb_soal','id_soal');
+		redirect(base_url().'administrator/error');
+		// $data['soal'] = $this->App_model->ambil_data('tb_soal','id_soal');
 
-		$this->load->view('administrator/Header');
-		$this->load->view('administrator/TopHeader');
-		$this->load->view('administrator/SideBar');
-		$this->load->view('administrator/mod_soal_jawaban/Data', $data);
-		$this->load->view('administrator/Footer');
+		// $this->load->view('administrator/Header');
+		// $this->load->view('administrator/TopHeader');
+		// $this->load->view('administrator/SideBar');
+		// $this->load->view('administrator/mod_soal_jawaban/Data', $data);
+		// $this->load->view('administrator/Footer');
 	}
 
 	public function tambah_soal()
@@ -1966,24 +2068,26 @@ class Administrator extends CI_Controller
 			}
 			
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_soal_jawaban/Tambah');
-			$this->load->view('administrator/Footer');
+			redirect(base_url().'administrator/error');
+			// $this->load->view('administrator/Header');
+			// $this->load->view('administrator/TopHeader');
+			// $this->load->view('administrator/SideBar');
+			// $this->load->view('administrator/mod_soal_jawaban/Tambah');
+			// $this->load->view('administrator/Footer');
 		}
 	}
 
 	public function hapus_soal($id)
 	{
-		$query = $this->App_model->hapus_data('tb_soal','id_soal',$id);
-		if ($query) {
-			$query2 = $this->App_model->hapus_data('tb_jawaban','id_soal',$id);
-			if ($query2) {
-				$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
-				redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
-			}
-		}
+		redirect(base_url().'administrator/error');
+		// $query = $this->App_model->hapus_data('tb_soal','id_soal',$id);
+		// if ($query) {
+		// 	$query2 = $this->App_model->hapus_data('tb_jawaban','id_soal',$id);
+		// 	if ($query2) {
+		// 		$this->session->set_flashdata('hapusDataSukses', 'Sukses Menghapus Data');
+		// 		redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+		// 	}
+		// }
 	}
 
 	public function edit_soal($id)
@@ -2031,28 +2135,31 @@ class Administrator extends CI_Controller
 				}
 			}
 		} else {
-			$this->load->view('administrator/Header');
-			$this->load->view('administrator/TopHeader');
-			$this->load->view('administrator/SideBar');
-			$this->load->view('administrator/mod_soal_jawaban/Edit', $data);
-			$this->load->view('administrator/Footer');
+			redirect(base_url().'administrator/error');
+			// $this->load->view('administrator/Header');
+			// $this->load->view('administrator/TopHeader');
+			// $this->load->view('administrator/SideBar');
+			// $this->load->view('administrator/mod_soal_jawaban/Edit', $data);
+			// $this->load->view('administrator/Footer');
 		}
 	}
 
 	public function nonaktifkan_soal($id)
 	{
-		$query = $this->db->query("UPDATE tb_soal SET aktif = 't' WHERE id_soal = $id ");
-		if ($query) {
-			redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
-		}
+		redirect(base_url().'administrator/error');
+		// $query = $this->db->query("UPDATE tb_soal SET aktif = 't' WHERE id_soal = $id ");
+		// if ($query) {
+		// 	redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+		// }
 	}
 
 	public function aktifkan_soal($id)
 	{
-		$query = $this->db->query("UPDATE tb_soal SET aktif = 'y' WHERE id_soal = $id ");
-		if ($query) {
-			redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
-		}
+		redirect(base_url().'administrator/error');
+		// $query = $this->db->query("UPDATE tb_soal SET aktif = 'y' WHERE id_soal = $id ");
+		// if ($query) {
+		// 	redirect(base_url().'administrator/soal/?lembaga='.$this->session->userdata('nama_lembaga'));
+		// }
 	}
 
 	public function reset_password_admin()
@@ -2089,6 +2196,54 @@ class Administrator extends CI_Controller
 				}
 			}
 		}
+	}
+
+	public function export()
+	{
+		$alumni = $this->App_model->join_tiga_table('tb_alumni','tb_kecamatan','tb_desa','tb_alumni.id_kecamatan = tb_kecamatan.id_kecamatan', 'tb_alumni.id_desa = tb_desa.id_desa');
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'NO');
+		$sheet->setCellValue('B1', 'NO KTP');
+		$sheet->setCellValue('C1', 'Nama');
+		$sheet->setCellValue('D1', 'Alamat');
+		$sheet->setCellValue('E1', 'Telepon');
+		$sheet->setCellValue('F1', 'Tahun Mondok');
+		$sheet->setCellValue('G1', 'Tahun Keluar');
+		$sheet->setCellValue('H1', 'Email');
+		$sheet->setCellValue('I1', 'Pekerjaan');
+		$sheet->setCellValue('J1', 'Bidang Usaha');
+		$sheet->setCellValue('K1', 'Nama Usaha');
+
+		$rowCount = 2;
+		$no = 1;
+
+		foreach ($alumni as $a) {
+			$sheet->setCellValue('A' . $rowCount, $no);
+			$sheet->setCellValue('B' . $rowCount, $a['no_ktp']);
+			$sheet->setCellValue('C' . $rowCount, $a['nama']);
+			$sheet->setCellValue('D' . $rowCount, $a['alamat']." Kecamatan ". $a['nama_kecamatan']." Desa ". $a['nama_desa']);
+			$sheet->setCellValue('E' . $rowCount, $a['telepon']);
+			$sheet->setCellValue('F' . $rowCount, $a['thn_mondok']);
+			$sheet->setCellValue('G' . $rowCount, $a['thn_keluar']);
+			$sheet->setCellValue('H' . $rowCount, $a['email']);
+			$sheet->setCellValue('I' . $rowCount, $a['pekerjaan']);
+			$sheet->setCellValue('J' . $rowCount, $a['bidang_usaha']);
+			$sheet->setCellValue('K' . $rowCount, $a['nama_usaha']);
+
+			$rowCount++;
+			$no++;
+		}
+        
+		$writer = new Xlsx($spreadsheet);
+		
+		$filename = 'Data Alumni P4NJ';
+		
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
 	}
 
 }
