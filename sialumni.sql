@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Jul 2019 pada 14.18
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: Jul 10, 2019 at 04:42 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `administrator`
+-- Table structure for table `administrator`
 --
 
 CREATE TABLE `administrator` (
@@ -33,7 +35,7 @@ CREATE TABLE `administrator` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `administrator`
+-- Dumping data for table `administrator`
 --
 
 INSERT INTO `administrator` (`id`, `username`, `password`) VALUES
@@ -42,7 +44,7 @@ INSERT INTO `administrator` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota_fks`
+-- Table structure for table `anggota_fks`
 --
 
 CREATE TABLE `anggota_fks` (
@@ -59,7 +61,7 @@ CREATE TABLE `anggota_fks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `anggota_fks`
+-- Dumping data for table `anggota_fks`
 --
 
 INSERT INTO `anggota_fks` (`nis`, `nama`, `alamat`, `desa`, `kecamatan`, `gang_wilayah`, `pendidikan`, `telepon`, `username`, `password`) VALUES
@@ -69,7 +71,7 @@ INSERT INTO `anggota_fks` (`nis`, `nama`, `alamat`, `desa`, `kecamatan`, `gang_w
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_alumni`
+-- Table structure for table `tb_alumni`
 --
 
 CREATE TABLE `tb_alumni` (
@@ -82,6 +84,7 @@ CREATE TABLE `tb_alumni` (
   `telepon` char(12) NOT NULL,
   `thn_mondok` char(4) NOT NULL,
   `thn_keluar` char(4) NOT NULL,
+  `pendidikan_terakhir` varchar(50) NOT NULL,
   `pekerjaan` varchar(20) NOT NULL,
   `nama_usaha` varchar(100) NOT NULL,
   `bidang_usaha` varchar(20) NOT NULL,
@@ -95,22 +98,22 @@ CREATE TABLE `tb_alumni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `tb_alumni`
+-- Dumping data for table `tb_alumni`
 --
 
-INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pekerjaan`, `nama_usaha`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`, `token_device`) VALUES
-(1, '3513172111980002', 'M. Ilham Surya Pratama', 1, 4, 'Dusun Paleran RT 011 RW 003', '085330150827', '2010', '2019', 'Wiraswasta', '', 'Kuliner', '', 'ilhamsurya26@gmail.com', 'ilhamsurya', '690896bc12592620f7371419d7bb8600', '8500fce2a72491afaca0708ba59699ac.jpg', 'c5a2cba2bd640af585a613b69341fb43.jpg', ''),
-(2, '3513172305980001', 'M Solehuddin', 2, 13, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'solehudin', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
-(3, '3513170305960002', 'Luthfi Nurul Huda', 4, 18, 'Dusun Karang RT 007 RW 003', '08574587213', '2004', '2010', 'Pengusaha', 'Bengkel Mobil Luthfi', 'Otomotif', '', 'luthfirobit@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', 'd84758412b1a7eb8ec0c43b267dc02f0.jpg', 'b4d2861c1f156e0fba174c902e69cf92.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
-(4, '3513172111980005', 'Giovani Rusandi', 1, 4, 'Dusun Krajan IV Rt 005 RW 002', '085337665221', '2009', '2014', 'Wiraswasta', '', '', '', 'giovanirusandi@gmail.com', 'giovani', 'f1b6d941a97ababa0c81b92841b3189f', '8bbf04034f09981dd59b2d41e7a270f5.jpg', '', 'flFMAZWhz2k:APA91bHbhL4IdUkzMjRZUSJmpiyJ3hkuZ4AHAt20okn0xN8A3POm24_ovsNrqICggcZUzvQY0Eg1oPCIZxW6LhZnRDbHfkSeU7kwIX3mx19Ya3LF6Y3zDVWjx5Sw0EdRcmko63aUw1Qc'),
-(5, '3513172111980007', 'Ario Setiawan', 4, 21, 'Dusun Makmur RT 11 Rw 05', '085337665221', '2018', '2019', 'Wiraswasta', '', '', '', 'ariosetiawan@gmail.com', 'ario', '713136f194f4b40b26ca140b940f6f05', 'a384bf909620bec58a4963104f49530a.jpg', '', ''),
-(6, '3513172305980001', 'M Solehuddin', 1, 5, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'soleh', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
-(7, '3513172111980007', 'Ibad Zimani', 2, 13, 'Dusun Kambuh RT 002 RW 004', '085337665201', '2013', '2016', 'Wiraswasta', '', 'Pertanian', '', 'ibadzimani@gmail.com', 'ibad', 'f275aed3c532126cf1e0174f1c9770e0', '879e82fce0d89403652187e0958d571c.jpg', 'a0a93defeefee7e11a39e02aa4ac4971.jpg', '');
+INSERT INTO `tb_alumni` (`id_alumni`, `no_ktp`, `nama`, `id_kecamatan`, `id_desa`, `alamat`, `telepon`, `thn_mondok`, `thn_keluar`, `pendidikan_terakhir`, `pekerjaan`, `nama_usaha`, `bidang_usaha`, `akun_fb`, `email`, `username`, `password`, `foto`, `foto_usaha`, `token_device`) VALUES
+(1, '3513172111980002', 'M. Ilham Surya Pratama', 1, 4, 'Dusun Paleran RT 011 RW 003', '085330150827', '2010', '2019', '', 'Wiraswasta', '', 'Kuliner', '', 'ilhamsurya26@gmail.com', 'ilhamsurya', '690896bc12592620f7371419d7bb8600', '8500fce2a72491afaca0708ba59699ac.jpg', 'c5a2cba2bd640af585a613b69341fb43.jpg', ''),
+(2, '3513172305980001', 'M Solehuddin', 2, 13, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', '', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'solehudin', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(3, '3513170305960002', 'Luthfi Nurul Huda', 4, 18, 'Dusun Karang RT 007 RW 003', '08574587213', '2004', '2010', '', 'Pengusaha', 'Bengkel Mobil Luthfi', 'Otomotif', '', 'luthfirobit@gmail.com', 'luthfi', 'd5cd72b7bcbf56bc503904f1ac7d9bc2', 'd84758412b1a7eb8ec0c43b267dc02f0.jpg', 'b4d2861c1f156e0fba174c902e69cf92.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(4, '3513172111980005', 'Giovani Rusandi', 1, 4, 'Dusun Krajan IV Rt 005 RW 002', '085337665221', '2009', '2014', '', 'Wiraswasta', '', '', '', 'giovanirusandi@gmail.com', 'giovani', 'f1b6d941a97ababa0c81b92841b3189f', '8bbf04034f09981dd59b2d41e7a270f5.jpg', '', 'flFMAZWhz2k:APA91bHbhL4IdUkzMjRZUSJmpiyJ3hkuZ4AHAt20okn0xN8A3POm24_ovsNrqICggcZUzvQY0Eg1oPCIZxW6LhZnRDbHfkSeU7kwIX3mx19Ya3LF6Y3zDVWjx5Sw0EdRcmko63aUw1Qc'),
+(5, '3513172111980007', 'Ario Setiawan', 4, 21, 'Dusun Makmur RT 11 Rw 05', '085337665221', '2018', '2019', '', 'Wiraswasta', '', '', '', 'ariosetiawan@gmail.com', 'ario', '713136f194f4b40b26ca140b940f6f05', 'a384bf909620bec58a4963104f49530a.jpg', '', ''),
+(6, '3513172305980001', 'M Solehuddin', 1, 5, 'Dusun Krajan RT 001 RW 004', '085233876521', '2009', '2014', '', 'Pengusaha', '', 'Otomotif', '', 'solehudin@gmail.com', 'soleh', '96e79218965eb72c92a549dd5a330112', 'e380dbd15ba6783eff3a883a7e496a59.jpg', 'ab1927903a204b80a802ad6eeeaf4e73.jpg', 'dSV0mcicAiE:APA91bFD5_d5wkrGRGK1PgesS2x3i4kxBa7XKssZGROypfTDUBkSDbhfjdqD68cMh5ZVdqowHhLcnfajLujJcVWpE8-VCGfQa0Nj8ixFkOJFMnA80QbjJ2BtgdyHk8wlnGwTU0t7MS1Y'),
+(7, '3513172111980007', 'Ibad Zimani', 2, 13, 'Dusun Kambuh RT 002 RW 004', '085337665201', '2013', '2016', '', 'Wiraswasta', '', 'Pertanian', '', 'ibadzimani@gmail.com', 'ibad', 'f275aed3c532126cf1e0174f1c9770e0', '879e82fce0d89403652187e0958d571c.jpg', 'a0a93defeefee7e11a39e02aa4ac4971.jpg', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_desa`
+-- Table structure for table `tb_desa`
 --
 
 CREATE TABLE `tb_desa` (
@@ -120,7 +123,7 @@ CREATE TABLE `tb_desa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_desa`
+-- Dumping data for table `tb_desa`
 --
 
 INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`) VALUES
@@ -154,7 +157,7 @@ INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_devisi`
+-- Table structure for table `tb_devisi`
 --
 
 CREATE TABLE `tb_devisi` (
@@ -164,7 +167,7 @@ CREATE TABLE `tb_devisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_devisi`
+-- Dumping data for table `tb_devisi`
 --
 
 INSERT INTO `tb_devisi` (`id_devisi`, `nama_devisi`, `status_devisi`) VALUES
@@ -174,7 +177,7 @@ INSERT INTO `tb_devisi` (`id_devisi`, `nama_devisi`, `status_devisi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_jabatan`
+-- Table structure for table `tb_jabatan`
 --
 
 CREATE TABLE `tb_jabatan` (
@@ -184,7 +187,7 @@ CREATE TABLE `tb_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_jabatan`
+-- Dumping data for table `tb_jabatan`
 --
 
 INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`, `status_jabatan`) VALUES
@@ -194,7 +197,7 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`, `status_jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_jawaban`
+-- Table structure for table `tb_jawaban`
 --
 
 CREATE TABLE `tb_jawaban` (
@@ -206,11 +209,11 @@ CREATE TABLE `tb_jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_jawaban`
+-- Dumping data for table `tb_jawaban`
 --
 
 INSERT INTO `tb_jawaban` (`id_jawaban`, `id_soal`, `jawaban`, `status`, `aktif`) VALUES
-(1, 1, 'KH ZAINI MUN''IM', 'b', 'y'),
+(1, 1, 'KH ZAINI MUN\'IM', 'b', 'y'),
 (2, 1, 'KH HASYIM ZAINI', 's', 'y'),
 (3, 1, 'KH WAHID ZAINI', 's', 'y'),
 (4, 1, 'KH ZUHRI ZAINI', 's', 'y'),
@@ -230,7 +233,7 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_soal`, `jawaban`, `status`, `aktif`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kecamatan`
+-- Table structure for table `tb_kecamatan`
 --
 
 CREATE TABLE `tb_kecamatan` (
@@ -239,7 +242,7 @@ CREATE TABLE `tb_kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_kecamatan`
+-- Dumping data for table `tb_kecamatan`
 --
 
 INSERT INTO `tb_kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
@@ -258,7 +261,7 @@ INSERT INTO `tb_kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kegiatan`
+-- Table structure for table `tb_kegiatan`
 --
 
 CREATE TABLE `tb_kegiatan` (
@@ -275,7 +278,7 @@ CREATE TABLE `tb_kegiatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_kegiatan`
+-- Dumping data for table `tb_kegiatan`
 --
 
 INSERT INTO `tb_kegiatan` (`id_kegiatan`, `judul_kegiatan`, `slug`, `deskripsi`, `status`, `id_lembaga_alumni`, `foto_kegiatan`, `jenis_kegiatan`, `author`, `tanggal_posting`) VALUES
@@ -289,7 +292,7 @@ INSERT INTO `tb_kegiatan` (`id_kegiatan`, `judul_kegiatan`, `slug`, `deskripsi`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_korcam`
+-- Table structure for table `tb_korcam`
 --
 
 CREATE TABLE `tb_korcam` (
@@ -301,7 +304,7 @@ CREATE TABLE `tb_korcam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_korcam`
+-- Dumping data for table `tb_korcam`
 --
 
 INSERT INTO `tb_korcam` (`id_korcam`, `id_kecamatan`, `id_alumni`, `tahun`, `status`) VALUES
@@ -310,7 +313,7 @@ INSERT INTO `tb_korcam` (`id_korcam`, `id_kecamatan`, `id_alumni`, `tahun`, `sta
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_lembaga_alumni`
+-- Table structure for table `tb_lembaga_alumni`
 --
 
 CREATE TABLE `tb_lembaga_alumni` (
@@ -324,7 +327,7 @@ CREATE TABLE `tb_lembaga_alumni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_lembaga_alumni`
+-- Dumping data for table `tb_lembaga_alumni`
 --
 
 INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`, `logo`, `alamat_lembaga`, `telepon_lembaga`, `email_lembaga`) VALUES
@@ -335,7 +338,7 @@ INSERT INTO `tb_lembaga_alumni` (`id_lembaga_alumni`, `nama_lembaga`, `status`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_lembaga_nj`
+-- Table structure for table `tb_lembaga_nj`
 --
 
 CREATE TABLE `tb_lembaga_nj` (
@@ -345,7 +348,7 @@ CREATE TABLE `tb_lembaga_nj` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_lembaga_nj`
+-- Dumping data for table `tb_lembaga_nj`
 --
 
 INSERT INTO `tb_lembaga_nj` (`id_lembaga`, `nama_lembaga`, `situs`) VALUES
@@ -359,7 +362,7 @@ INSERT INTO `tb_lembaga_nj` (`id_lembaga`, `nama_lembaga`, `situs`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pengurus`
+-- Table structure for table `tb_pengurus`
 --
 
 CREATE TABLE `tb_pengurus` (
@@ -370,7 +373,7 @@ CREATE TABLE `tb_pengurus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pengurus`
+-- Dumping data for table `tb_pengurus`
 --
 
 INSERT INTO `tb_pengurus` (`id_pengurus`, `id_alumni`, `id_lembaga_alumni`, `status`) VALUES
@@ -381,7 +384,7 @@ INSERT INTO `tb_pengurus` (`id_pengurus`, `id_alumni`, `id_lembaga_alumni`, `sta
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_petugas`
+-- Table structure for table `tb_petugas`
 --
 
 CREATE TABLE `tb_petugas` (
@@ -397,7 +400,7 @@ CREATE TABLE `tb_petugas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_petugas`
+-- Dumping data for table `tb_petugas`
 --
 
 INSERT INTO `tb_petugas` (`id_petugas`, `nama`, `telepon`, `alamat`, `foto`, `user`, `password`, `status`, `id_lembaga_alumni`) VALUES
@@ -408,7 +411,7 @@ INSERT INTO `tb_petugas` (`id_petugas`, `nama`, `telepon`, `alamat`, `foto`, `us
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_promosi`
+-- Table structure for table `tb_promosi`
 --
 
 CREATE TABLE `tb_promosi` (
@@ -420,7 +423,7 @@ CREATE TABLE `tb_promosi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_promosi`
+-- Dumping data for table `tb_promosi`
 --
 
 INSERT INTO `tb_promosi` (`id_promosi`, `id_alumni`, `tgl_mulai`, `tgl_akhir`, `status_promosi`) VALUES
@@ -429,7 +432,7 @@ INSERT INTO `tb_promosi` (`id_promosi`, `id_alumni`, `tgl_mulai`, `tgl_akhir`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_soal`
+-- Table structure for table `tb_soal`
 --
 
 CREATE TABLE `tb_soal` (
@@ -439,19 +442,19 @@ CREATE TABLE `tb_soal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_soal`
+-- Dumping data for table `tb_soal`
 --
 
 INSERT INTO `tb_soal` (`id_soal`, `pertanyaan`, `aktif`) VALUES
 (1, 'Siapa pendiri pertama pondok pesantren nurul jadid ?', 'y'),
-(2, 'Ada 2 nama yang di sodorkan kepada KH ZAINI MUN''IM untuk nama pesantren, apa sajakah itu?', 'y'),
+(2, 'Ada 2 nama yang di sodorkan kepada KH ZAINI MUN\'IM untuk nama pesantren, apa sajakah itu?', 'y'),
 (3, 'Pondok Pesantren Nurul Jadid didirikan pada tahun', 'y'),
 (4, 'Pendiri Pertama mendirikan pondok pesantren nurul jadid mendapatkan restu dan perintah dari ?', 'y');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_struktur`
+-- Table structure for table `tb_struktur`
 --
 
 CREATE TABLE `tb_struktur` (
@@ -466,19 +469,20 @@ CREATE TABLE `tb_struktur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_struktur`
+-- Dumping data for table `tb_struktur`
 --
 
 INSERT INTO `tb_struktur` (`id_struktur`, `id_jabatan`, `id_devisi`, `id_alumni`, `nis`, `status`, `id_lembaga_alumni`, `masa_bakti`) VALUES
 (1, 1, 1, 1, 0, 'Y', 2, '2019'),
 (2, 2, 2, 0, 1198, 'Y', 1, '2019'),
 (3, 2, 2, 2, 0, 'Y', 3, '2019'),
-(4, 2, 1, 0, 2165, 'Y', 1, '2019');
+(4, 2, 1, 0, 2165, 'Y', 1, '2019'),
+(5, 1, 1, 5, 0, 'Y', 3, '2019');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_visi_misi`
+-- Table structure for table `tb_visi_misi`
 --
 
 CREATE TABLE `tb_visi_misi` (
@@ -489,7 +493,7 @@ CREATE TABLE `tb_visi_misi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_visi_misi`
+-- Dumping data for table `tb_visi_misi`
 --
 
 INSERT INTO `tb_visi_misi` (`id_visi_misi`, `visi`, `misi`, `id_lembaga_alumni`) VALUES
@@ -618,91 +622,110 @@ ALTER TABLE `tb_visi_misi`
 --
 ALTER TABLE `administrator`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `anggota_fks`
 --
 ALTER TABLE `anggota_fks`
   MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2166;
+
 --
 -- AUTO_INCREMENT for table `tb_alumni`
 --
 ALTER TABLE `tb_alumni`
   MODIFY `id_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `tb_desa`
 --
 ALTER TABLE `tb_desa`
   MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
 -- AUTO_INCREMENT for table `tb_devisi`
 --
 ALTER TABLE `tb_devisi`
   MODIFY `id_devisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
   MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
   MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `tb_korcam`
 --
 ALTER TABLE `tb_korcam`
   MODIFY `id_korcam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `tb_lembaga_alumni`
 --
 ALTER TABLE `tb_lembaga_alumni`
   MODIFY `id_lembaga_alumni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `tb_lembaga_nj`
 --
 ALTER TABLE `tb_lembaga_nj`
   MODIFY `id_lembaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `tb_pengurus`
 --
 ALTER TABLE `tb_pengurus`
   MODIFY `id_pengurus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `tb_petugas`
 --
 ALTER TABLE `tb_petugas`
   MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `tb_promosi`
 --
 ALTER TABLE `tb_promosi`
   MODIFY `id_promosi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `tb_soal`
 --
 ALTER TABLE `tb_soal`
   MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `tb_struktur`
 --
 ALTER TABLE `tb_struktur`
-  MODIFY `id_struktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_struktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `tb_visi_misi`
 --
 ALTER TABLE `tb_visi_misi`
   MODIFY `id_visi_misi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
