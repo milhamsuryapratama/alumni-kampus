@@ -255,7 +255,7 @@
                     count++;
                 }
 
-                console.log($(data[count]).text());
+                // console.log($(data[count]).text());
 
                 $(slideTxt).append($(data[count]).clone());
                 $(slideTxt).find('.slide100-txt-item.clone').addClass(animIn + ' visible-true');

@@ -17,10 +17,6 @@ class Kegiatan extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/KegiatanDetail');
 		$this->load->view('pagesviews/Footer');
-
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/KegiatanDetail', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
 
 	public function lembaga($id,$offset=0)
@@ -62,10 +58,6 @@ class Kegiatan extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/KegiatanById', $data);
 		$this->load->view('pagesviews/Footer');
-
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/KegiatanById', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
 }
 ?>

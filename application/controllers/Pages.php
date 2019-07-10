@@ -4,19 +4,6 @@
  */
 class Pages extends CI_Controller
 {
-	
-	// public function index()
-	// {
-	// 	$data['kgtn'] = $this->db->query("SELECT * FROM tb_kegiatan LIMIT 1")->result_array();
-	// 	$data['kegiatan'] = $this->App_model->ambil_data('tb_kegiatan','id_kegiatan');
-	// 	//$data['vm'] = $this->App_model->ambil_data('tb_visi_misi','id_visi_misi');
-	// 	$data['vm'] = $this->App_model->join_dua_table('tb_visi_misi','tb_lembaga_alumni','tb_visi_misi.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_visi_misi.id_visi_misi');
-	// 	$data['title'] = "P4NJ NURUL JADID";
-
-	// 	$this->load->view('pages2/Header', $data);
-	// 	$this->load->view('pages2/Home', $data);
-	// 	$this->load->view('pages2/Footer');
-	// }
 
 	public function index()
 	{
@@ -38,9 +25,6 @@ class Pages extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/Home', $data);
 		$this->load->view('pagesviews/Footer');
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/Home', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
 
 	public function visi_misi()
@@ -51,10 +35,6 @@ class Pages extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/VisiMisi', $data);
 		$this->load->view('pagesviews/Footer');
-
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/VisiMisi', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
 
 	public function kegiatan($offset=0)
@@ -95,20 +75,7 @@ class Pages extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/Kegiatan', $data);
 		$this->load->view('pagesviews/Footer');
-
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/Kegiatan', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
-
-	// public function kegiatan_detail()
-	// {
-	// 	$data['kegiatan'] = $this->App_model->ambil_data_limit_recent('tb_kegiatan','id_kegiatan');
-
-	// 	$this->load->view('halamanutama/Header');
-	// 	$this->load->view('halamanutama/KegiatanDetail', $data);
-	// 	$this->load->view('halamanutama/Footer');
-	// }
 
 	public function promosi($offset = 0)
 	{
@@ -144,10 +111,6 @@ class Pages extends CI_Controller
 		$this->load->view('pagesviews/Header', $data);
 		$this->load->view('pagesviews/Promosi', $data);
 		$this->load->view('pagesviews/Footer');
-
-		// $this->load->view('halamanutama/Header', $data);
-		// $this->load->view('halamanutama/Promosi', $data);
-		// $this->load->view('halamanutama/Footer');
 	}
 }
  ?>
