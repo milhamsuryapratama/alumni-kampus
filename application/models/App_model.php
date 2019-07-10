@@ -71,7 +71,7 @@ class App_model extends CI_Model
 
     public function ambil_data_limit_recent($table, $params)
     {
-        return $this->db->order_by($params, 'DESC')->limit(4)->get($table)->result_array();
+        return $this->db->order_by($params, 'DESC')->limit(5)->get($table)->result_array();
     }
 
     public function ambil_data_by_id($table, $field, $id)
@@ -102,6 +102,11 @@ class App_model extends CI_Model
     public function join_dua_table_by_id($table1,$table2,$params1,$field,$paramsWhere,$id_lembaga)
     {
         return $this->db->order_by($field, 'DESC')->join($table2,$params1)->get_where($table1, array($paramsWhere => $id_lembaga))->result_array();
+    }
+
+    public function join_dua_table_by_id_limit($table1,$table2,$params1,$field,$paramsWhere,$id_lembaga,$limit)
+    {
+        return $this->db->limit($limit)->order_by($field, 'DESC')->join($table2,$params1)->get_where($table1, array($paramsWhere => $id_lembaga))->result_array();
     }
 
     public function join_dua_table_by_id_row($table1,$table2,$params1,$paramsWhere,$id)
