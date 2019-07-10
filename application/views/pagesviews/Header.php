@@ -80,6 +80,10 @@
 							Home
 						</a>
 
+						<a href="<?=base_url()?>pages/visi_misi" class="left-topbar-item">
+							Visi Misi
+						</a>
+
 						<a href="<?=base_url()?>pages/kegiatan" class="left-topbar-item">
 							Kegiatan
 						</a>
