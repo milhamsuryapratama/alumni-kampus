@@ -64,7 +64,7 @@
 			<!-- Header Mobile -->
 			<div class="wrap-header-mobile">
 				<!-- Logo moblie -->		
-				<div class="logo-mobile"><img src="<?=base_url()?>assets/foto/logo/12.png" alt="IMG-LOGO"/></a>
+				<div class="logo-mobile"><a href="<?=base_url()?>"><img src="<?=base_url()?>assets/foto/logo/12.png" alt="IMG-LOGO"/></a>
 				</div>
 
 				<!-- Button show menu -->

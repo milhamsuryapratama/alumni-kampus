@@ -68,7 +68,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-10 col-lg-8 p-b-80">
-				<div class="row">
+				<div class="row">				
 					<?php foreach ($kegiatan_cari as $k) { ?>
 						<div class="col-sm-6 p-r-25 p-r-15-sr991">
 							<!-- Item latest -->	
