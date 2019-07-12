@@ -35,7 +35,7 @@
         <div class="col-md-6">
           <input type="hidden" name="filter_id_kec" id="filter_id_kec">
           <select class="form-control" id="filterKec" name="filterKec">
-            <option selected>Pilih Kecamatan</option>
+            <option selected disabled>Pilih Kecamatan</option>
             <?php foreach ($kecamatan as $k) { 
               if ($k->id_kecamatan == $current_id) { ?>
                 <option value="<?=$k->id_kecamatan?>" selected><?=$k->nama_kecamatan?></option>

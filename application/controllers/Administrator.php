@@ -1872,7 +1872,11 @@ class Administrator extends CI_Controller
 
 	public function promosi()
 	{
-		$data['promosi'] = $this->App_model->join_dua_table('tb_promosi','tb_alumni','tb_promosi.id_alumni = tb_alumni.id_alumni','tb_promosi.id_promosi');		
+		$date = date("Y-m-d");
+		$update_promosi = $this->db->query("UPDATE tb_promosi SET status_promosi = 'N' WHERE tgl_akhir < '$date' ");
+		if ($update_promosi) {
+			$data['promosi'] = $this->App_model->join_dua_table('tb_promosi','tb_alumni','tb_promosi.id_alumni = tb_alumni.id_alumni','tb_promosi.id_promosi');		
+		}		
 
 		$this->load->view('administrator/Header');
 		$this->load->view('administrator/TopHeader');
@@ -1948,15 +1952,24 @@ class Administrator extends CI_Controller
 	{
 		$query = $this->db->query("UPDATE tb_promosi SET status_promosi = 'N' WHERE id_promosi = '".$id."' ");
 		if ($query) {
+			$this->session->set_flashdata('promosiNonAktif', 'Promosi Dinonaktifkan');
 			redirect(base_url().'administrator/promosi?lembaga='.$this->session->userdata('nama_lembaga'));
 		}
 	}
 
 	public function aktifkan_promosi($id)
-	{
-		$query = $this->db->query("UPDATE tb_promosi SET status_promosi = 'Y' WHERE id_promosi = '".$id."'");
-		if ($query) {
+	{	
+		$cek = $this->db->query("SELECT tgl_akhir FROM tb_promosi WHERE id_promosi = '$id' ")->row_array();
+		$date = date("Y-m-d");
+		if ($date > $cek['tgl_akhir']) {
+			$this->session->set_flashdata('promosiExpired', 'Promosi ini tidak bisa diaktifkan kembali karena telah melebih waktu promosi');
 			redirect(base_url().'administrator/promosi?lembaga='.$this->session->userdata('nama_lembaga'));
+		} else {
+			$query = $this->db->query("UPDATE tb_promosi SET status_promosi = 'Y' WHERE id_promosi = '".$id."' ");
+			if ($query) {
+				$this->session->set_flashdata('promosiAktif', 'Promosi Diaktifkan');
+				redirect(base_url().'administrator/promosi?lembaga='.$this->session->userdata('nama_lembaga'));
+			}
 		}
 	}
 

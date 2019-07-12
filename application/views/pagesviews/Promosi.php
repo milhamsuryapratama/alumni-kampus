@@ -10,38 +10,44 @@
 			<div class="col-md-10 col-lg-8 p-b-80">
 				<div class="row">
 
-					<?php foreach ($promosi as $p) { ?>
-						<div class="col-sm-6 p-r-25 p-r-15-sr991">
-							<!-- Item latest -->	
-							<div class="m-b-45">
-								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-									<img src="<?=base_url()?>assets/foto/foto_usaha/<?=$p['foto_usaha']?>" alt="IMG">
-								</a>
+					<?php 
+					if (count($promosi) > 0) {
+						foreach ($promosi as $p) { ?>
+							<div class="col-sm-6 p-r-25 p-r-15-sr991">
+								<!-- Item latest -->	
+								<div class="m-b-45">
+									<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
+										<img src="<?=base_url()?>assets/foto/foto_usaha/<?=$p['foto_usaha']?>" alt="IMG">
+									</a>
 
-								<div class="p-t-16">
-									<h5 class="p-b-5">
-										<a href="#" class="f1-m-3 cl2 hov-cl10 trans-03">
-											<?=$p['nama_usaha']?> 
-										</a>
-									</h5>
+									<div class="p-t-16">
+										<h5 class="p-b-5">
+											<a href="#" class="f1-m-3 cl2 hov-cl10 trans-03">
+												<?=$p['nama_usaha']?> 
+											</a>
+										</h5>
 
-									<span class="cl8">
-										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-											Oleh <?=$p['nama']?>
-										</a>
+										<span class="cl8">
+											<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+												Oleh <?=$p['nama']?>
+											</a>
 
-										<span class="f1-s-3 m-rl-3">
-											-
+											<span class="f1-s-3 m-rl-3">
+												-
+											</span>
+
+											<span class="f1-s-3">
+												<?=date('d F Y', strtotime($p['tgl_akhir']))?>
+											</span>
 										</span>
-
-										<span class="f1-s-3">
-											<?=date('d F Y', strtotime($p['tgl_akhir']))?>
-										</span>
-									</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					<?php } ?>
+						<?php } 
+					} else {
+						echo "Belum Ada Promosi";
+					} ?>
+					
 
 				</div>
 

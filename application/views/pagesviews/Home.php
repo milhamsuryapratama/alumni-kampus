@@ -47,70 +47,82 @@
 
 						<div class="row p-t-35">
 
-							<?php for ($i=0; $i < 1; $i++) { ?>
-								<div class="col-sm-6 p-r-25 p-r-15-sr991">
-									<!-- Item post -->	
-									<div class="m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_p4nj[$i]['foto_kegiatan']?>" alt="IMG">
-										</a>
+							<?php 
+							if (count($kegiatan_p4nj) > 0) { 
+								for ($i=1; $i < count($kegiatan_p4nj); $i++) { ?>
+									<div class="col-sm-6 p-r-25 p-r-15-sr991">
+										<!-- Item post -->	
+										<div class="m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_p4nj[$i]['foto_kegiatan']?>" alt="IMG">
+											</a>
 
-										<div class="p-t-20">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
-													<?=$kegiatan_p4nj[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
+											<div class="p-t-20">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
+														<?=$kegiatan_p4nj[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
 
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$k['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_p4nj[$i]['nama_lembaga']?>
-												</a>
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$k['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_p4nj[$i]['nama_lembaga']?>
+													</a>
 
-												<span class="f1-s-3 m-rl-3">
-													-
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_p4nj[$i]['tanggal_posting']))?>
+													</span>
 												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_p4nj[$i]['tanggal_posting']))?>
-												</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-
-							<div class="col-sm-6 p-r-25 p-r-15-sr991">
-								<!-- Item post -->	
-								<?php for ($i=1; $i < count($kegiatan_p4nj); $i++) { ?>
-									<div class="flex-wr-sb-s m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_p4nj[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
-										</a>
-
-										<div class="size-w-2">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
-													<?=$kegiatan_p4nj[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
-
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_p4nj[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_p4nj[$i]['nama_lembaga']?>
-												</a>
-
-												<span class="f1-s-3 m-rl-3">
-													-
-												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_p4nj[$i]['tanggal_posting']))?>
-												</span>
-											</span>
+											</div>
 										</div>
 									</div>
 								<?php } ?>
+							<?php } else {
+								echo "Tidak Ada Kegiatan";
+							}?>
+							
+
+							<div class="col-sm-6 p-r-25 p-r-15-sr991">
+								<!-- Item post -->	
+								<?php 
+								if (count($kegiatan_p4nj) > 0) {
+									for ($i=1; $i < count($kegiatan_p4nj); $i++) { ?>
+										<div class="flex-wr-sb-s m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_p4nj[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
+											</a>
+
+											<div class="size-w-2">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_p4nj[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
+														<?=$kegiatan_p4nj[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
+
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_p4nj[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_p4nj[$i]['nama_lembaga']?>
+													</a>
+
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_p4nj[$i]['tanggal_posting']))?>
+													</span>
+												</span>
+											</div>
+										</div>
+									<?php } 
+								} else {
+									echo "";
+								} ?>
+								
 							</div>
 						</div>
 					</div>					
@@ -133,70 +145,82 @@
 
 						<div class="row p-t-35">
 
-							<?php for ($i=0; $i < 1; $i++) { ?>
-								<div class="col-sm-6 p-r-25 p-r-15-sr991">
-									<!-- Item post -->	
-									<div class="m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_fksj[$i]['foto_kegiatan']?>" alt="IMG">
-										</a>
+							<?php 
+							if (count($kegiatan_fksj) > 0) {
+								for ($i=0; $i < 1; $i++) { ?>
+									<div class="col-sm-6 p-r-25 p-r-15-sr991">
+										<!-- Item post -->	
+										<div class="m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_fksj[$i]['foto_kegiatan']?>" alt="IMG">
+											</a>
 
-										<div class="p-t-20">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
-													<?=$kegiatan_fksj[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
+											<div class="p-t-20">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
+														<?=$kegiatan_fksj[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
 
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_fksj[$i]['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_fksj[$i]['nama_lembaga']?>
-												</a>
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_fksj[$i]['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_fksj[$i]['nama_lembaga']?>
+													</a>
 
-												<span class="f1-s-3 m-rl-3">
-													-
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_fksj[$i]['tanggal_posting']))?>
+													</span>
 												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_fksj[$i]['tanggal_posting']))?>
-												</span>
-											</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							<?php } ?>
+								<?php }
+							} else {
+								echo "Kegiatan Tidak Ada";
+							} ?>
+							
 
 							<div class="col-sm-6 p-r-25 p-r-15-sr991">
 								<!-- Item post -->	
-								<?php for ($i=1; $i < count($kegiatan_fksj); $i++) { ?>
-									<div class="flex-wr-sb-s m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_fksj[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
-										</a>
+								<?php 
+								if (count($kegiatan_fksj) > 0) {
+									for ($i=1; $i < count($kegiatan_fksj); $i++) { ?>
+										<div class="flex-wr-sb-s m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_fksj[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
+											</a>
 
-										<div class="size-w-2">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
-													<?=$kegiatan_fksj[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
+											<div class="size-w-2">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_fksj[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
+														<?=$kegiatan_fksj[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
 
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_fksj[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_fksj[$i]['nama_lembaga']?>
-												</a>
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_fksj[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_fksj[$i]['nama_lembaga']?>
+													</a>
 
-												<span class="f1-s-3 m-rl-3">
-													-
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_fksj[$i]['tanggal_posting']))?>
+													</span>
 												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_fksj[$i]['tanggal_posting']))?>
-												</span>
-											</span>
+											</div>
 										</div>
-									</div>
-								<?php } ?>
+									<?php } 
+								} else {
+									echo "";
+								} ?>
+								
 							</div>
 						</div>
 					</div>					
@@ -219,70 +243,82 @@
 
 						<div class="row p-t-35">
 
-							<?php for ($i=0; $i < 1; $i++) { ?>
-								<div class="col-sm-6 p-r-25 p-r-15-sr991">
-									<!-- Item post -->	
-									<div class="m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_njic[$i]['foto_kegiatan']?>" alt="IMG">
-										</a>
+							<?php 
+							if (count($kegiatan_njic) > 0) {
+								for ($i=0; $i < 1; $i++) { ?>
+									<div class="col-sm-6 p-r-25 p-r-15-sr991">
+										<!-- Item post -->	
+										<div class="m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_njic[$i]['foto_kegiatan']?>" alt="IMG">
+											</a>
 
-										<div class="p-t-20">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
-													<?=$kegiatan_njic[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
+											<div class="p-t-20">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="f1-m-3 cl2 hov-cl10 trans-03">
+														<?=$kegiatan_njic[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
 
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_njic[$i]['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_njic[$i]['nama_lembaga']?>
-												</a>
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_njic[$i]['id_lembaga_alumni']?>" class="f1-s-4 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_njic[$i]['nama_lembaga']?>
+													</a>
 
-												<span class="f1-s-3 m-rl-3">
-													-
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_njic[$i]['tanggal_posting']))?>
+													</span>
 												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_njic[$i]['tanggal_posting']))?>
-												</span>
-											</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							<?php } ?>
+								<?php }
+							} else {
+								echo "Kegiatan Tidak Ada";
+							} ?>
+							
 
 							<div class="col-sm-6 p-r-25 p-r-15-sr991">
 								<!-- Item post -->	
-								<?php for ($i=1; $i < count($kegiatan_njic); $i++) { ?>
-									<div class="flex-wr-sb-s m-b-30">
-										<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
-											<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_njic[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
-										</a>
+								<?php 
+								if (count($kegiatan_njic) > 0) {
+									for ($i=1; $i < count($kegiatan_njic); $i++) { ?>
+										<div class="flex-wr-sb-s m-b-30">
+											<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="size-w-1 wrap-pic-w hov1 trans-03">
+												<img src="<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan_njic[$i]['foto_kegiatan']?>" alt="IMGDonec metus orci, malesuada et lectus vitae">
+											</a>
 
-										<div class="size-w-2">
-											<h5 class="p-b-5">
-												<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
-													<?=$kegiatan_njic[$i]['judul_kegiatan']?>
-												</a>
-											</h5>
+											<div class="size-w-2">
+												<h5 class="p-b-5">
+													<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan_njic[$i]['slug']?>" class="f1-s-5 cl3 hov-cl10 trans-03">
+														<?=$kegiatan_njic[$i]['judul_kegiatan']?>
+													</a>
+												</h5>
 
-											<span class="cl8">
-												<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_njic[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
-													<?=$kegiatan_njic[$i]['nama_lembaga']?>
-												</a>
+												<span class="cl8">
+													<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan_njic[$i]['id_lembaga_alumni']?>" class="f1-s-6 cl8 hov-cl10 trans-03">
+														<?=$kegiatan_njic[$i]['nama_lembaga']?>
+													</a>
 
-												<span class="f1-s-3 m-rl-3">
-													-
+													<span class="f1-s-3 m-rl-3">
+														-
+													</span>
+
+													<span class="f1-s-3">
+														<?=date('d F Y', strtotime($kegiatan_njic[$i]['tanggal_posting']))?>
+													</span>
 												</span>
-
-												<span class="f1-s-3">
-													<?=date('d F Y', strtotime($kegiatan_njic[$i]['tanggal_posting']))?>
-												</span>
-											</span>
+											</div>
 										</div>
-									</div>
-								<?php } ?>
+									<?php } 
+								} else {
+									echo "";
+								} ?>
+								
 							</div>
 						</div>
 					</div>					

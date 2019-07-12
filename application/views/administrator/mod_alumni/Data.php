@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-3">
                             <select class="form-control" id="kecamatan" name="kecamatan" required>
-                                <option>-- Pilih Kecamatan --</option>
+                                <option disabled selected>-- Pilih Kecamatan --</option>
                                 <?php 
                                 foreach ($kecamatan as $k) { 
                                     if ($k['id_kecamatan'] == $current_kecamatan) { ?>

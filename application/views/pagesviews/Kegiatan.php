@@ -8,45 +8,57 @@
 	<div class="container">
 		<div class="row m-rl--1">
 
-			<?php for ($i=0; $i < 1; $i++) { ?>
-				<div class="col-12 p-rl-1 p-b-2">
-					<div class="bg-img1 size-a-3 how1 pos-relative" style="background-image: url(<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan[$i]['foto_kegiatan']?>);">
-						<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="dis-block how1-child1 trans-03"></a>
+			<?php 
+			if (count($kegiatan) > 0) {
+				for ($i=0; $i < 1; $i++) { ?>
+					<div class="col-12 p-rl-1 p-b-2">
+						<div class="bg-img1 size-a-3 how1 pos-relative" style="background-image: url(<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan[$i]['foto_kegiatan']?>);">
+							<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="dis-block how1-child1 trans-03"></a>
 
-						<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-							<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan[$i]['id_lembaga_alumni']?>" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-								<?=$kegiatan[$i]['nama_lembaga']?>
-							</a>
-
-							<h3 class="how1-child2 m-t-14 m-b-10">
-								<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
-									<?=$kegiatan[$i]['judul_kegiatan']?>
+							<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+								<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan[$i]['id_lembaga_alumni']?>" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+									<?=$kegiatan[$i]['nama_lembaga']?>
 								</a>
-							</h3>
+
+								<h3 class="how1-child2 m-t-14 m-b-10">
+									<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
+										<?=$kegiatan[$i]['judul_kegiatan']?>
+									</a>
+								</h3>
+							</div>
 						</div>
 					</div>
-				</div>
-			<?php } ?>			
+				<?php }
+			} else {
+				echo "Tidak Ada Kegiatan";
+			} ?>
+					
 
-			<?php for ($i=1; $i <= 4; $i++) { ?>
-				<div class="col-sm-6 col-md-3 p-rl-1 p-b-2">
-					<div class="bg-img1 size-a-14 how1 pos-relative" style="background-image: url(<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan[$i]['foto_kegiatan']?>);">
-						<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="dis-block how1-child1 trans-03"></a>
+			<?php 
+			if (count($kegiatan) > 4) {
+				for ($i=1; $i <= 4; $i++) { ?>
+					<div class="col-sm-6 col-md-3 p-rl-1 p-b-2">
+						<div class="bg-img1 size-a-14 how1 pos-relative" style="background-image: url(<?=base_url()?>assets/foto/kegiatan/<?=$kegiatan[$i]['foto_kegiatan']?>);">
+							<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="dis-block how1-child1 trans-03"></a>
 
-						<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-							<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan[$i]['id_lembaga_alumni']?>" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-								<?=$kegiatan[$i]['nama_lembaga']?>
-							</a>
-
-							<h3 class="how1-child2 m-t-14">
-								<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-									<?=$kegiatan[$i]['judul_kegiatan']?>
+							<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+								<a href="<?=base_url()?>kegiatan/lembaga/<?=$kegiatan[$i]['id_lembaga_alumni']?>" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+									<?=$kegiatan[$i]['nama_lembaga']?>
 								</a>
-							</h3>
+
+								<h3 class="how1-child2 m-t-14">
+									<a href="<?=base_url()?>kegiatan/detail/<?=$kegiatan[$i]['slug']?>" class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
+										<?=$kegiatan[$i]['judul_kegiatan']?>
+									</a>
+								</h3>
+							</div>
 						</div>
 					</div>
-				</div>
-			<?php } ?>
+				<?php } 
+			} else {
+				echo "";
+			} ?>
+			
 
 		</div>
 	</div>

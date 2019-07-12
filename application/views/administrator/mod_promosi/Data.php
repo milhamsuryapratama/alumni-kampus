@@ -30,6 +30,23 @@
                         <h4><i class="icon fa fa-check"></i> Sukses!</h4>
                         <?php echo $this->session->flashdata('updateDataSukses'); ?>
                     </div>
+                <?php } elseif ($this->session->flashdata('promosiExpired')) { ?>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $this->session->flashdata('promosiExpired'); ?>
+                    </div>
+                <?php } elseif ($this->session->flashdata('promosiAktif')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                        <?php echo $this->session->flashdata('promosiAktif'); ?>
+                    </div>
+                <?php } elseif ($this->session->flashdata('promosiNonAktif')) { ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                        <?php echo $this->session->flashdata('promosiNonAktif'); ?>
+                    </div>
                 <?php } ?>
     			<div class="box box-primary">
     				<div class="box-header">
@@ -63,8 +80,8 @@
     									<td><?=$l['no_ktp']?></td>
                                         <td><?=$l['nama']?></td>
                                         <td><?=$l['bidang_usaha']?></td>
-                                        <td><?=$l['tgl_mulai']?></td>
-                                        <td><?=$l['tgl_akhir']?></td>
+                                        <td><?=date('d F Y', strtotime($l['tgl_mulai']))?></td>
+                                        <td><?=date('d F Y', strtotime($l['tgl_akhir']))?></td>
                                         <td><?=
                                             $l['status_promosi'] === "Y" ? "Aktif" : "Tidak Aktif"
                                         ?></td>

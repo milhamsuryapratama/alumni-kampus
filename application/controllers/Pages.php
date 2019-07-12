@@ -88,23 +88,30 @@ class Pages extends CI_Controller
 		$config['per_page'] = 8;
 		$config['full_tag_open']="<ul>";
 		$config['full_tag_close']="</ul>";
-		$config['num_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['num_tag_close']="</li>";
-		$config['next_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['next_tag_close']="</li>";
-		$config['prev_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['prev_tag_close']="</li>";
-		$config['first_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['first_tag_close']="</li>";
-		$config['last_tag_open']="<li class='text-center trans_200' style='background-color: #42f46e'>";
-		$config['last_tag_close']="</li>";
-		$config['cur_tag_open']="<li class='active text-center trans_200' style='background-color: #7af442'><a href='#'>";
-		$config['cur_tag_close']="</a></li>";
+
+		$config['full_tag_open']="<div class='flex-wr-s-c m-rl--7 p-t-15'>";
+		$config['full_tag_close']="</div>";
+		$config['num_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7'>";
+		$config['num_tag_close']="</a>";
+		$config['next_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7'>";
+		$config['next_tag_close']="</a>";
+		$config['prev_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7'>";
+		$config['prev_tag_close']="</a>";
+		$config['first_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7'>";
+		$config['first_tag_close']="</a>";
+		$config['last_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7'>";
+		$config['last_tag_close']="</a>";
+		$config['cur_tag_open']="<a class='flex-c-c pagi-item hov-btn1 trans-03 m-all-7 pagi-active'>";
+		$config['cur_tag_close']="</a>";
 
 		$this->pagination->initialize($config);
 		$data['halaman'] = $this->pagination->create_links();
 
-		$data['promosi'] = $this->App_model->promosi_with_pagination($config['per_page'],$offset);
+		$date = date("Y-m-d");
+		$update_promosi = $this->db->query("UPDATE tb_promosi SET status_promosi = 'N' WHERE tgl_akhir < '$date' ");
+		if ($update_promosi) {
+			$data['promosi'] = $this->App_model->promosi_with_pagination($config['per_page'],$offset);
+		}		
 		$data['kegiatan_side'] = $this->App_model->join_dua_table_limit('tb_kegiatan','tb_lembaga_alumni','tb_kegiatan.id_lembaga_alumni = tb_lembaga_alumni.id_lembaga_alumni','tb_kegiatan.id_kegiatan','7');
 		$data['lembaga_nj'] = $this->App_model->ambil_data('tb_lembaga_nj', 'id_lembaga');
 
